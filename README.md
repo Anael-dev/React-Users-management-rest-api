@@ -25,6 +25,6 @@ $ npm start
 
 ---
 
-## Usage
+<!-- ## Usage
 
-- Now after the WS is ready, you should run the <a href="https://github.com/Anael-dev/React-Users-management-project" target="_blank">**Project Repo**</a>
+- Now after the WS is ready, you should run the <a href="https://github.com/Anael-dev/React-Users-management-project" target="_blank">**Project Repo**</a> -->
