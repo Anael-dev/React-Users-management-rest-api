@@ -6,10 +6,14 @@ exports.getAll = async () => {
   );
   return response.data.map((x) => {
     return {
-      userId: x.id,
+      id: x.id,
       name: x.name,
       email: x.email,
-      address: x.address,
+      address: {
+        city: x.address.city,
+        street: x.address.street,
+        zipcode: x.address.zipcode,
+      },
     };
   });
 };

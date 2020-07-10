@@ -32,7 +32,7 @@ exports.getById = (id) => {
 
 exports.deletePost = (id) => {
   return new Promise((resolve, reject) => {
-    Post.findByIdAndDelete(id, function (err) {
+    Post.findByIdAndDelete(id, { new: true }, function (err) {
       if (err) {
         reject(err);
       } else {

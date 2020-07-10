@@ -57,7 +57,7 @@ exports.postTodo = (reqBody) => {
 
 exports.editTodo = (id, reqBody) => {
   return new Promise((resolve, reject) => {
-    Todo.findByIdAndUpdate(id, reqBody, function (err, todo) {
+    Todo.findByIdAndUpdate(id, reqBody, { new: true }, function (err, todo) {
       if (err) {
         reject(err);
       } else {

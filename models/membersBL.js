@@ -57,7 +57,10 @@ exports.postMember = (reqBody) => {
 
 exports.editMember = (id, reqBody) => {
   return new Promise((resolve, reject) => {
-    Member.findByIdAndUpdate(id, reqBody, function (err, member) {
+    Member.findByIdAndUpdate(id, reqBody, { new: true }, function (
+      err,
+      member
+    ) {
       if (err) {
         reject(err);
       } else {
