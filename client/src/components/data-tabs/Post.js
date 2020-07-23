@@ -21,7 +21,7 @@ const Post = ({ item }) => {
 
       dispatch({
         type: "DELETE_POST",
-        payload: id,
+        payload: item,
       });
     } catch (err) {
       console.log(err);

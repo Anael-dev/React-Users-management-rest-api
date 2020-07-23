@@ -26,7 +26,7 @@ const Todo = ({ item }) => {
       await todosDAL.deleteTodo(id);
       dispatch({
         type: "DELETE_TODO",
-        payload: id,
+        payload: item,
       });
     } catch (err) {
       console.log(err);

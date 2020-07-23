@@ -184,12 +184,18 @@ export const reducer = (state, action) => {
     case "DELETE_POST":
       return {
         ...state,
-        posts: state.posts.filter((post) => post._id !== action.payload),
+        posts: state.posts.filter((post) => post._id !== action.payload._id),
+        postsProgress: state.postsProgress.filter(
+          (item) => item.id !== action.payload.id
+        ),
       };
     case "DELETE_TODO":
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo._id !== action.payload),
+        todos: state.todos.filter((todo) => todo._id !== action.payload._id),
+        todosProgress: state.todosProgress.filter(
+          (item) => item.id !== action.payload.id
+        ),
       };
     default:
       return state;
