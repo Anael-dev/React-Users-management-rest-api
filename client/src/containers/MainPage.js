@@ -61,7 +61,7 @@ const MainPage = () => {
   return (
     <div>
       <header>
-        <Link to={"/users/default"}>
+        <Link to={"/"}>
           <img
             className='header-logo'
             src={headerImg}

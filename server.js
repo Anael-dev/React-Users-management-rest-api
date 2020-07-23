@@ -22,4 +22,4 @@ app.use("/api/posts", postsRouter);
 app.use("/api/todos", todosRouter);
 
 const port = process.env.PORT || 8000;
-app.listen(port);
+app.listen(port, console.log(`Server is starting at ${port}`));

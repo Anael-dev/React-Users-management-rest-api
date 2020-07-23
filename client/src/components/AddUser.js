@@ -69,7 +69,7 @@ const AddUser = (props) => {
         {error && <label className='label-error'>{error}</label>}
         <div className='button-group-add'>
           <input className='btn btn-white btn-add' type='submit' value='add' />
-          <Link to='/users/default'>
+          <Link to='/'>
             <input
               className='btn btn-white btn-add'
               type='button'
