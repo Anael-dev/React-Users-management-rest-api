@@ -1,0 +1,30 @@
+/*** Container ***/
+.container-search {
+  display: flex;
+  padding: 0.7em 0;
+}
+
+.search-label {
+  font-family: "Lora", serif;
+  flex-shrink: 0;
+  margin: auto;
+  margin-right: 0.7em;
+}
+
+/*** Search input ***/
+.search-input {
+  max-width: 400px;
+  min-width: 150px;
+  flex-grow: 2;
+  transform: scale(1);
+  transition: 0.4s ease-in-out;
+}
+
+.search-input:focus {
+  transform: scale(1.01);
+}
+
+.search-icon {
+  padding-left: 0.3em;
+  opacity: 0.8;
+}

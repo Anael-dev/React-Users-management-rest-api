@@ -1,0 +1,131 @@
+/*** Containers ***/
+.list-container {
+  margin: 0 auto;
+}
+
+.list-items {
+  margin-top: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*** Typography ***/
+.MuiTypography-body1 {
+  font-family: inherit !important; /* overwriting material ui Switch styles */
+}
+
+/*** Item ***/
+.item {
+  border-bottom: 1px solid #496679d0;
+  border-radius: 5px;
+  line-height: 2.5;
+  margin-bottom: 2em;
+  padding: 0.7em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.item-body {
+  width: 100%;
+}
+
+.item-label {
+  margin-bottom: 0.3em;
+  font-family: "Lora", serif;
+  letter-spacing: 0.8px;
+}
+
+/*** Todos ***/
+.item-todo {
+  background-color: rgba(169, 220, 250, 0.473);
+}
+
+.completed-item {
+  background-color: #dbd6d6bb;
+  opacity: 0.5;
+  animation: fadeOut 0.5s ease-out;
+}
+
+.completed-title {
+  text-decoration: line-through #496679d0;
+}
+
+.item-completed {
+  display: flex;
+  justify-content: space-between;
+}
+
+.completed-label {
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0;
+}
+
+/*** Posts ***/
+.item-post {
+  background-color: rgba(175, 203, 231, 0.473);
+  text-align: center;
+}
+
+.post-title {
+  text-decoration: underline;
+  letter-spacing: 0.9px;
+  text-transform: capitalize;
+}
+
+.quote {
+  margin: 0.3em;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.2em;
+  margin-bottom: 0.5em;
+  opacity: 0.8;
+  line-height: 1.2;
+}
+
+/*** Buttons ***/
+.btn-action {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.7rem;
+  text-align: center;
+  color: rgba(119, 136, 153, 0.712);
+  box-shadow: 0 0px 2px rgba(247, 245, 242, 0.18);
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  margin-top: -0.5em;
+  margin-right: -0.5em;
+}
+
+.edit,
+.complete {
+  margin-right: 0.1em;
+}
+
+.complete {
+  color: #3ea33e;
+}
+
+/*** Errors ***/
+.error-item {
+  margin-bottom: 1em;
+}
+
+.error-border {
+  border: 3px solid rgba(248, 83, 83, 0.849) !important;
+}
+
+/*** Transitions ***/
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

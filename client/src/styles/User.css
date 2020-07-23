@@ -1,0 +1,106 @@
+/*** Containers ***/
+.container-user {
+  background: linear-gradient(
+      to top right,
+      rgba(245, 173, 91, 0.541),
+      rgba(235, 229, 229, 0.397)
+    ),
+    url("../images/backgrounds/diamond_upholstery.png");
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px rgba(97, 97, 97, 0.753);
+}
+
+.user-details {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+}
+
+.completed {
+  border: 2px solid rgba(0, 128, 0, 0.89);
+}
+
+/*** Header ***/
+.user-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.img-bar-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.avatar-img {
+  max-width: 3em;
+  border-radius: 50%;
+  filter: drop-shadow(5px 5px 5px #222222);
+  margin-bottom: 0.5em;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.label-link {
+  color: #1f3050;
+  text-decoration: none;
+  font-weight: 700;
+  width: fit-content;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.label-link:hover,
+.label-link:focus {
+  color: #62769b;
+}
+
+.label-id {
+  margin-bottom: 0.3em;
+  color: #1f3050;
+  font-weight: 400;
+}
+
+/*** Progress status ***/
+.status-bar {
+  width: 55%;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
+
+.status-quote {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-bottom: 0.2em;
+}
+
+.status {
+  font-weight: 700;
+  opacity: 0.9;
+  align-self: flex-end;
+  margin-right: 0.3em;
+}
+
+/*** Progress bar ***/
+.progress {
+  background-color: #f8f6f6ee;
+  height: 1.2rem;
+}
+
+.bg-warning {
+  background-color: #da9432 !important; /* overwriting bootstrap styles */
+}
+
+.progress-done {
+  background-color: rgb(
+    79,
+    122,
+    14
+  ) !important; /* overwriting bootstrap styles */
+}

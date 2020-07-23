@@ -1,0 +1,227 @@
+/*** Fonts ***/
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@300;400;700&display=swap");
+
+/*** Global Styles ***/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(
+      to right,
+      rgba(245, 237, 237, 0.849),
+      rgba(251, 253, 255, 0.589)
+    ),
+    url("../images/backgrounds/subtle_grunge.png");
+  font-family: "Lora", serif;
+  color: #404040;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/*** Titles ***/
+h1,
+h2,
+h3 {
+  font-family: "Lora", serif;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 0.3em;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+a {
+  width: fit-content;
+  text-decoration: none;
+}
+
+label {
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+ul {
+  padding-left: 0;
+}
+
+/*** Inputs ***/
+input {
+  margin-bottom: 1em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="textarea"] {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  width: 100%;
+  padding: 0.5em 1.3em;
+  margin: 0.7em 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  border-radius: 3px;
+  transition: 0.4s ease-in-out;
+  outline: none;
+}
+
+textarea {
+  display: block;
+  border: 3px solid #cccccc;
+  padding: 1em;
+  box-sizing: border-box;
+  max-width: 100%;
+  border-radius: 3px;
+  transition: 0.4s ease-in-out;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border: 3px solid #757474dc;
+}
+
+.post-content {
+  padding: 2em 4em;
+}
+
+/*** Forms ***/
+.data-collector {
+  background: url("../images/backgrounds/diamond_upholstery.png");
+  padding: 1.5em;
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.container-new-item {
+  padding: 2em;
+  padding-top: 0;
+}
+.container-new-item h3 {
+  margin: 1em 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/*** Buttons ***/
+.btn {
+  display: inline-block;
+  font-size: 0.7em;
+  font-weight: 700;
+  font-family: "Lora", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+  text-decoration: underline transparent;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.7em 1.1em;
+  margin: 0.5em 0;
+  box-shadow: none !important; /* avoiding box-shadow on active state */
+  transition: 0.25s;
+}
+
+.btn:hover {
+  text-decoration: underline;
+}
+
+.btn:active {
+  background-color: #aaa9a9ea;
+}
+
+.btn-white {
+  color: #404040;
+  background-color: #f2f2f2ea;
+}
+
+.btn-grey {
+  background-color: #727272;
+}
+
+.button-group-add {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn-add {
+  margin-right: 0.5em;
+  background-color: #cccacab9;
+}
+
+/*** Icons ***/
+.icon {
+  padding: 0 0.3em;
+}
+
+.btn-icon {
+  margin: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  padding: 0.35em;
+  font-size: 0.8rem;
+  opacity: 1;
+  line-height: 1.6;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-icon:hover {
+  opacity: 0.8;
+  background-color: rgba(206, 204, 204, 0.877);
+}
+
+/*** General classes ***/
+.container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-error {
+  font-size: 0.8rem;
+  color: rgb(243, 31, 31);
+  font-weight: 700;
+  width: fit-content;
+  display: block;
+  margin-bottom: 0.4em;
+}
+
+/*** Transition stages ***/
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}

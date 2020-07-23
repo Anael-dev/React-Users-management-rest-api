@@ -1,0 +1,16 @@
+.container-form {
+  margin-top: 0.7em;
+  max-width: 97%;
+}
+
+/*** Form buttons ***/
+.button-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.action-button {
+  margin-left: 0.3em;
+}

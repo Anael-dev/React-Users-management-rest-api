@@ -1,0 +1,25 @@
+/*** Typography ***/
+.underline {
+  border-bottom: 1px solid #404040;
+  width: 100%;
+  margin: 1em auto;
+}
+
+.user-title {
+  padding: 0.2em;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  margin: 0 auto;
+}
+
+.user-title h2 {
+  margin-bottom: 0.5em;
+}
+
+/*** Media queriers ***/
+@media (min-width: 650px) {
+  .underline {
+    margin: 2em auto;
+    width: 70%;
+  }
+}
