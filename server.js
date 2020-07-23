@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 var membersRouter = require("./routers/membersRoute");
 var postsRouter = require("./routers/postsRoute");
 var todosRouter = require("./routers/todosRoute");
+const path = require("path");
 
 let app = express();
 app.use(cors());
@@ -15,6 +16,10 @@ app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+
+  app.get("*", (request, response) => {
+    response.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
 }
 
 app.use("/api/users", membersRouter);
