@@ -22,13 +22,14 @@ const Users = () => {
       <div className='users-section'>
         {state.filteredUsers.length === 0 && <p>No users found :(</p>}
         <TransitionGroup>
-          {state.filteredUsers.map((x) => {
-            return (
-              <CSSTransition key={x._id} timeout={500} classNames='item'>
-                <User key={x._id} userData={x} />
-              </CSSTransition>
-            );
-          })}
+          {state.filteredUsers.length > 0 &&
+            state.filteredUsers.map((x) => {
+              return (
+                <CSSTransition key={x._id} timeout={500} classNames='item'>
+                  <User key={x._id} userData={x} />
+                </CSSTransition>
+              );
+            })}
         </TransitionGroup>
       </div>
     </div>
