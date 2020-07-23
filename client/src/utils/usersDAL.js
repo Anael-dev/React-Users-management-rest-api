@@ -1,34 +1,30 @@
 import axios from "axios";
 
 const getAllUsers = async () => {
-  const response = await axios.get("http://localhost:8000/api/users");
+  const response = await axios.get("/api/users");
 
   return response.data;
 };
 
 const getUser = async (id) => {
-  const response = await axios.get(`http://localhost:8000/api/users/${id}`);
-
+  const response = await axios.get(`/api/users/${id}`);
   return response.data;
 };
 
 const deleteUser = async (id) => {
-  const response = await axios.delete(`http://localhost:8000/api/users/${id}`);
+  const response = await axios.delete(`/api/users/${id}`);
 
   return response.data;
 };
 
 const addUser = async (obj) => {
-  const response = await axios.post("http://localhost:8000/api/users", obj);
+  const response = await axios.post("/api/users", obj);
 
   return response.data;
 };
 
 const editUser = async (id, obj) => {
-  const response = await axios.put(
-    `http://localhost:8000/api/users/${id}`,
-    obj
-  );
+  const response = await axios.put(`/api/users/${id}`, obj);
   return response.data;
 };
 

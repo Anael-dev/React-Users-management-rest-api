@@ -13,8 +13,13 @@ require("./configs/database");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 app.use("/api/users", membersRouter);
 app.use("/api/posts", postsRouter);
 app.use("/api/todos", todosRouter);
 
-app.listen(8000);
+const port = process.env.PORT || 8000;
+app.listen(port);

@@ -4,7 +4,6 @@ import UsersContext from "../../context/UsersContext";
 import "../../styles/UserData.css";
 import Tab from "../wrappers/Tab";
 
-
 const UserData = (props) => {
   let { params } = useRouteMatch();
   const { state } = useContext(UsersContext);
@@ -17,16 +16,20 @@ const UserData = (props) => {
       const user = state.users.find((user) => user.id === Number(params.id));
       setUserName(user.name);
     }
-  }, [userExists, params.id, state.users]);
+  }, [userExists, params.id]);
 
   const checkUser = useCallback(() => {
     const selectedId = Number(params.id);
-    if (!state.users.some((user) => user.id === selectedId)) {
+    if (
+      !state.users.some((user) => user.id === selectedId) ||
+      state.users.length === 0
+    ) {
       setUserExists(false);
       props.history.push("/");
     } else {
       setUserExists(true);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id, state.users]);
 

@@ -60,12 +60,16 @@ const LandingLayout = () => {
           Total Users Number:<span>{state.users.length || 0}</span>
           <i className='fas fa-angle-double-right arrow-right'></i>
         </h3>
-        <div className='chart'>
-          <Chart usersData={completedUsers} type='todos' viewWidth={width} />
-        </div>
-        <div className='chart doughnut'>
-          <Chart usersData={bestAuthors} type='posts' viewWidth={width} />
-        </div>
+        {completedUsers.length > 0 && (
+          <div className='chart'>
+            <Chart usersData={completedUsers} type='todos' viewWidth={width} />
+          </div>
+        )}
+        {bestAuthors.length > 0 && (
+          <div className='chart doughnut'>
+            <Chart usersData={bestAuthors} type='posts' viewWidth={width} />
+          </div>
+        )}
       </section>
     </div>
   );

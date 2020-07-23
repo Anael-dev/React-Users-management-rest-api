@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import "../styles/App.css";
-import MainPage from "./MainPage";
+import "./styles/App.css";
+import MainPage from "./containers/MainPage";
 
 const App = () => {
   return (

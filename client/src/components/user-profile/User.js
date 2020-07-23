@@ -111,8 +111,10 @@ const User = ({ userData }) => {
   const deleteUser = async (id) => {
     try {
       await usersDAL.deleteUser(id);
-      todos.forEach(async (todo) => await todosDAL.deleteTodo(todo._id));
-      posts.forEach(async (post) => await postsDAL.deletePost(post._id));
+      await Promise.all(todos.map((todo) => todosDAL.deleteTodo(todo._id)));
+      // todos.forEach(async (todo) => await todosDAL.deleteTodo(todo._id));
+      await Promise.all(posts.map((post) => postsDAL.deletePost(post._id)));
+      // posts.forEach(async (post) => await postsDAL.deletePost(post._id));
 
       dispatch({
         type: "DELETE_USER",

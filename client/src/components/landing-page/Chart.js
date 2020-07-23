@@ -9,7 +9,6 @@ import "chartjs-plugin-datalabels";
 import { defaults } from "react-chartjs-2";
 
 const Chart = ({ usersData, type, viewWidth }) => {
-
   const [mappedNames, setMappedNames] = useState([]);
   const [mappedData, setMappedData] = useState([]);
   const [chartData, setChartData] = useState({
@@ -57,50 +56,43 @@ const Chart = ({ usersData, type, viewWidth }) => {
   const CustomTag = type === "todos" ? Bar : Doughnut;
 
   return (
-    <>
-      {usersData.length > 0 && (
-        <CustomTag
-          data={chartData}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              datalabels: {
-                color: "white",
-                weight: "bold",
+    <CustomTag
+      data={chartData}
+      options={{
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          datalabels: {
+            color: "white",
+            weight: "bold",
+          },
+        },
+        scales: {
+          yAxes: [
+            {
+              display: type === "todos" ? true : false,
+              ticks: {
+                max: Math.max(...mappedData),
+                stepSize: type === "todos" ? 10 : 5,
+                beginAtZero: true,
+                padding: 10,
               },
             },
-
-            scales: {
-              yAxes: [
-                {
-                  display: type === "todos" ? true : false,
-                  ticks: {
-                    max: Math.max(...mappedData),
-                    stepSize: type === "todos" ? 10 : 5,
-                    beginAtZero: true,
-                    padding: 10,
-                  },
-                },
-              ],
-            },
-            title: {
-              display: true,
-              text:
-                type === "todos"
-                  ? "Best Todos Achievers"
-                  : "Most Posts Published",
-              fontSize: 20,
-            },
-            legend: {
-              onClick: null,
-              display: true,
-              position: "top",
-            },
-          }}
-        />
-      )}
-    </>
+          ],
+        },
+        title: {
+          display: true,
+          text:
+            type === "todos" ? "Best Todos Achievers" : "Most Posts Published",
+          fontSize: 20,
+        },
+        legend: {
+          onClick: null,
+          display: true,
+          position: "top",
+        },
+      }}
+    />
   );
 };
 
