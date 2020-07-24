@@ -16,6 +16,7 @@ const UserData = (props) => {
       const user = state.users.find((user) => user.id === Number(params.id));
       setUserName(user.name);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userExists, params.id]);
 
   const checkUser = useCallback(() => {

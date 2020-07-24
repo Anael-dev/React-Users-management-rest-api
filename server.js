@@ -2,7 +2,6 @@ let express = require("express");
 var cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
-const favicon = require("express-favicon");
 const port = process.env.PORT || 8000;
 
 var membersRouter = require("./routers/membersRoute");
