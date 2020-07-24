@@ -82,12 +82,16 @@ const User = ({ userData }) => {
     }
     const percentage = calcPerc(completedTodos.length, todos.length);
     setTodosPercentage(percentage);
-  }, [completedTodos, todos.length]);
+  }, [completedTodos.length, todos.length]);
 
   const checkPercentage = useCallback(() => {
     if (user) {
-      let completedTodos = todos.filter((todo) => todo.completed === true);
-      setCompletedTodos(completedTodos);
+      if (todos.length > 0) {
+        let completedTodos = todos.filter((todo) => todo.completed === true);
+        setCompletedTodos(completedTodos);
+      } else {
+        setCompletedTodos([]);
+      }
     }
   }, [todos]);
 

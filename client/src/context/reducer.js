@@ -185,17 +185,29 @@ export const reducer = (state, action) => {
       return {
         ...state,
         posts: state.posts.filter((post) => post._id !== action.payload._id),
-        postsProgress: state.postsProgress.filter(
-          (item) => item.id !== action.payload.id
-        ),
+        // postsProgress: state.postsProgress.filter(
+        //   (item) => item.id !== action.payload.id
+        // ),
       };
     case "DELETE_TODO":
+      const userId = action.payload.userId;
+      let filteredProgressArr;
+      const userProgress = state.todosProgress.find((x) => x.id === userId);
+      userProgress.todos--;
+      if (userProgress.todos === 0) {
+        filteredProgressArr = state.todosProgress.filter(
+          (item) => item.id !== userId
+        );
+      } else {
+        filteredProgressArr = [...state.todosProgress];
+      }
+      console.log(filteredProgressArr);
+      /// !!!!!!!!!!!!!!!! ////
+      console.log(state.todosProgress);
       return {
         ...state,
         todos: state.todos.filter((todo) => todo._id !== action.payload._id),
-        todosProgress: state.todosProgress.filter(
-          (item) => item.id !== action.payload.id
-        ),
+        todosProgress: filteredProgressArr,
       };
     default:
       return state;
