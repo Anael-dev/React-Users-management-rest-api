@@ -20,9 +20,12 @@ const Users = () => {
         </Link>
       </div>
       <div className='users-section'>
-        {state.filteredUsers.length === 0 && <p>No users found :(</p>}
+        {state.filteredUsers && state.filteredUsers.length === 0 && (
+          <p>No users found :(</p>
+        )}
         <TransitionGroup>
-          {state.filteredUsers.length > 0 &&
+          {state.filteredUsers &&
+            state.filteredUsers.length > 0 &&
             state.filteredUsers.map((x) => {
               return (
                 <CSSTransition key={x._id} timeout={500} classNames='item'>
