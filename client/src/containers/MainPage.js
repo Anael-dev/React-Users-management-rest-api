@@ -77,7 +77,7 @@ const MainPage = () => {
             <Users />
           </div>
           <Switch>
-            <Route exact path='/users/default' component={LandingLayout} />
+            <Route exact path='/' component={LandingLayout} />
             <Route component={RouteComponents} />
           </Switch>
         </div>
