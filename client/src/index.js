@@ -9,7 +9,7 @@ import UsersContextProvider from "./context/UsersContextProvider";
 
 ReactDOM.render(
   <UsersContextProvider>
-    <BrowserRouter>
+    <BrowserRouter basename='/'>
       <App />
     </BrowserRouter>
   </UsersContextProvider>,
