@@ -1,8 +1,18 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import UsersContext from "../context/UsersContext";
+import MainPageContext from "../context/MainPageContext";
 import { animateScroll } from "react-scroll";
+import * as Scroll from "react-scroll";
 import "../styles/MainPage.css";
+
+/*material UI*/
+import LinearProgress from "@material-ui/core/LinearProgress";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 /*utils*/
 import usersDAL from "../utils/usersDAL";
@@ -17,8 +27,33 @@ import LandingLayout from "../components/wrappers/LandingLayout";
 import headerImg from "../images/header.png";
 
 const MainPage = () => {
-  const { dispatch } = useContext(UsersContext);
+  const ScrollLink = Scroll.Link;
+  const { state, dispatch } = useContext(UsersContext);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [expanded, setExpanded] = useState("usersPanel");
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch({
+        type: "HIDE_LOADER",
+      });
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +78,7 @@ const MainPage = () => {
       }
     };
     fetchData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -59,29 +95,79 @@ const MainPage = () => {
   }, [handleScroll]);
 
   return (
-    <div>
+    <MainPageContext.Provider
+      value={{
+        closeAccordion: () => setExpanded(false),
+        openAccordion: () => setExpanded("usersPanel"),
+      }}>
       <header>
         <Link to={"/"}>
           <img
             className='header-logo'
             src={headerImg}
             alt='header'
-            onClick={() => animateScroll.scrollToTop()}
+            onClick={() => {
+              animateScroll.scrollToTop();
+              setExpanded("usersPanel");
+            }}
           />
         </Link>
       </header>
-      <div className='container'>
-        <SearchField />
-        <div className='main-page'>
-          <div className='container-left'>
-            <Users />
+      {state.isLoading ? (
+        <LinearProgress />
+      ) : (
+        <div className='container'>
+          <SearchField />
+          <div className='main-page'>
+            <div className='container-left'>
+              {width < 650 ? (
+                <Accordion
+                  style={{
+                    backgroundColor: "transparent",
+                    marginBottom: "1em",
+                  }}
+                  expanded={expanded === "usersPanel"}
+                  onChange={handleChange("usersPanel")}>
+                  <ScrollLink
+                    activeClass='active'
+                    to='container-left'
+                    spy={true}
+                    smooth={true}
+                    offset={-100}
+                    duration={500}>
+                    <AccordionSummary
+                      style={{
+                        backgroundColor: "#a7d5f2a2",
+                      }}
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls='usersPanel-content'
+                      id='usersPanel-header'>
+                      <Typography
+                        style={{
+                          textDecoration: `${
+                            expanded === "usersPanel" ? "underline" : ""
+                          }`,
+                        }}>
+                        Users List
+                      </Typography>
+                    </AccordionSummary>
+                  </ScrollLink>
+                  <AccordionDetails>
+                    <Users isAccordion={true} />
+                  </AccordionDetails>
+                </Accordion>
+              ) : (
+                <Users isAccordion={false} />
+              )}
+            </div>
+            <Switch>
+              <Route exact path='/' component={LandingLayout} />
+              <Route component={RouteComponents} />
+            </Switch>
           </div>
-          <Switch>
-            <Route exact path='/' component={LandingLayout} />
-            <Route component={RouteComponents} />
-          </Switch>
         </div>
-      </div>
+      )}
+
       {scrollPosition > 350 && (
         <div className='scroll'>
           <button
@@ -113,7 +199,7 @@ const MainPage = () => {
           <i className='fab fa-github'></i>
         </a>
       </footer>
-    </div>
+    </MainPageContext.Provider>
   );
 };
 

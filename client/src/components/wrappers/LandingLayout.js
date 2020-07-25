@@ -1,5 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import UsersContext from "../../context/UsersContext";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
+import * as Scroll from "react-scroll";
+
 import "../../styles/LandingLayout.css";
 
 /*icons*/
@@ -8,14 +16,20 @@ import todosIcon from "../../images/benefits/tasksList.png";
 import postsIcon from "../../images/benefits/postPage.png";
 
 import Benefit from "../landing-page/Benefit";
-import Chart from "../landing-page/Chart";
+import Statistics from "../landing-page/Statistics";
 
 const LandingLayout = () => {
+  const ScrollLink = Scroll.Link;
   const { state } = useContext(UsersContext);
 
   const [completedUsers, setCompletedUsers] = useState([]);
   const [bestAuthors, setBestAuthors] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,23 +68,50 @@ const LandingLayout = () => {
           <Benefit src={postsIcon} type='posts' />
         </div>
       </div>
-      <section className='statistics'>
-        <h3 className='users-num'>
-          <i className='fas fa-angle-double-left arrow-left'></i>
-          Total Users Number:<span>{state.users.length || 0}</span>
-          <i className='fas fa-angle-double-right arrow-right'></i>
-        </h3>
-        {completedUsers.length > 0 && (
-          <div className='chart'>
-            <Chart usersData={completedUsers} type='todos' viewWidth={width} />
-          </div>
-        )}
-        {bestAuthors.length > 0 && (
-          <div className='chart doughnut'>
-            <Chart usersData={bestAuthors} type='posts' viewWidth={width} />
-          </div>
-        )}
-      </section>
+      {width < 650 ? (
+        <Accordion
+          style={{ backgroundColor: "transparent", marginBottom: "1em" }}
+          expanded={expanded === "statisticsPanel"}
+          onChange={handleChange("statisticsPanel")}>
+          <ScrollLink
+            activeClass='active'
+            to='container-statistics'
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={500}>
+            <AccordionSummary
+              style={{
+                backgroundColor: "#dbd6d6bb",
+              }}
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls='usersPanel-content'
+              id='usersPanel-header'>
+              <Typography
+                style={{
+                  textDecoration: `${
+                    expanded === "statisticsPanel" ? "underline" : ""
+                  }`,
+                }}>
+                General Information
+              </Typography>
+            </AccordionSummary>
+          </ScrollLink>
+          <AccordionDetails>
+            <Statistics
+              width={width}
+              completedUsers={completedUsers}
+              bestAuthors={bestAuthors}
+            />
+          </AccordionDetails>
+        </Accordion>
+      ) : (
+        <Statistics
+          width={width}
+          completedUsers={completedUsers}
+          bestAuthors={bestAuthors}
+        />
+      )}
     </div>
   );
 };

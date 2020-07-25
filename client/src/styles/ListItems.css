@@ -75,6 +75,10 @@
   text-transform: capitalize;
 }
 
+.post-body {
+  margin: 0 0.3em;
+}
+
 .quote {
   margin: 0.3em;
   font-weight: 700;

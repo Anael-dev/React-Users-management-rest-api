@@ -41,10 +41,11 @@ const UserData = (props) => {
   return (
     <>
       {userExists && (
-        <div id='user-data'>
+        <div className='user-data'>
           <div className='user-title'>
-            <h2>User {params.id}</h2>
-            <h3>{userName}</h3>
+            <h2>
+              User<span className='blue-num'>{params.id}</span> - {userName}
+            </h2>
           </div>
           <Tab id={params.id} type={"todos"} />
           <div className='underline'></div>

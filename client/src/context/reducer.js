@@ -5,6 +5,7 @@ export const initialState = {
   todos: [],
   todosProgress: [],
   postsProgress: [],
+  isLoading: true,
 };
 
 export const reducer = (state, action) => {
@@ -15,7 +16,6 @@ export const reducer = (state, action) => {
         users: action.payload,
         filteredUsers: action.payload,
       };
-
     case "FETCH_TODOS":
       return {
         ...state,
@@ -26,7 +26,6 @@ export const reducer = (state, action) => {
         ...state,
         posts: action.payload,
       };
-
     case "FILTER_USERS":
       const input = action.payload;
       let filteredArr = [];
@@ -182,33 +181,50 @@ export const reducer = (state, action) => {
         todos: completedTodos,
       };
     case "DELETE_POST":
+      const postUserId = action.payload.userId;
+      let filteredPostsArr;
+      const userPosts = state.postsProgress.find((x) => x.id === postUserId);
+      userPosts.posts--;
+      if (userPosts.posts === 0) {
+        filteredPostsArr = state.postsProgress.filter(
+          (item) => item.id !== postUserId
+        );
+      } else {
+        filteredPostsArr = [...state.postsProgress];
+      }
       return {
         ...state,
         posts: state.posts.filter((post) => post._id !== action.payload._id),
-        // postsProgress: state.postsProgress.filter(
-        //   (item) => item.id !== action.payload.id
-        // ),
+        postsProgress: filteredPostsArr,
       };
     case "DELETE_TODO":
-      const userId = action.payload.userId;
-      let filteredProgressArr;
-      const userProgress = state.todosProgress.find((x) => x.id === userId);
+      const todoUserId = action.payload.userId;
+      let filteredTodosArr;
+      const userProgress = state.todosProgress.find((x) => x.id === todoUserId);
       userProgress.todos--;
       if (userProgress.todos === 0) {
-        filteredProgressArr = state.todosProgress.filter(
-          (item) => item.id !== userId
+        filteredTodosArr = state.todosProgress.filter(
+          (item) => item.id !== todoUserId
         );
       } else {
-        filteredProgressArr = [...state.todosProgress];
+        filteredTodosArr = [...state.todosProgress];
       }
-      console.log(filteredProgressArr);
-      /// !!!!!!!!!!!!!!!! ////
-      console.log(state.todosProgress);
       return {
         ...state,
         todos: state.todos.filter((todo) => todo._id !== action.payload._id),
-        todosProgress: filteredProgressArr,
+        todosProgress: filteredTodosArr,
       };
+    case "SHOW_LOADER":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "HIDE_LOADER":
+      return {
+        ...state,
+        isLoading: false,
+      };
+
     default:
       return state;
   }

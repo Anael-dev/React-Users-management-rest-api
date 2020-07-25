@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../../styles/UserForm.css";
 
 const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
-
   const [data, setData] = useState({});
   const [isVisible, setIsVisible] = useState(false);
   const [action, setAction] = useState("");
@@ -93,10 +92,7 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
             type='button'
             value='Other Data'
             onClick={() => {
-              setIsVisible(true);
-            }}
-            onMouseOver={() => {
-              setIsVisible(false);
+              setIsVisible(!isVisible);
             }}
           />
           <div className='action-buttons'>

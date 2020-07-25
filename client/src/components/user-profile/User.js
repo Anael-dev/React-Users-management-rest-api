@@ -2,17 +2,18 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import UsersContext from "../../context/UsersContext";
+import MainPageContext from "../../context/MainPageContext";
+
 import "../../styles/User.css";
-import * as Scroll from "react-scroll";
 import usersDAL from "../../utils/usersDAL";
 import todosDAL from "../../utils/todosDAL";
 import postsDAL from "../../utils/postsDAL";
 import UserForm from "./UserForm";
 
 const User = ({ userData }) => {
-  const ScrollLink = Scroll.Link;
   const history = useHistory();
   const { state, dispatch } = useContext(UsersContext);
+  const { closeAccordion } = useContext(MainPageContext);
 
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
@@ -34,13 +35,13 @@ const User = ({ userData }) => {
     if (user.id) {
       setTodos([...state.todos.filter((todo) => todo.userId === user.id)]);
     }
-  }, [state.todos]);
+  }, [state.todos, user]);
 
   useEffect(() => {
     if (user.id) {
       setPosts([...state.posts.filter((post) => post.userId === user.id)]);
     }
-  }, [state.posts]);
+  }, [state.posts, user]);
 
   useEffect(() => {
     if (100 > todosPercentage > 0) {
@@ -82,18 +83,20 @@ const User = ({ userData }) => {
     }
     const percentage = calcPerc(completedTodos.length, todos.length);
     setTodosPercentage(percentage);
-  }, [completedTodos.length, todos.length]);
+  }, [completedTodos, todos]);
 
   const checkPercentage = useCallback(() => {
-    if (user) {
-      if (todos.length > 0) {
-        let completedTodos = todos.filter((todo) => todo.completed === true);
-        setCompletedTodos(completedTodos);
-      } else {
-        setCompletedTodos([]);
-      }
+    if (todos.length > 0) {
+      let completedTodos = todos.filter((todo) => todo.completed === true);
+      setCompletedTodos(completedTodos);
+    } else {
+      setCompletedTodos([]);
     }
   }, [todos]);
+
+  useEffect(() => {
+    checkPercentage();
+  }, [checkPercentage]);
 
   useEffect(() => {
     if (posts.length > 0) {
@@ -107,10 +110,6 @@ const User = ({ userData }) => {
       });
     }
   }, [posts]);
-
-  useEffect(() => {
-    checkPercentage();
-  }, [checkPercentage]);
 
   const deleteUser = async (id) => {
     try {
@@ -142,6 +141,7 @@ const User = ({ userData }) => {
   };
 
   const redirectToData = () => {
+    closeAccordion();
     history.push(`/users/user/${user.id}`);
   };
 
@@ -152,20 +152,12 @@ const User = ({ userData }) => {
       <div className='user-header'>
         <div className='user-details'>
           <div className='img-bar-section'>
-            <ScrollLink
-              activeClass='active'
-              to={"container-right"}
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}>
-              <img
-                className={`avatar-img`}
-                src={`https://i.pravatar.cc/150?img=${user.id}`}
-                alt='user avatar'
-                onClick={() => redirectToData()}
-              />
-            </ScrollLink>
+            <img
+              className='avatar-img'
+              src={`https://i.pravatar.cc/150?img=${user.id}`}
+              alt='user avatar'
+              onClick={() => redirectToData()}
+            />
             <div className='status-bar'>
               {todos.length > 0 && (
                 <span
@@ -196,21 +188,13 @@ const User = ({ userData }) => {
               <span className='status'>
                 {todos.length > 0
                   ? `${completedTodos.length} of ${todos.length}`
-                  : "no todos"}
+                  : "No todos yet"}
               </span>
             </div>
           </div>
-          <ScrollLink
-            activeClass='active'
-            to='container-right'
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}>
-            <label className='label-link' onClick={() => redirectToData()}>
-              {user.name}
-            </label>
-          </ScrollLink>
+          <label className='label-link' onClick={() => redirectToData()}>
+            {user.name}
+          </label>
           <label className='label-id'>ID: {user.id}</label>
         </div>
       </div>

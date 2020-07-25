@@ -91,7 +91,8 @@ textarea {
   outline: none;
 }
 
-input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
 textarea:focus {
   border: 3px solid #757474dc;
 }
@@ -209,6 +210,12 @@ textarea:focus {
   width: fit-content;
   display: block;
   margin-bottom: 0.4em;
+}
+
+.blue-num {
+  font-size: 1.5rem;
+  color: #148fdb;
+  margin-left: 0.5em;
 }
 
 /*** Transition stages ***/

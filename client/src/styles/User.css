@@ -7,7 +7,7 @@
     ),
     url("../images/backgrounds/diamond_upholstery.png");
   padding: 0.8em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   border-radius: 5px;
   box-shadow: 1px 1px 10px rgba(97, 97, 97, 0.753);
 }
@@ -34,15 +34,18 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
 }
 
 .avatar-img {
-  max-width: 3em;
+  max-width: 4em;
   border-radius: 50%;
   filter: drop-shadow(5px 5px 5px #222222);
   margin-bottom: 0.5em;
   cursor: pointer;
   width: fit-content;
+  padding: 0.3em;
+  padding-left: 0;
 }
 
 .label-link {
