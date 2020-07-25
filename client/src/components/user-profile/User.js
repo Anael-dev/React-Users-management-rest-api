@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import UsersContext from "../../context/UsersContext";
 import MainPageContext from "../../context/MainPageContext";
+import { animateScroll } from "react-scroll";
 
 import "../../styles/User.css";
 import usersDAL from "../../utils/usersDAL";
@@ -142,6 +143,7 @@ const User = ({ userData }) => {
 
   const redirectToData = () => {
     closeAccordion();
+    animateScroll.scrollToTop();
     history.push(`/users/user/${user.id}`);
   };
 
