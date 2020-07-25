@@ -11,7 +11,6 @@ let app = express();
 app.use(cors());
 
 require("./configs/database");
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
