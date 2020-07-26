@@ -5,6 +5,7 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
   const [data, setData] = useState({});
   const [isVisible, setIsVisible] = useState(false);
   const [action, setAction] = useState("");
+  const [disable, setDisable] = useState(false);
   const [mainErrors, setMainErrors] = useState({ name: "", address: "" });
   const [addressErrors, setAddressErrors] = useState({
     street: "",
@@ -47,11 +48,15 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setDisable(true);
     if (action === "delete") {
       deleteUserCallback();
     }
     if (action === "update") {
       updateUserCallback(data);
+      setTimeout(() => {
+        setDisable(false);
+      }, 1500);
     }
     setAction("");
   };
@@ -99,6 +104,7 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
             <button
               className='btn btn-white btn-icon  action-button'
               type='submit'
+              disabled={disable}
               title='update user'
               onClick={() => setAction("update")}>
               <i className='fas fa-check'></i>
@@ -106,6 +112,7 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
             <button
               className='btn btn-white btn-icon  action-button'
               type='submit'
+              disabled={disable}
               title='delete user'
               onClick={() => setAction("delete")}>
               <i className='fas fa-trash'></i>

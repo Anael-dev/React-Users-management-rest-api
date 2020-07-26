@@ -23,8 +23,10 @@
   transition: all ease-in-out 0.5s;
 }
 
-.action-button:active,
-.btn-more-data:active {
+.action-button:active {
   background-color: gray;
 }
 
+.btn-more-data:active {
+  background-color: #f2f2f2ea;
+}
