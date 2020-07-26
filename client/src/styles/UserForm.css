@@ -20,11 +20,11 @@
 
 .action-button {
   margin-left: 0.3em;
-  transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.5s;
 }
 
 .action-button:active,
 .btn-more-data:active {
-  background-color: #f2f2f2ea;
+  background-color: gray;
 }
 
