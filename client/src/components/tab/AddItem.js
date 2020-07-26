@@ -73,16 +73,16 @@ const AddItem = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
-        
+
         {type === "posts" && (
           <>
-          <br />
-          <label>
-            Content:
-            <textarea
-              className='post-content'
-              onChange={(e) => setBody(e.target.value)}></textarea>
-          </label>
+            <br />
+            <label>
+              Content:
+              <textarea
+                className='post-content'
+                onChange={(e) => setBody(e.target.value)}></textarea>
+            </label>
           </>
         )}
         {error && <label className='label-error error-item'>{error}</label>}
