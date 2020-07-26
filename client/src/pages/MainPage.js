@@ -20,10 +20,10 @@ import postsDAL from "../utils/postsDAL";
 import todosDAL from "../utils/todosDAL";
 
 /*components*/
-import RouteComponents from "../containers/RouteComponents";
-import Users from "../components/wrappers/Users";
-import SearchField from "../components/SearchField";
-import LandingLayout from "../components/wrappers/LandingLayout";
+import RouteComponents from "../components/containers/RouteComponents";
+import Users from "../components/containers/Users";
+import SearchField from "../components/containers/SearchField";
+import LandingLayout from "../components/containers/LandingLayout";
 import headerImg from "../images/header.png";
 
 const MainPage = () => {
@@ -41,6 +41,7 @@ const MainPage = () => {
       });
     }, 1000);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -98,7 +99,6 @@ const MainPage = () => {
     <MainPageContext.Provider
       value={{
         closeAccordion: () => setExpanded(false),
-        openAccordion: () => setExpanded("usersPanel"),
       }}>
       <header>
         <Link to={"/"}>

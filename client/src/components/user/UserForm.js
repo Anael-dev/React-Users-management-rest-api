@@ -88,7 +88,7 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
         </label>
         <div className='button-group'>
           <input
-            className='btn btn-white'
+            className='btn btn-white btn-more-data'
             type='button'
             value='Other Data'
             onClick={() => {
@@ -113,7 +113,7 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
           </div>
         </div>
         {isVisible && (
-          <div>
+          <div className='other-data'>
             <label>
               City:
               <input

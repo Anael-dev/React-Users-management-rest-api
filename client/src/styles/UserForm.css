@@ -3,6 +3,13 @@
   max-width: 97%;
 }
 
+.container-form label {
+  width: 95%;
+}
+
+.other-data {
+  margin-top: 0.8em;
+}
 /*** Form buttons ***/
 .button-group {
   width: 100%;
@@ -13,4 +20,14 @@
 
 .action-button {
   margin-left: 0.3em;
+  transition: all ease-in-out 0.3s;
+}
+
+.action-button:active,
+.btn-more-data:active {
+  background-color: #f2f2f2ea;
+}
+
+.btn-more-data:hover {
+  background-color: rgba(206, 204, 204, 0.877);
 }

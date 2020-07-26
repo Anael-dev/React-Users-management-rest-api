@@ -17,7 +17,7 @@ const Benefit = ({ src, type }) => {
     posts: {
       title: "Write Posts",
       description:
-        "Add new posts, edit or delete chosen posts, read others fresh content",
+        "Add new posts, edit or delete chosen posts, get inspiration by others fresh content",
     },
   });
 

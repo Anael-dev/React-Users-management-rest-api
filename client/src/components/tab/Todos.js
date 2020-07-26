@@ -33,16 +33,19 @@ const Todos = () => {
 
   return (
     <>
-      <FormControlLabel
-        control={
-          <Switch
-            checked={checked}
-            onChange={(e) => handleChange(e)}
-            color='primary'
-          />
-        }
-        label='Hide completed'
-      />
+      {notCompleted.length !== userItems.length && (
+        <FormControlLabel
+          control={
+            <Switch
+              checked={checked}
+              onChange={(e) => handleChange(e)}
+              color='primary'
+            />
+          }
+          label='Hide completed'
+        />
+      )}
+
       <br />
       <div className='list-container'>
         <ul className='list-items'>

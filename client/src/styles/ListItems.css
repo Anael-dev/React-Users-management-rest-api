@@ -33,6 +33,7 @@
 .item-label {
   margin-bottom: 0.3em;
   font-family: "Lora", serif;
+  font-size: 0.9rem;
   letter-spacing: 0.8px;
 }
 
@@ -73,10 +74,12 @@
   text-decoration: underline;
   letter-spacing: 0.9px;
   text-transform: capitalize;
+  margin-bottom: 1em;
 }
 
 .post-body {
   margin: 0 0.3em;
+  font-size: 0.9rem;
 }
 
 .quote {
@@ -93,7 +96,7 @@
 .btn-action {
   width: 1.5rem;
   height: 1.5rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-align: center;
   color: rgba(119, 136, 153, 0.712);
   box-shadow: 0 0px 2px rgba(247, 245, 242, 0.18);

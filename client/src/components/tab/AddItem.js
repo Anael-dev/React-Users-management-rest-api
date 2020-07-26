@@ -4,6 +4,8 @@ import TabContext from "../../context/TabContext";
 import postsDAL from "../../utils/postsDAL";
 import todosDAL from "../../utils/todosDAL";
 
+import "../../styles/AddItem.css";
+
 const AddItem = () => {
   const { dispatch } = useContext(UsersContext);
   const { type, id, toggleAdd } = useContext(TabContext);
@@ -71,13 +73,17 @@ const AddItem = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
+        
         {type === "posts" && (
+          <>
+          <br />
           <label>
             Content:
             <textarea
               className='post-content'
               onChange={(e) => setBody(e.target.value)}></textarea>
           </label>
+          </>
         )}
         {error && <label className='label-error error-item'>{error}</label>}
         <div className='button-group-add'>

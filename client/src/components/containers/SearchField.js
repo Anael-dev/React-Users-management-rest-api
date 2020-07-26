@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import "../styles/SearchField.css";
-import UsersContext from "../context/UsersContext";
+import "../../styles/SearchField.css";
+import UsersContext from "../../context/UsersContext";
 
 const SearchField = () => {
   const { dispatch } = useContext(UsersContext);

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import { useRouteMatch } from "react-router-dom";
 import UsersContext from "../../context/UsersContext";
 import "../../styles/UserData.css";
-import Tab from "../wrappers/Tab";
+import Tab from "../containers/Tab";
 
 const UserData = (props) => {
   let { params } = useRouteMatch();

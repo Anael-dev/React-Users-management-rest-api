@@ -3,9 +3,9 @@ import UsersContext from "../../context/UsersContext";
 import TabContext from "../../context/TabContext";
 import "../../styles/Tab.css";
 
-import AddItem from "../data-tabs/AddItem";
-import Todos from "../data-tabs/Todos";
-import Posts from "../data-tabs/Posts";
+import AddItem from "../tab/AddItem";
+import Todos from "../tab/Todos";
+import Posts from "../tab/Posts";
 
 const Tab = (props) => {
   const { state } = useContext(UsersContext);

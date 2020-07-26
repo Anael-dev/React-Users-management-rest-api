@@ -1,16 +1,15 @@
 import React, { useContext } from "react";
 import UsersContext from "../../context/UsersContext";
-import MainPageContext from "../../context/MainPageContext";
-
 import { Link } from "react-router-dom";
+import { animateScroll } from "react-scroll";
+
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../../styles/Users.css";
 
-import User from "../user-profile/User";
+import User from "../user/User";
 
 const Users = ({ isAccordion }) => {
   const { state } = useContext(UsersContext);
-  const { closeAccordion } = useContext(MainPageContext);
 
   return (
     <div
@@ -20,10 +19,14 @@ const Users = ({ isAccordion }) => {
         {!isAccordion && <h3 className='users-title'>All Profiles</h3>}
         <Link className='add-link' to={"/users/add_user"}>
           <button
-            className='btn-user'
+            className='btn btn-user'
             type='button'
             title='add user'
-            onClick={() => closeAccordion()}>
+            onClick={() => {
+              if (isAccordion) {
+                animateScroll.scrollToBottom();
+              }
+            }}>
             <i className='fas fa-user-plus'> </i>
           </button>
         </Link>

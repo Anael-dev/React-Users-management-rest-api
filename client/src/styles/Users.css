@@ -7,7 +7,7 @@
 }
 
 .users-title {
-  line-height: 1.6;
+  line-height: 2.5;
   font-size: 1rem;
 }
 
@@ -15,6 +15,7 @@
 
 .container-users {
   max-width: 300px;
+  min-width: 300px;
   margin: 0 auto;
 }
 
@@ -23,9 +24,14 @@
   flex-direction: column;
 }
 
-.accordion-container {
-  border-top: 1px solid lightgrey;
-  padding-top: 1em;
+.users-section p {
+  width: 100%;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5em;
+  letter-spacing: 1px;
+  margin-top: 1em;
 }
 
 /*** Add button ***/
@@ -40,8 +46,16 @@
   padding: 0;
 }
 
+.btn-user:hover {
+  background-color: transparent;
+}
+
 @media (min-width: 650px) {
   .users-header {
     justify-content: space-between;
+  }
+
+  .container-users {
+    min-width: 250px;
   }
 }

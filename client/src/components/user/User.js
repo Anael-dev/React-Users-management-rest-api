@@ -45,8 +45,10 @@ const User = ({ userData }) => {
   }, [state.posts, user]);
 
   useEffect(() => {
-    if (100 > todosPercentage > 0) {
+    if (todosPercentage > 0 && todosPercentage < 85) {
       setStatusQuote("In Progress");
+    } else if (todosPercentage >= 85 && todosPercentage < 100) {
+      setStatusQuote("Almost Done");
     }
     if (todosPercentage === 100) {
       setStatusQuote("Completed!");
@@ -142,9 +144,9 @@ const User = ({ userData }) => {
   };
 
   const redirectToData = () => {
+    history.push(`/users/user/${user.id}`);
     closeAccordion();
     animateScroll.scrollToTop();
-    history.push(`/users/user/${user.id}`);
   };
 
   return (
@@ -163,12 +165,13 @@ const User = ({ userData }) => {
             <div className='status-bar'>
               {todos.length > 0 && (
                 <span
-                  className='status-quote'
-                  style={{
-                    color: `${
-                      todosPercentage === 100 ? " rgb(79, 122, 14)" : "#da9432"
-                    }`,
-                  }}>
+                  className={`status-quote ${
+                    todosPercentage === 100 ? "completed-status" : ""
+                  } ${
+                    todosPercentage >= 85 && todosPercentage < 100
+                      ? "almost-done-status"
+                      : ""
+                  }`}>
                   {statusQuote}
                 </span>
               )}
@@ -176,7 +179,11 @@ const User = ({ userData }) => {
                 <div
                   className={`progress-bar bg-warning ${
                     todosPercentage === 100 ? "progress-done" : ""
-                  }`}
+                  } ${
+                    todosPercentage >= 85 && todosPercentage < 100
+                      ? "progress-almost-done"
+                      : ""
+                  } `}
                   role='progressbar'
                   style={{
                     width: `${todosPercentage}%`,

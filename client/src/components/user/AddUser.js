@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
-import UsersContext from "../context/UsersContext";
-import MainPageContext from "../context/MainPageContext";
-import usersDAL from "../utils/usersDAL";
+import UsersContext from "../../context/UsersContext";
+import usersDAL from "../../utils/usersDAL";
 
-import "../styles/AddUser.css";
+import "../../styles/AddUser.css";
+import "../../styles/AddItem.css";
 
 const AddUser = (props) => {
   const { dispatch, state } = useContext(UsersContext);
-  const { openAccordion } = useContext(MainPageContext);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -67,21 +66,18 @@ const AddUser = (props) => {
             onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
         </label>
-        <br />
         {error && <label className='label-error'>{error}</label>}
         <div className='button-group-add'>
           <input
             className='btn btn-white btn-add'
             type='submit'
             value='add'
-            onClick={() => openAccordion()}
           />
           <Link to='/'>
             <input
               className='btn btn-white btn-add'
               type='button'
               value='cancel'
-              onClick={() => openAccordion()}
             />
           </Link>
         </div>

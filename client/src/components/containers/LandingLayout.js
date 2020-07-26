@@ -15,8 +15,8 @@ import usersIcon from "../../images/benefits/userImg.png";
 import todosIcon from "../../images/benefits/tasksList.png";
 import postsIcon from "../../images/benefits/postPage.png";
 
-import Benefit from "../landing-page/Benefit";
-import Statistics from "../landing-page/Statistics";
+import Benefit from "../landing-layout/Benefit";
+import Statistics from "../landing-layout/Statistics";
 
 const LandingLayout = () => {
   const ScrollLink = Scroll.Link;
@@ -93,7 +93,7 @@ const LandingLayout = () => {
                     expanded === "statisticsPanel" ? "underline" : ""
                   }`,
                 }}>
-                General Information
+                Statistics
               </Typography>
             </AccordionSummary>
           </ScrollLink>

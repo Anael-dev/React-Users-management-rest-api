@@ -68,7 +68,6 @@ const Post = ({ item }) => {
               />
             )}
           </label>
-          <br />
           {!editView ? (
             <p className="post-body">
               <i className='fas fa-quote-left quote'></i>
