@@ -52,69 +52,72 @@ const LandingLayout = () => {
   }, [state.postsProgress]);
 
   return (
-    <div className='container-default'>
+    <>
       {(width >= 650 || state.isWelcome) && (
-        <div className='top-section'>
-          <div className='welcome-header'>
-            <h1>
-              <span className='capital-letter'>W</span>elcome!
-            </h1>
+        <div className='container-default'>
+          <div className='top-section'>
+            <div className='welcome-header'>
+              <h1>
+                <span className='capital-letter'>W</span>elcome!
+              </h1>
+            </div>
+            <p className='intro-title'>
+              In our platform you can do the following:
+            </p>
+            <div className='container-benefits'>
+              <Benefit src={usersIcon} type='users' />
+              <Benefit src={todosIcon} type='todos' />
+              <Benefit src={postsIcon} type='posts' />
+            </div>
           </div>
-          <p className='intro-title'>
-            In our platform you can do the following:
-          </p>
-          <div className='container-benefits'>
-            <Benefit src={usersIcon} type='users' />
-            <Benefit src={todosIcon} type='todos' />
-            <Benefit src={postsIcon} type='posts' />
-          </div>
-        </div>
-      )}
-      {width < 650 ? (
-        <Accordion
-          style={{ backgroundColor: "transparent", marginBottom: "1em" }}
-          expanded={expanded === "statisticsPanel"}
-          onChange={handleChange("statisticsPanel")}>
-          <ScrollLink
-            activeClass='active'
-            to='container-statistics'
-            spy={true}
-            smooth={true}
-            offset={-100}
-            duration={500}>
-            <AccordionSummary
-              style={{
-                backgroundColor: "#dbd6d6bb",
-              }}
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls='usersPanel-content'
-              id='usersPanel-header'>
-              <Typography
-                style={{
-                  textDecoration: `${
-                    expanded === "statisticsPanel" ? "underline" : ""
-                  }`,
-                }}>
-                Statistics
-              </Typography>
-            </AccordionSummary>
-          </ScrollLink>
-          <AccordionDetails>
+
+          {width < 650 ? (
+            <Accordion
+              style={{ backgroundColor: "transparent", marginBottom: "1em" }}
+              expanded={expanded === "statisticsPanel"}
+              onChange={handleChange("statisticsPanel")}>
+              <ScrollLink
+                activeClass='active'
+                to='container-statistics'
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}>
+                <AccordionSummary
+                  style={{
+                    backgroundColor: "#dbd6d6bb",
+                  }}
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls='usersPanel-content'
+                  id='usersPanel-header'>
+                  <Typography
+                    style={{
+                      textDecoration: `${
+                        expanded === "statisticsPanel" ? "underline" : ""
+                      }`,
+                    }}>
+                    Statistics
+                  </Typography>
+                </AccordionSummary>
+              </ScrollLink>
+              <AccordionDetails>
+                <Statistics
+                  width={width}
+                  completedUsers={completedUsers}
+                  bestAuthors={bestAuthors}
+                />
+              </AccordionDetails>
+            </Accordion>
+          ) : (
             <Statistics
               width={width}
               completedUsers={completedUsers}
               bestAuthors={bestAuthors}
             />
-          </AccordionDetails>
-        </Accordion>
-      ) : (
-        <Statistics
-          width={width}
-          completedUsers={completedUsers}
-          bestAuthors={bestAuthors}
-        />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
