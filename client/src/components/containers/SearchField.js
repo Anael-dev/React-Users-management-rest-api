@@ -11,6 +11,17 @@ const SearchField = () => {
       type: "FILTER_USERS",
       payload: input,
     });
+    if (input === "") {
+      dispatch({
+        type: "HIDE_WELCOME_SECTION",
+        payload: false,
+      });
+    } else {
+      dispatch({
+        type: "HIDE_WELCOME_SECTION",
+        payload: true,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input]);
 

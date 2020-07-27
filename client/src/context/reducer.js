@@ -6,6 +6,7 @@ export const initialState = {
   todosProgress: [],
   postsProgress: [],
   isLoading: true,
+  isWelcome: true,
 };
 
 export const reducer = (state, action) => {
@@ -223,6 +224,11 @@ export const reducer = (state, action) => {
       return {
         ...state,
         isLoading: false,
+      };
+    case "HIDE_WELCOME_SECTION":
+      return {
+        ...state,
+        isWelcome: !action.payload,
       };
 
     default:
