@@ -160,6 +160,7 @@ const User = ({ userData }) => {
               className='avatar-img'
               src={`https://i.pravatar.cc/150?img=${user.id}`}
               alt='user avatar'
+              style={{ width: "4em", height: "4em" }}
               onClick={() => redirectToData()}
             />
             <div className='status-bar'>

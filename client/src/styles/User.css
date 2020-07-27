@@ -39,7 +39,6 @@
 
 .avatar-img {
   width: 50%;
-  max-width: 4em;
   border-radius: 50%;
   filter: drop-shadow(5px 5px 5px #222222);
   margin-bottom: 0.5em;
