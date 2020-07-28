@@ -202,13 +202,15 @@ export const reducer = (state, action) => {
       const todoUserId = action.payload.userId;
       let filteredTodosArr;
       const userProgress = state.todosProgress.find((x) => x.id === todoUserId);
-      userProgress.todos--;
-      if (userProgress.todos === 0) {
-        filteredTodosArr = state.todosProgress.filter(
-          (item) => item.id !== todoUserId
-        );
-      } else {
-        filteredTodosArr = [...state.todosProgress];
+      if (userProgress) {
+        userProgress.todos--;
+        if (userProgress.todos === 0) {
+          filteredTodosArr = state.todosProgress.filter(
+            (item) => item.id !== todoUserId
+          );
+        } else {
+          filteredTodosArr = [...state.todosProgress];
+        }
       }
       return {
         ...state,
