@@ -72,18 +72,18 @@ export const reducer = (state, action) => {
     case "ADD_USER":
       return {
         ...state,
-        users: [...state.users, action.payload],
-        filteredUsers: [...state.users, action.payload],
+        users: [action.payload, ...state.users],
+        filteredUsers: [action.payload, ...state.users],
       };
     case "ADD_TODO":
       return {
         ...state,
-        todos: [...state.todos, action.payload],
+        todos: [action.payload, ...state.todos],
       };
     case "ADD_POST":
       return {
         ...state,
-        posts: [...state.posts, action.payload],
+        posts: [action.payload, ...state.posts],
       };
 
     case "ADD_TODOS_PROGRESS":

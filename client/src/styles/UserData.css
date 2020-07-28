@@ -1,8 +1,3 @@
-/*** Container ***/
-.user-data {
-  margin-top: 1em;
-}
-
 /*** Typography ***/
 .underline {
   border-top: 0.5px solid lightslategray;
@@ -12,18 +7,36 @@
 
 .user-title {
   padding: 0.2em;
-  line-height: 1.1;
   letter-spacing: 1px;
-  margin: 0 auto;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-title h2 {
-  margin-bottom: 0.5em;
+  margin: 0 auto;
+  line-height: 1.1;
+  margin-top: 0.5em;
 }
 
-/*** Media queriers ***/
+.back {
+  opacity: 0.9;
+  margin-bottom: 0.3em;
+}
+.fa-arrow-left {
+  align-self: start;
+  opacity: 0.9;
+}
+
+.back span {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin-left: 0.2em;
+  font-size: 0.9rem;
+}
+
 @media (min-width: 650px) {
-  .user-data {
+  .user-title h2 {
     margin-top: 0;
   }
 }

@@ -56,7 +56,7 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
       updateUserCallback(data);
       setTimeout(() => {
         setDisable(false);
-      }, 1500);
+      }, 500);
     }
     setAction("");
   };

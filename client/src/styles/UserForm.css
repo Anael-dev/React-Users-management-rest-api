@@ -19,6 +19,7 @@
 }
 
 .action-button {
+  opacity: 1;
   margin-left: 0.3em;
   transition: all ease-in-out 0.5s;
 }
@@ -29,4 +30,10 @@
 
 .btn-more-data:active {
   background-color: #f2f2f2ea;
+}
+
+@media (min-width: 650px) {
+  .action-button:hover {
+    background-color: rgb(192, 191, 191);
+  }
 }

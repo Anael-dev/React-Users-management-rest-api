@@ -24,7 +24,8 @@ const AddUser = (props) => {
     }
     let num;
     if (state.users.length > 0) {
-      num = Number(state.users[state.users.length - 1].id) + 1;
+      // num = Number(state.users[state.users.length[ - 1]].id) + 1;
+      num = Number(state.users[0].id) + 1;
     } else {
       num = 1;
     }
@@ -68,11 +69,7 @@ const AddUser = (props) => {
         </label>
         {error && <label className='label-error'>{error}</label>}
         <div className='button-group-add'>
-          <input
-            className='btn btn-white btn-add'
-            type='submit'
-            value='add'
-          />
+          <input className='btn btn-white btn-add' type='submit' value='add' />
           <Link to='/'>
             <input
               className='btn btn-white btn-add'

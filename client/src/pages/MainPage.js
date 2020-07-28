@@ -62,17 +62,17 @@ const MainPage = () => {
         const users = await usersDAL.getAllUsers();
         dispatch({
           type: "FETCH_USERS",
-          payload: users,
+          payload: users.reverse(),
         });
         const posts = await postsDAL.getAllPosts();
         dispatch({
           type: "FETCH_POSTS",
-          payload: posts,
+          payload: posts.reverse(),
         });
         const todos = await todosDAL.getAllTodos();
         dispatch({
           type: "FETCH_TODOS",
-          payload: todos,
+          payload: todos.reverse(),
         });
       } catch (err) {
         console.log(err);

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, Link } from "react-router-dom";
 import UsersContext from "../../context/UsersContext";
 import "../../styles/UserData.css";
 import Tab from "../containers/Tab";
@@ -43,8 +43,13 @@ const UserData = (props) => {
       {userExists && (
         <div className='user-data'>
           <div className='user-title'>
+            <Link to='/' className='label-link back '>
+              <i className='fas fa-chevron-left'></i>
+              <span>Back</span>
+            </Link>
             <h2>
-              User<span className='blue-num'>{params.id}</span> - {userName}
+              User
+              <span className='blue-num'>{params.id}</span> - {userName}
             </h2>
           </div>
           <Tab id={params.id} type={"todos"} />
