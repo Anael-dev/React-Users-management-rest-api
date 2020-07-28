@@ -138,18 +138,6 @@ const MainPage = () => {
               {state.snackBar.massage}
             </Alert>
           </Snackbar>
-          {/* <Snackbar
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            open={snackBar}
-            autoHideDuration={2000}
-            severity='success'
-            variant='filled'
-            message='Note archived'
-            onClose={() => setSnackBar(false)}
-          /> */}
           <div className='main-page'>
             <div className='container-left'>
               {width < 650 ? (

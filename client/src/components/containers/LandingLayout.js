@@ -62,7 +62,7 @@ const LandingLayout = () => {
               </h1>
             </div>
             <p className='intro-title'>
-              In our platform you can do the following:
+              On our platform you can do the following:
             </p>
             <div className='container-benefits'>
               <Benefit src={usersIcon} type='users' />

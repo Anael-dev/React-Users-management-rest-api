@@ -58,7 +58,7 @@ const Tab = (props) => {
             {type === "posts" && <i className='far fa-clipboard'></i>}
             {type === "todos" && <i className='far fa-calendar-plus'></i>}
           </span>
-          {type}
+          {type === "todos" ? "to-do's" : type}
         </h3>
 
         {!addItem && (

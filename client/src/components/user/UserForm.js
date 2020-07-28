@@ -148,8 +148,8 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
                 <label className='label-error'>{addressErrors.street}</label>
               )}
             </label>
-            <label>
-              Zip-code:
+            {/* <label>
+              Zip code:
               <input
                 type='text'
                 name='zipcode'
@@ -160,7 +160,7 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
               {addressErrors.zipcode && (
                 <label className='label-error'>{addressErrors.zipcode}</label>
               )}
-            </label>
+            </label> */}
           </div>
         )}
       </form>

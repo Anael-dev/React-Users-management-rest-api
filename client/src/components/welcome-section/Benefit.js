@@ -1,23 +1,22 @@
 import React from "react";
-import { useState} from "react";
+import { useState } from "react";
 
 const Benefit = ({ src, type }) => {
-  
   const [benefits] = useState({
     users: {
       title: "Manage Users",
       description:
-        "Search users by name or email, Add and delete users, update profile details",
+        "Search users by name or email, add and delete users, update profile details",
     },
     todos: {
-      title: "Complete Todos",
+      title: "Complete To-do’s",
       description:
-        "Create and delete tasks, complete done todos, track users' tasks achievement",
+        "Create and delete tasks, complete done to-do’s, track users’ task achievements",
     },
     posts: {
       title: "Write Posts",
       description:
-        "Add new posts, edit or delete chosen posts, get inspiration by others fresh content",
+        "Add new posts, create and delete chosen posts, receive inspiration by others’ fresh content",
     },
   });
 

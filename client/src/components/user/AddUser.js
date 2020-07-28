@@ -40,8 +40,8 @@ const AddUser = (props) => {
       });
       dispatch({
         type: "SHOW_SNACK_BAR",
-        payload: 'New user created!',
-      })
+        payload: "New user created!",
+      });
       props.history.push("/");
     } catch (err) {
       console.log(err);

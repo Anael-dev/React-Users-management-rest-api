@@ -18,7 +18,7 @@ const AddItem = () => {
     e.preventDefault();
     if (type === "todos") {
       if (!title) {
-        setError("please type a valid todo");
+        setError("please type a valid to-do");
         return;
       }
       let newTodo = {
@@ -68,14 +68,14 @@ const AddItem = () => {
   };
   return (
     <div className='container-new-item'>
-      <h3>New {type === "posts" ? "Post" : "Todo"}</h3>
+      <h3>New {type === "posts" ? "Post" : "To-do"}</h3>
       <form className='data-collector' onSubmit={(e) => addItem(e)}>
         <label>
           {type === "posts" ? "Title:" : "Task:"}
           <input
             type='text'
             placeholder={`What's your ${
-              type === "posts" ? "post title?" : "new todo?"
+              type === "posts" ? "post title?" : "new task?"
             }
             `}
             onChange={(e) => setTitle(e.target.value)}

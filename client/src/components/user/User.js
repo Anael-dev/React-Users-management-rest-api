@@ -206,7 +206,7 @@ const User = ({ userData }) => {
               <span className='status'>
                 {todos.length > 0
                   ? `${completedTodos.length} of ${todos.length}`
-                  : "No todos yet"}
+                  : "No tasks yet"}
               </span>
             </div>
           </div>
