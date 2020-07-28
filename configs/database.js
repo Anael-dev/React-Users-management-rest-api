@@ -5,7 +5,7 @@ const postsBL = require("../models/postsBL");
 const todosBL = require("../models/todosBL");
 
 mongoose.connect(
-  process.env.MONGOLAB_GOLD_URI || "mongodb://localhost:27017/usersDB",
+  process.env.MONGOLAB_TEAL_URI || "mongodb://localhost:27017/usersDB",
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
