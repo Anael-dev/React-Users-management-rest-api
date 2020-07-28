@@ -126,6 +126,10 @@ const User = ({ userData }) => {
         type: "DELETE_USER",
         payload: user,
       });
+      dispatch({
+        type: "SHOW_SNACK_BAR",
+        payload: "User deleted successfully",
+      });
     } catch (err) {
       console.log(err);
     }
@@ -137,6 +141,10 @@ const User = ({ userData }) => {
       dispatch({
         type: "EDIT_USER",
         payload: updatedUser,
+      });
+      dispatch({
+        type: "SHOW_SNACK_BAR",
+        payload: "User updated successfully",
       });
     } catch (err) {
       console.log(err);

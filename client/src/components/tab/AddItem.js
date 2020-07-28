@@ -32,6 +32,10 @@ const AddItem = () => {
           type: "ADD_TODO",
           payload: newTodoResponse,
         });
+        dispatch({
+          type: "SHOW_SNACK_BAR",
+          payload: "New todo added!",
+        });
         toggleAdd();
       } catch (err) {
         console.log(err);
@@ -51,6 +55,10 @@ const AddItem = () => {
         dispatch({
           type: "ADD_POST",
           payload: newPostResponse,
+        });
+        dispatch({
+          type: "SHOW_SNACK_BAR",
+          payload: "New post added!",
         });
         toggleAdd();
       } catch (err) {

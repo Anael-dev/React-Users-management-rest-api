@@ -115,6 +115,11 @@ footer {
   color: #da9432;
 }
 
+/*** Alert SnackBar ***/
+.snack-bar {
+  margin-bottom: 2em;
+}
+
 /*** Media queries ***/
 @media (min-width: 650px) {
   .main-page {

@@ -7,6 +7,7 @@ export const initialState = {
   postsProgress: [],
   isLoading: true,
   isWelcome: true,
+  snackBar: { open: false, massage: "" },
 };
 
 export const reducer = (state, action) => {
@@ -232,7 +233,16 @@ export const reducer = (state, action) => {
         ...state,
         isWelcome: !action.payload,
       };
-
+    case "SHOW_SNACK_BAR":
+      return {
+        ...state,
+        snackBar: { open: true, massage: action.payload },
+      };
+    case "HIDE_SNACK_BAR":
+      return {
+        ...state,
+        snackBar: { open: false, massage: "" },
+      };
     default:
       return state;
   }

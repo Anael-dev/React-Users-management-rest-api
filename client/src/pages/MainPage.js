@@ -4,6 +4,7 @@ import UsersContext from "../context/UsersContext";
 import MainPageContext from "../context/MainPageContext";
 import { animateScroll } from "react-scroll";
 import * as Scroll from "react-scroll";
+import Alert from "../components/layout/Alert";
 import "../styles/MainPage.css";
 
 /*material UI*/
@@ -13,6 +14,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Snackbar from "@material-ui/core/Snackbar";
 
 /*utils*/
 import usersDAL from "../utils/usersDAL";
@@ -31,7 +33,6 @@ const MainPage = () => {
   const { state, dispatch } = useContext(UsersContext);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [expanded, setExpanded] = useState("usersPanel");
-
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -118,6 +119,37 @@ const MainPage = () => {
       ) : (
         <div className='container'>
           <SearchField />
+          <Snackbar
+            className='snack-bar'
+            open={state.snackBar.open}
+            autoHideDuration={1500}
+            onClose={() =>
+              dispatch({
+                type: "HIDE_SNACK_BAR",
+              })
+            }>
+            <Alert
+              onClose={() =>
+                dispatch({
+                  type: "HIDE_SNACK_BAR",
+                })
+              }
+              severity='success'>
+              {state.snackBar.massage}
+            </Alert>
+          </Snackbar>
+          {/* <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            open={snackBar}
+            autoHideDuration={2000}
+            severity='success'
+            variant='filled'
+            message='Note archived'
+            onClose={() => setSnackBar(false)}
+          /> */}
           <div className='main-page'>
             <div className='container-left'>
               {width < 650 ? (

@@ -13,8 +13,8 @@ import usersIcon from "../../images/benefits/userImg.png";
 import todosIcon from "../../images/benefits/tasksList.png";
 import postsIcon from "../../images/benefits/postPage.png";
 
-import Benefit from "../landing-layout/Benefit";
-import Statistics from "../landing-layout/Statistics";
+import Benefit from "../welcome-section/Benefit";
+import Statistics from "../welcome-section/Statistics";
 
 const LandingLayout = () => {
   const ScrollLink = Scroll.Link;
@@ -85,7 +85,7 @@ const LandingLayout = () => {
                 duration={500}>
                 <AccordionSummary
                   style={{
-                    backgroundColor: "#dbd6d6bb",
+                    backgroundColor: "rgba(255, 213, 219, 0.7)",
                   }}
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls='usersPanel-content'
