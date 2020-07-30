@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 import MainPageContext from "../../context/MainPageContext";
 import { animateScroll } from "react-scroll";
 
 import "../../styles/User.css";
-import usersDAL from "../../utils/usersDAL";
-import todosDAL from "../../utils/todosDAL";
-import postsDAL from "../../utils/postsDAL";
+import usersDAL from "../../utils/usersAPI";
+import todosDAL from "../../utils/todosAPI";
+import postsDAL from "../../utils/postsAPI";
 import UserForm from "./UserForm";
 
 const User = ({ userData }) => {
   const history = useHistory();
-  const { state, dispatch } = useContext(UsersContext);
+  const { state, dispatch } = useContext(GlobalContext);
   const { closeAccordion } = useContext(MainPageContext);
 
   const [user, setUser] = useState({});
@@ -62,8 +62,8 @@ const User = ({ userData }) => {
         payload: {
           id: user.id,
           name: user.name,
-          todos: todos.length,
-          completed: completedTodos.length,
+          todos: todos,
+          completed: completedTodos,
           percentage: todosPercentage,
         },
       });

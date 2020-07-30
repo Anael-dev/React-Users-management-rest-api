@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 import TabContext from "../../context/TabContext";
 import "../../styles/Tab.css";
 
@@ -8,7 +8,7 @@ import Todos from "../tab/Todos";
 import Posts from "../tab/Posts";
 
 const Tab = (props) => {
-  const { state } = useContext(UsersContext);
+  const { state } = useContext(GlobalContext);
   const [userItems, setUserItems] = useState([]);
   const [id, setId] = useState("");
   const [type, setType] = useState("");

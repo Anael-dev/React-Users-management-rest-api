@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Route, Switch, Link } from "react-router-dom";
-import UsersContext from "../context/UsersContext";
+import GlobalContext from "../context/GlobalContext";
 import MainPageContext from "../context/MainPageContext";
 import { animateScroll } from "react-scroll";
 import * as Scroll from "react-scroll";
@@ -17,9 +17,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Snackbar from "@material-ui/core/Snackbar";
 
 /*utils*/
-import usersDAL from "../utils/usersDAL";
-import postsDAL from "../utils/postsDAL";
-import todosDAL from "../utils/todosDAL";
+import usersAPI from "../utils/usersAPI";
+import postsAPI from "../utils/postsAPI";
+import todosAPI from "../utils/todosAPI";
 
 /*components*/
 import RouteComponents from "../components/containers/RouteComponents";
@@ -30,7 +30,7 @@ import headerImg from "../images/header.png";
 
 const MainPage = () => {
   const ScrollLink = Scroll.Link;
-  const { state, dispatch } = useContext(UsersContext);
+  const { state, dispatch } = useContext(GlobalContext);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [expanded, setExpanded] = useState("usersPanel");
   const [width, setWidth] = useState(window.innerWidth);
@@ -60,17 +60,17 @@ const MainPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const users = await usersDAL.getAllUsers();
+        const users = await usersAPI.getAllUsers();
         dispatch({
           type: "FETCH_USERS",
           payload: users.reverse(),
         });
-        const posts = await postsDAL.getAllPosts();
+        const posts = await postsAPI.getAllPosts();
         dispatch({
           type: "FETCH_POSTS",
           payload: posts.reverse(),
         });
-        const todos = await todosDAL.getAllTodos();
+        const todos = await todosAPI.getAllTodos();
         dispatch({
           type: "FETCH_TODOS",
           payload: todos.reverse(),

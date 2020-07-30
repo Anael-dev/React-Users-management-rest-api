@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 import "../../styles/ListItems.css";
-import todosDAL from "../../utils/todosDAL";
+import todosDAL from "../../utils/todosAPI";
 
 const Todo = ({ item }) => {
-  const { dispatch } = useContext(UsersContext);
+  const { dispatch } = useContext(GlobalContext);
 
   const completeTask = async (item) => {
     try {

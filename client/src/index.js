@@ -5,14 +5,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
-import UsersContextProvider from "./context/UsersContextProvider";
+import GlobalProvider from "./context/GlobalProvider";
 
 ReactDOM.render(
-  <UsersContextProvider>
+  <GlobalProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </UsersContextProvider>,
+  </GlobalProvider>,
   document.getElementById("root")
 );
 

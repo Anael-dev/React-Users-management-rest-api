@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
 import { useRouteMatch, Link } from "react-router-dom";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 import "../../styles/UserData.css";
 import Tab from "../containers/Tab";
 
 const UserData = (props) => {
   let { params } = useRouteMatch();
-  const { state } = useContext(UsersContext);
+  const { state } = useContext(GlobalContext);
 
   const [userExists, setUserExists] = useState("");
   const [userName, setUserName] = useState("");

@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
-import UsersContext from "../../context/UsersContext";
-import usersDAL from "../../utils/usersDAL";
+import GlobalContext from "../../context/GlobalContext";
+import usersDAL from "../../utils/usersAPI";
 
 import "../../styles/AddUser.css";
 import "../../styles/AddItem.css";
 
 const AddUser = (props) => {
-  const { dispatch, state } = useContext(UsersContext);
+  const { dispatch, state } = useContext(GlobalContext);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -20,6 +20,10 @@ const AddUser = (props) => {
     e.preventDefault();
     if (!user.name || !user.email) {
       setError("user details are required");
+      return;
+    }
+    if (user.name.trim().indexOf(" ") === -1) {
+      setError("please enter a full name");
       return;
     }
     let num;
@@ -53,7 +57,7 @@ const AddUser = (props) => {
       <h2>Add New User</h2>
       <form className='data-collector' onSubmit={(e) => addNewUser(e)}>
         <label>
-          Name:
+          Full Name:
           <input
             type='text'
             placeholder="type user's name"

@@ -202,15 +202,32 @@ export const reducer = (state, action) => {
     case "DELETE_TODO":
       const todoUserId = action.payload.userId;
       let filteredTodosArr;
+      //check if user has completed tasks
       const userProgress = state.todosProgress.find((x) => x.id === todoUserId);
       if (userProgress) {
-        userProgress.todos--;
-        if (userProgress.todos === 0) {
+        const filteredUserTodos = userProgress.todos.filter(
+          (x) => x._id !== action.payload._id
+        );
+        //check if user has no tasks anymore
+        if (filteredUserTodos.length === 0) {
           filteredTodosArr = state.todosProgress.filter(
             (item) => item.id !== todoUserId
           );
         } else {
-          filteredTodosArr = [...state.todosProgress];
+          const filteredUserCompleted = userProgress.completed.filter(
+            (x) => x._id !== action.payload._id
+          );
+
+          filteredTodosArr = state.todosProgress.map((x) => {
+            if (x.id === todoUserId) {
+              return {
+                ...x,
+                todos: filteredUserTodos,
+                completed: filteredUserCompleted,
+              };
+            }
+            return x;
+          });
         }
       }
       return {

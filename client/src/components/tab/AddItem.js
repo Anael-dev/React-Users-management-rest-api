@@ -1,13 +1,15 @@
 import React, { useState, useContext } from "react";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 import TabContext from "../../context/TabContext";
-import postsDAL from "../../utils/postsDAL";
-import todosDAL from "../../utils/todosDAL";
+import postsDAL from "../../utils/postsAPI";
+import todosDAL from "../../utils/todosAPI";
 
 import "../../styles/AddItem.css";
 
 const AddItem = () => {
-  const { dispatch } = useContext(UsersContext);
+  const { dispatch } = useContext(
+    GlobalContext
+  );
   const { type, id, toggleAdd } = useContext(TabContext);
 
   const [title, setTitle] = useState("");

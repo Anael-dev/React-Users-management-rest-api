@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 import "../../styles/SearchField.css";
 
 const SearchField = () => {
-  const { dispatch } = useContext(UsersContext);
+  const { dispatch } = useContext(GlobalContext);
   const [input, setInput] = useState("");
 
   const filterInput = useCallback(() => {

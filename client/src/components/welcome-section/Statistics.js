@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 
 import Chart from "./Chart";
 
 const Statistics = ({ width, completedUsers, bestAuthors }) => {
-  const { state } = useContext(UsersContext);
+  const { state } = useContext(GlobalContext);
 
   return (
     <section className='statistics' id='container-statistics'>

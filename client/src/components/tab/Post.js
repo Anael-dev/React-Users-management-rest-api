@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 import "../../styles/ListItems.css";
-import postsDAL from "../../utils/postsDAL";
+import postsDAL from "../../utils/postsAPI";
 
 const Post = ({ item }) => {
-  const { dispatch } = useContext(UsersContext);
+  const { dispatch } = useContext(GlobalContext);
 
   const [editView, setEditView] = useState(false);
   const [updatedPost, setUpdatedPost] = useState({ title: "", body: "" });

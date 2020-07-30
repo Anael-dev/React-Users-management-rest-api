@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 import { Link } from "react-router-dom";
 import { animateScroll } from "react-scroll";
 
@@ -9,7 +9,7 @@ import "../../styles/Users.css";
 import User from "../user/User";
 
 const Users = ({ isAccordion }) => {
-  const { state } = useContext(UsersContext);
+  const { state } = useContext(GlobalContext);
 
   return (
     <div

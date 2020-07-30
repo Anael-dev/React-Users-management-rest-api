@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import UsersContext from "../../context/UsersContext";
+import GlobalContext from "../../context/GlobalContext";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -18,7 +18,7 @@ import Statistics from "../welcome-section/Statistics";
 
 const LandingLayout = () => {
   const ScrollLink = Scroll.Link;
-  const { state } = useContext(UsersContext);
+  const { state } = useContext(GlobalContext);
 
   const [completedUsers, setCompletedUsers] = useState([]);
   const [bestAuthors, setBestAuthors] = useState([]);
