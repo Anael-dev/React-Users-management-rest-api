@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 var membersRouter = require("./routers/membersRoute");
-var postsRouter = require("./routers/postsRoute");
+var projectsRouter = require("./routers/projectsRoute");
 var todosRouter = require("./routers/todosRoute");
 
 let app = express();
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/api/users", membersRouter);
-app.use("/api/posts", postsRouter);
+app.use("/api/projects", projectsRouter);
 app.use("/api/todos", todosRouter);
 
 if (process.env.NODE_ENV === "production") {

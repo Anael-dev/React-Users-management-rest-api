@@ -1,12 +1,12 @@
 const express = require("express");
-const postsBL = require("../models/postsBL");
+const projectsBL = require("../models/projectsBL");
 
 const router = express.Router();
 
 router.route("/").get(async (req, res) => {
   try {
-    const posts = await postsBL.getAll();
-    res.json(posts);
+    const projects = await projectsBL.getAll();
+    res.json(projects);
   } catch (err) {
     res.send(err);
   }
@@ -15,8 +15,8 @@ router.route("/").get(async (req, res) => {
 router.route("/:id").get(async (req, res) => {
   const id = req.params.id;
   try {
-    const Post = await postsBL.getById(id);
-    res.json(Post);
+    const Project = await projectsBL.getById(id);
+    res.json(Project);
   } catch (err) {
     res.send(err);
   }
@@ -25,8 +25,8 @@ router.route("/:id").get(async (req, res) => {
 router.route("/:id").delete(async (req, res) => {
   const id = req.params.id;
   try {
-    const post = await postsBL.deletePost(id);
-    res.json(post);
+    const project = await projectsBL.deleteProject(id);
+    res.json(project);
   } catch (err) {
     res.send(err);
   }
@@ -34,8 +34,8 @@ router.route("/:id").delete(async (req, res) => {
 
 router.route("/").post(async (req, res) => {
   try {
-    const newPost = await postsBL.postPost(req.body);
-    res.json(newPost);
+    const newProject = await projectsBL.projectProject(req.body);
+    res.json(newProject);
   } catch (err) {
     res.send(err);
   }
@@ -44,8 +44,8 @@ router.route("/").post(async (req, res) => {
 router.route("/:id").put(async (req, res) => {
   const id = req.params.id;
   try {
-    const updatedPost = await postsBL.editPost(id, req.body);
-    res.json(updatedPost);
+    const updatedProject = await projectsBL.editProject(id, req.body);
+    res.json(updatedProject);
   } catch (err) {
     res.send(err);
   }

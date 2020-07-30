@@ -1,9 +1,9 @@
-const postsDAL = require("../DAL/postsDAL");
-const Post = require("./postModel");
+const projectsDAL = require("../DAL/projectsDAL");
+const Project = require("./projectModel");
 
 exports.getAll = () => {
   return new Promise((resolve, reject) => {
-    Post.find({}, (err, data) => {
+    Project.find({}, (err, data) => {
       if (err) {
         reject(err);
       } else {
@@ -13,26 +13,26 @@ exports.getAll = () => {
   });
 };
 
-exports.getPosts = async () => {
-  const response = await postsDAL.getAll();
+exports.getProjects = async () => {
+  const response = await projectsDAL.getAll();
   return response;
 };
 
 exports.getById = (id) => {
   return new Promise((resolve, reject) => {
-    Post.findById(id, function (err, post) {
+    Project.findById(id, function (err, project) {
       if (err) {
         reject(err);
       } else {
-        resolve(post);
+        resolve(project);
       }
     });
   });
 };
 
-exports.deletePost = (id) => {
+exports.deleteProject = (id) => {
   return new Promise((resolve, reject) => {
-    Post.findByIdAndDelete(id, function (err) {
+    Project.findByIdAndDelete(id, function (err) {
       if (err) {
         reject(err);
       } else {
@@ -42,10 +42,10 @@ exports.deletePost = (id) => {
   });
 };
 
-exports.postPost = (reqBody) => {
-  const newPost = new Post(reqBody);
+exports.postProject = (reqBody) => {
+  const newProject = new Project(reqBody);
   return new Promise((resolve, reject) => {
-    newPost.save(function (err, data) {
+    newProject.save(function (err, data) {
       if (err) {
         reject(err);
       } else {
@@ -55,13 +55,13 @@ exports.postPost = (reqBody) => {
   });
 };
 
-exports.editPost = (id, reqBody) => {
+exports.editProject = (id, reqBody) => {
   return new Promise((resolve, reject) => {
-    Post.findByIdAndUpdate(id, reqBody, { new: true }, function (err, post) {
+    Project.findByIdAndUpdate(id, reqBody, { new: true }, function (err, project) {
       if (err) {
         reject(err);
       } else {
-        resolve(post);
+        resolve(project);
       }
     });
   });

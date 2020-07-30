@@ -18,7 +18,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 
 /*utils*/
 import usersAPI from "../utils/usersAPI";
-import postsAPI from "../utils/postsAPI";
+import projectsAPI from "../utils/projectsAPI";
 import todosAPI from "../utils/todosAPI";
 
 /*components*/
@@ -65,10 +65,10 @@ const MainPage = () => {
           type: "FETCH_USERS",
           payload: users.reverse(),
         });
-        const posts = await postsAPI.getAllPosts();
+        const projects = await projectsAPI.getAllProjects();
         dispatch({
-          type: "FETCH_POSTS",
-          payload: posts.reverse(),
+          type: "FETCH_PROJECTS",
+          payload: projects.reverse(),
         });
         const todos = await todosAPI.getAllTodos();
         dispatch({

@@ -5,7 +5,7 @@ import "../../styles/Tab.css";
 
 import AddItem from "../tab/AddItem";
 import Todos from "../tab/Todos";
-import Posts from "../tab/Posts";
+import Projects from "../tab/Projects";
 
 const Tab = (props) => {
   const { state } = useContext(GlobalContext);
@@ -33,13 +33,19 @@ const Tab = (props) => {
 
   const setItems = useCallback(() => {
     let selectedTab;
-    selectedTab = type === "posts" ? state.posts : state.todos;
-    const filteredItems = selectedTab.filter((x) => x.userId === id);
+    selectedTab = type === "projects" ? state.projects : state.todos;
+    const filteredItems =
+      type === "projects"
+        ? selectedTab.filter((project) =>
+            project.users.some((user) => user.id === id)
+          )
+        : selectedTab.filter((todo) => todo.userId === id);
+
     if (filteredItems !== userItems) {
       setUserItems(filteredItems);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, state.posts, state.todos, type]);
+  }, [id, state.projects, state.todos, type]);
 
   useEffect(() => {
     setItems();
@@ -55,7 +61,7 @@ const Tab = (props) => {
       <div className='data-header'>
         <h3 className='title-header'>
           <span className='icon'>
-            {type === "posts" && <i className='far fa-clipboard'></i>}
+            {type === "projects" && <i className='far fa-clipboard'></i>}
             {type === "todos" && <i className='far fa-calendar-plus'></i>}
           </span>
           {type === "todos" ? "to-do's" : type}
@@ -73,7 +79,7 @@ const Tab = (props) => {
       {addItem && <AddItem />}
       <div className={`items ${addItem ? "hidden-list" : ""}`}>
         {type === "todos" && <Todos />}
-        {type === "posts" && <Posts />}
+        {type === "projects" && <Projects />}
       </div>
     </TabContext.Provider>
   );

@@ -65,20 +65,20 @@
   margin: 0;
 }
 
-/*** Posts ***/
-.item-post {
+/*** Projects ***/
+.item-project {
   background-color: rgba(175, 203, 231, 0.473);
   text-align: center;
 }
 
-.post-title {
+.project-title {
   text-decoration: underline;
   letter-spacing: 0.9px;
   text-transform: capitalize;
   margin-bottom: 1em;
 }
 
-.post-body {
+.project-body {
   margin: 0 0.3em;
   font-size: 0.9rem;
 }

@@ -15,7 +15,7 @@ const Chart = ({ usersData, type, viewWidth }) => {
     labels: [],
     datasets: [
       {
-        label: type === "todos" ? "completed todos %" : "total posts",
+        label: type === "todos" ? "completed todos %" : "total projects",
         data: [],
         backgroundColor: [
           "#037ba6a2",
@@ -44,7 +44,7 @@ const Chart = ({ usersData, type, viewWidth }) => {
     if (usersData.length > 0) {
       const mappedUsers = usersData.map((x) => x.name.split(" ")[0]);
       setMappedNames(mappedUsers);
-      const mappedItems = usersData.map((x) => x.percentage || x.posts);
+      const mappedItems = usersData.map((x) => x.percentage || x.projects);
       setMappedData(mappedItems);
     }
   }, [usersData]);
@@ -83,7 +83,7 @@ const Chart = ({ usersData, type, viewWidth }) => {
         title: {
           display: true,
           text:
-            type === "todos" ? "Best Todos Achievers" : "Most Posts Published",
+            type === "todos" ? "Best Todos Achievers" : "Most Involved In Projects",
           fontSize: 20,
         },
         legend: {

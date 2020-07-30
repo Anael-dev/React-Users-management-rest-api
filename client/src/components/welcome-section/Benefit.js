@@ -13,10 +13,10 @@ const Benefit = ({ src, type }) => {
       description:
         "Create and delete tasks, complete done to-do’s, track users’ task achievements",
     },
-    posts: {
-      title: "Write Posts",
+    projects: {
+      title: "Write Projects",
       description:
-        "Add new posts, create and delete chosen posts, receive inspiration by others’ fresh content",
+        "Add new projects, create and delete chosen projects, receive inspiration by others’ fresh content",
     },
   });
 

@@ -32,7 +32,7 @@ const ListItems = () => {
                 <li key={item._id}>
                   <div
                     className={`item ${
-                      context.type === "posts" ? "item-post" : "item-todo"
+                      context.type === "projects" ? "item-project" : "item-todo"
                     } ${item.completed ? "completed-item" : ""}`}>
                     <label className='item-label'>
                       <strong>Title: </strong>
@@ -41,7 +41,7 @@ const ListItems = () => {
                       </span>
                     </label>
                     <p className='item-label'>
-                      {context.type === "posts" ? (
+                      {context.type === "projects" ? (
                         <>
                           <strong>Body: </strong>
                           {item.body}

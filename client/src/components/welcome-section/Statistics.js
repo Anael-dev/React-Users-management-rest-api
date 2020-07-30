@@ -3,7 +3,7 @@ import GlobalContext from "../../context/GlobalContext";
 
 import Chart from "./Chart";
 
-const Statistics = ({ width, completedUsers, bestAuthors }) => {
+const Statistics = ({ width, completedUsers, mostProjects }) => {
   const { state } = useContext(GlobalContext);
 
   return (
@@ -18,9 +18,9 @@ const Statistics = ({ width, completedUsers, bestAuthors }) => {
           <Chart usersData={completedUsers} type='todos' viewWidth={width} />
         </div>
       )}
-      {bestAuthors.length > 0 && (
+      {mostProjects.length > 0 && (
         <div className='chart doughnut'>
-          <Chart usersData={bestAuthors} type='posts' viewWidth={width} />
+          <Chart usersData={mostProjects} type='projects' viewWidth={width} />
         </div>
       )}
     </section>

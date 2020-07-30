@@ -11,7 +11,7 @@ import "../../styles/LandingLayout.css";
 /*icons*/
 import usersIcon from "../../images/benefits/userImg.png";
 import todosIcon from "../../images/benefits/tasksList.png";
-import postsIcon from "../../images/benefits/postPage.png";
+import projectsIcon from "../../images/benefits/projectPage.png";
 
 import Benefit from "../welcome-section/Benefit";
 import Statistics from "../welcome-section/Statistics";
@@ -21,7 +21,7 @@ const LandingLayout = () => {
   const { state } = useContext(GlobalContext);
 
   const [completedUsers, setCompletedUsers] = useState([]);
-  const [bestAuthors, setBestAuthors] = useState([]);
+  const [mostProjects, setMostProjects] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
   const [expanded, setExpanded] = useState(false);
 
@@ -45,11 +45,11 @@ const LandingLayout = () => {
   }, [state.todosProgress]);
 
   useEffect(() => {
-    const mappedAuthors = state.postsProgress
-      .sort((a, b) => b.posts - a.posts)
+    const mappedMostProjects = state.projectsProgress
+      .sort((a, b) => b.projects - a.projects)
       .slice(0, 5);
-    setBestAuthors(mappedAuthors);
-  }, [state.postsProgress]);
+    setMostProjects(mappedMostProjects);
+  }, [state.projectsProgress]);
 
   return (
     <>
@@ -67,7 +67,7 @@ const LandingLayout = () => {
             <div className='container-benefits'>
               <Benefit src={usersIcon} type='users' />
               <Benefit src={todosIcon} type='todos' />
-              <Benefit src={postsIcon} type='posts' />
+              <Benefit src={projectsIcon} type='projects' />
             </div>
           </div>
 
@@ -96,7 +96,7 @@ const LandingLayout = () => {
                         expanded === "statisticsPanel" ? "underline" : ""
                       }`,
                     }}>
-                    Statistics
+                    Dashboard
                   </Typography>
                 </AccordionSummary>
               </ScrollLink>
@@ -104,7 +104,7 @@ const LandingLayout = () => {
                 <Statistics
                   width={width}
                   completedUsers={completedUsers}
-                  bestAuthors={bestAuthors}
+                  mostProjects={mostProjects}
                 />
               </AccordionDetails>
             </Accordion>
@@ -112,7 +112,7 @@ const LandingLayout = () => {
             <Statistics
               width={width}
               completedUsers={completedUsers}
-              bestAuthors={bestAuthors}
+              mostProjects={mostProjects}
             />
           )}
         </div>

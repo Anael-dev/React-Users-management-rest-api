@@ -1,10 +1,10 @@
 export const initialState = {
   users: [],
   filteredUsers: [],
-  posts: [],
+  projects: [],
   todos: [],
   todosProgress: [],
-  postsProgress: [],
+  projectsProgress: [],
   isLoading: true,
   isWelcome: true,
   snackBar: { open: false, massage: "" },
@@ -23,10 +23,10 @@ export const reducer = (state, action) => {
         ...state,
         todos: action.payload,
       };
-    case "FETCH_POSTS":
+    case "FETCH_PROJECTS":
       return {
         ...state,
-        posts: action.payload,
+        projects: action.payload,
       };
     case "FILTER_USERS":
       const input = action.payload;
@@ -62,11 +62,13 @@ export const reducer = (state, action) => {
           (user) => user._id !== action.payload._id
         ),
         todos: state.todos.filter((todo) => todo.userId !== action.payload.id),
-        posts: state.posts.filter((post) => post.userId !== action.payload.id),
+        projects: state.projects.filter(
+          (project) => project.userId !== action.payload.id
+        ),
         todosProgress: state.todosProgress.filter(
           (item) => item.id !== action.payload.id
         ),
-        postsProgress: state.postsProgress.filter(
+        projectsProgress: state.projectsProgress.filter(
           (item) => item.id !== action.payload.id
         ),
       };
@@ -81,10 +83,10 @@ export const reducer = (state, action) => {
         ...state,
         todos: [action.payload, ...state.todos],
       };
-    case "ADD_POST":
+    case "ADD_PROJECT":
       return {
         ...state,
-        posts: [action.payload, ...state.posts],
+        projects: [action.payload, ...state.projects],
       };
 
     case "ADD_TODOS_PROGRESS":
@@ -109,26 +111,26 @@ export const reducer = (state, action) => {
         todosProgress: mappedTodos,
       };
 
-    case "ADD_POSTS_PROGRESS":
-      const userPost = action.payload;
-      let mappedPosts;
-      let foundUserPost = false;
-      if (state.postsProgress.length > 0) {
-        mappedPosts = state.postsProgress.map((x) => {
-          if (x.id === userPost.id) {
-            foundUserPost = true;
-            return { ...x, ...userPost };
+    case "ADD_PROJECTS_PROGRESS":
+      const userProject = action.payload;
+      let mappedProjects;
+      let foundUserProject = false;
+      if (state.projectsProgress.length > 0) {
+        mappedProjects = state.projectsProgress.map((x) => {
+          if (x.id === userProject.id) {
+            foundUserProject = true;
+            return { ...x, ...userProject };
           } else {
             return x;
           }
         });
       }
-      if (state.postsProgress.length === 0 || !foundUserPost) {
-        mappedPosts = [...state.postsProgress, userPost];
+      if (state.projectsProgress.length === 0 || !foundUserProject) {
+        mappedProjects = [...state.projectsProgress, userProject];
       }
       return {
         ...state,
-        postsProgress: mappedPosts,
+        projectsProgress: mappedProjects,
       };
     case "EDIT_USER":
       const updatedUser = action.payload;
@@ -144,7 +146,7 @@ export const reducer = (state, action) => {
         }
         return user;
       });
-      const updatedPostsProgress = state.postsProgress.map((user) => {
+      const updatedProjectsProgress = state.projectsProgress.map((user) => {
         if (user.id === updatedUser.id) {
           return { ...user, name: updatedUser.name };
         }
@@ -155,19 +157,19 @@ export const reducer = (state, action) => {
         users: updatedUsers,
         filteredUsers: updatedUsers,
         todosProgress: updatedTodosProgress,
-        postsProgress: updatedPostsProgress,
+        projectsProgress: updatedProjectsProgress,
       };
-    case "EDIT_POST":
-      const updatedPost = action.payload;
-      const updatedPosts = state.posts.map((post) => {
-        if (post._id === updatedPost._id) {
-          return updatedPost;
+    case "EDIT_PROJECT":
+      const updatedProject = action.payload;
+      const updatedProjects = state.projects.map((project) => {
+        if (project._id === updatedProject._id) {
+          return updatedProject;
         }
-        return post;
+        return project;
       });
       return {
         ...state,
-        posts: updatedPosts,
+        projects: updatedProjects,
       };
     case "COMPLETE_TODO":
       const completedTodo = action.payload;
@@ -182,22 +184,26 @@ export const reducer = (state, action) => {
         ...state,
         todos: completedTodos,
       };
-    case "DELETE_POST":
-      const postUserId = action.payload.userId;
-      let filteredPostsArr;
-      const userPosts = state.postsProgress.find((x) => x.id === postUserId);
-      userPosts.posts--;
-      if (userPosts.posts === 0) {
-        filteredPostsArr = state.postsProgress.filter(
-          (item) => item.id !== postUserId
+    case "DELETE_PROJECT":
+      const projectUserId = action.payload.userId;
+      let filteredProjectsArr;
+      const userProjects = state.projectsProgress.find(
+        (x) => x.id === projectUserId
+      );
+      userProjects.projects--;
+      if (userProjects.projects === 0) {
+        filteredProjectsArr = state.projectsProgress.filter(
+          (item) => item.id !== projectUserId
         );
       } else {
-        filteredPostsArr = [...state.postsProgress];
+        filteredProjectsArr = [...state.projectsProgress];
       }
       return {
         ...state,
-        posts: state.posts.filter((post) => post._id !== action.payload._id),
-        postsProgress: filteredPostsArr,
+        projects: state.projects.filter(
+          (project) => project._id !== action.payload._id
+        ),
+        projectsProgress: filteredProjectsArr,
       };
     case "DELETE_TODO":
       const todoUserId = action.payload.userId;

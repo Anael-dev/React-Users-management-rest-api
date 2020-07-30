@@ -8,7 +8,7 @@ import { animateScroll } from "react-scroll";
 import "../../styles/User.css";
 import usersDAL from "../../utils/usersAPI";
 import todosDAL from "../../utils/todosAPI";
-import postsDAL from "../../utils/postsAPI";
+import projectsDAL from "../../utils/projectsAPI";
 import UserForm from "./UserForm";
 
 const User = ({ userData }) => {
@@ -17,7 +17,7 @@ const User = ({ userData }) => {
   const { closeAccordion } = useContext(MainPageContext);
 
   const [user, setUser] = useState({});
-  const [posts, setPosts] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [todos, setTodos] = useState([]);
 
   const [completedTodos, setCompletedTodos] = useState([]);
@@ -40,15 +40,19 @@ const User = ({ userData }) => {
 
   useEffect(() => {
     if (user.id) {
-      setPosts([...state.posts.filter((post) => post.userId === user.id)]);
+      setProjects([
+        ...state.projects.filter((project) =>
+          project.users.some((x) => x.id === user.id)
+        ),
+      ]);
     }
-  }, [state.posts, user]);
+  }, [state.projects, user]);
 
   useEffect(() => {
     if (todosPercentage > 0 && todosPercentage < 85) {
       setStatusQuote("In Progress");
     } else if (todosPercentage >= 85 && todosPercentage < 100) {
-      setStatusQuote("Almost Done");
+      setStatusQuote("Almroject Done");
     }
     if (todosPercentage === 100) {
       setStatusQuote("Completed!");
@@ -102,25 +106,27 @@ const User = ({ userData }) => {
   }, [checkPercentage]);
 
   useEffect(() => {
-    if (posts.length > 0) {
+    if (projects.length > 0) {
       dispatch({
-        type: "ADD_POSTS_PROGRESS",
+        type: "ADD_PROJECTS_PROGRESS",
         payload: {
           id: user.id,
           name: user.name,
-          posts: posts.length,
+          projects: projects.length,
         },
       });
     }
-  }, [posts]);
+  }, [projects]);
 
   const deleteUser = async (id) => {
     try {
       await usersDAL.deleteUser(id);
       await Promise.all(todos.map((todo) => todosDAL.deleteTodo(todo._id)));
       // todos.forEach(async (todo) => await todosDAL.deleteTodo(todo._id));
-      await Promise.all(posts.map((post) => postsDAL.deletePost(post._id)));
-      // posts.forEach(async (post) => await postsDAL.deletePost(post._id));
+      await Promise.all(
+        projects.map((project) => projectsDAL.deleteProject(project._id))
+      );
+      // projects.forEach(async (project) => await projectsDAL.deleteProject(project._id));
 
       dispatch({
         type: "DELETE_USER",

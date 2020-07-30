@@ -9,6 +9,8 @@ exports.getAll = async () => {
       userId: x.userId,
       title: x.title,
       completed: x.completed,
+      priority: "",
+      dueDate: "",
     };
   });
 };

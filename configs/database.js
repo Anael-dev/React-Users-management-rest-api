@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const membersBL = require("../models/membersBL");
-const postsBL = require("../models/postsBL");
+const projectsBL = require("../models/projectsBL");
 const todosBL = require("../models/todosBL");
 
 mongoose.connect(
@@ -20,19 +20,19 @@ db.once("open", async () => {
 
   try {
     const membersData = await membersBL.getAll();
-    const postsData = await postsBL.getAll();
+    const projectsData = await projectsBL.getAll();
     const todosData = await todosBL.getAll();
 
     if (
       membersData.length === 0 &&
-      postsData.length === 0 &&
+      projectsData.length === 0 &&
       todosData.length === 0
     ) {
       const members = await membersBL.getMembers();
       await db.collection("members").insertMany(members);
 
-      const posts = await postsBL.getPosts();
-      await db.collection("posts").insertMany(posts);
+      const projects = await projectsBL.getProjects();
+      await db.collection("projects").insertMany(projects);
 
       const todos = await todosBL.getTodos();
       await db.collection("todos").insertMany(todos);

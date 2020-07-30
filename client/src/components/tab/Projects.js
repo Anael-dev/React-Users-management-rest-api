@@ -3,9 +3,9 @@ import TabContext from "../../context/TabContext";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../../styles/ListItems.css";
 
-import Post from "./Post";
+import Project from "./Project";
 
-const Posts = () => {
+const Projects = () => {
   const { userItems } = useContext(TabContext);
 
   return (
@@ -15,7 +15,7 @@ const Posts = () => {
           {userItems.map((item) => {
             return (
               <CSSTransition key={item._id} timeout={500} classNames='item'>
-                <Post key={item._id} item={item} />
+                <Project key={item._id} item={item} />
               </CSSTransition>
             );
           })}
@@ -25,4 +25,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default Projects;

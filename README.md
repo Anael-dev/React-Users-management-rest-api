@@ -1,12 +1,13 @@
 # User and task management app
 
-> Built with the MERN stack along with Context API and useReducer for state management, hooks and react-transition-group.
+Built with the MERN stack along with Context API and useReducer for state management, hooks and react-transition-group.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-> Created using <a href="https://www.npmjs.com/package/express" target="_blank">**Express**</a> and <a href="https://www.npmjs.com/package/mongoose" target="_blank">**Mongoose**</a> layer
+<a href="https://management-app-anael-dev.herokuapp.com/" target="_blank">**Try the app here**</a>
 
 ## Quick Start
+
 - You will need a <a href="https://nodejs.org/en/download/" target="_blank">**Node.js**</a> installed in your environement.
 
 ```bash

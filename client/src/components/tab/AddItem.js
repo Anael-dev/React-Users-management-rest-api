@@ -1,15 +1,14 @@
 import React, { useState, useContext } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import TabContext from "../../context/TabContext";
-import postsDAL from "../../utils/postsAPI";
+import projectsDAL from "../../utils/projectsAPI";
 import todosDAL from "../../utils/todosAPI";
 
 import "../../styles/AddItem.css";
+import users from "../../context/reducers/users";
 
 const AddItem = () => {
-  const { dispatch } = useContext(
-    GlobalContext
-  );
+  const { dispatch } = useContext(GlobalContext);
   const { type, id, toggleAdd } = useContext(TabContext);
 
   const [title, setTitle] = useState("");
@@ -44,23 +43,23 @@ const AddItem = () => {
       }
     } else {
       if (!title || !body) {
-        setError("please type valid post details");
+        setError("please type valid project details");
         return;
       }
-      let newPost = {
-        userId: id,
+      let newProject = {
         title,
         body,
+        users: [...users, { id: id }],
       };
       try {
-        const newPostResponse = await postsDAL.addPost(newPost);
+        const newProjectResponse = await projectsDAL.addProject(newProject);
         dispatch({
-          type: "ADD_POST",
-          payload: newPostResponse,
+          type: "ADD_PROJECT",
+          payload: newProjectResponse,
         });
         dispatch({
           type: "SHOW_SNACK_BAR",
-          payload: "New post added!",
+          payload: "New project added!",
         });
         toggleAdd();
       } catch (err) {
@@ -70,27 +69,27 @@ const AddItem = () => {
   };
   return (
     <div className='container-new-item'>
-      <h3>New {type === "posts" ? "Post" : "To-do"}</h3>
+      <h3>New {type === "projects" ? "Project" : "To-do"}</h3>
       <form className='data-collector' onSubmit={(e) => addItem(e)}>
         <label>
-          {type === "posts" ? "Title:" : "Task:"}
+          {type === "projects" ? "Title:" : "Task:"}
           <input
             type='text'
             placeholder={`What's your ${
-              type === "posts" ? "post title?" : "new task?"
+              type === "projects" ? "project title?" : "new task?"
             }
             `}
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
 
-        {type === "posts" && (
+        {type === "projects" && (
           <>
             <br />
             <label>
               Content:
               <textarea
-                className='post-content'
+                className='project-content'
                 onChange={(e) => setBody(e.target.value)}></textarea>
             </label>
           </>

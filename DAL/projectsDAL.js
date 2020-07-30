@@ -6,9 +6,9 @@ exports.getAll = async () => {
   );
   return response.data.map((x) => {
     return {
-      userId: x.userId,
       title: x.title,
       body: x.body,
+      users: [{ id: x.userId }],
     };
   });
 };

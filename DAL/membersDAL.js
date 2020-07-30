@@ -12,7 +12,6 @@ exports.getAll = async () => {
       address: {
         city: x.address.city,
         street: x.address.street,
-        zipcode: x.address.zipcode,
       },
     };
   });

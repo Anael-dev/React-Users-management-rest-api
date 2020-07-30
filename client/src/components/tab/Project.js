@@ -1,26 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import "../../styles/ListItems.css";
-import postsDAL from "../../utils/postsAPI";
+import projectsDAL from "../../utils/projectsAPI";
 
-const Post = ({ item }) => {
+const Project = ({ item }) => {
   const { dispatch } = useContext(GlobalContext);
 
   const [editView, setEditView] = useState(false);
-  const [updatedPost, setUpdatedPost] = useState({ title: "", body: "" });
+  const [updatedProject, setUpdatedProject] = useState({ title: "", body: "" });
 
   useEffect(() => {
     if (item._id) {
-      setUpdatedPost({ title: item.title, body: item.body });
+      setUpdatedProject({ title: item.title, body: item.body });
     }
   }, [item]);
 
-  const deletePost = async (id) => {
+  const deleteProject = async (id) => {
     try {
-      await postsDAL.deletePost(id);
+      await projectsDAL.deleteProject(id);
 
       dispatch({
-        type: "DELETE_POST",
+        type: "DELETE_PROJECT",
         payload: item,
       });
     } catch (err) {
@@ -28,40 +28,40 @@ const Post = ({ item }) => {
     }
   };
 
-  const editPost = async (id, post) => {
-    if (post.title && post.body) {
+  const editProject = async (id, project) => {
+    if (project.title && project.body) {
       try {
-        const updatedPost = await postsDAL.editPost(id, post);
+        const updatedProject = await projectsDAL.editProject(id, project);
 
         dispatch({
-          type: "EDIT_POST",
-          payload: updatedPost,
+          type: "EDIT_PROJECT",
+          payload: updatedProject,
         });
       } catch (err) {
         console.log(err);
       }
     } else {
-      setUpdatedPost({ title: item.title, body: item.body });
+      setUpdatedProject({ title: item.title, body: item.body });
     }
   };
 
   return (
     <li key={item._id}>
-      <div className='item item-post'>
+      <div className='item item-project'>
         <div className='item-body'>
-          <label className='item-label post-title'>
+          <label className='item-label project-title'>
             <strong>Title: </strong>
             {!editView ? (
               <span> {item.title}</span>
             ) : (
               <input
                 type='text'
-                className={!updatedPost.title ? "error-border" : ""}
-                value={updatedPost.title || ""}
+                className={!updatedProject.title ? "error-border" : ""}
+                value={updatedProject.title || ""}
                 name='title'
                 onChange={(e) =>
-                  setUpdatedPost({
-                    ...updatedPost,
+                  setUpdatedProject({
+                    ...updatedProject,
                     [e.target.name]: e.target.value,
                   })
                 }
@@ -69,7 +69,7 @@ const Post = ({ item }) => {
             )}
           </label>
           {!editView ? (
-            <p className="post-body">
+            <p className="project-body">
               <i className='fas fa-quote-left quote'></i>
               {item.body}
               <i className='fas fa-quote-right quote'></i>
@@ -80,13 +80,13 @@ const Post = ({ item }) => {
               <textarea
                 cols='30'
                 rows='5'
-                className={!updatedPost.body ? "error-border" : ""}
+                className={!updatedProject.body ? "error-border" : ""}
                 aria-label='With textarea'
                 name='body'
-                defaultValue={updatedPost.body || ""}
+                defaultValue={updatedProject.body || ""}
                 onChange={(e) =>
-                  setUpdatedPost({
-                    ...updatedPost,
+                  setUpdatedProject({
+                    ...updatedProject,
                     [e.target.name]: e.target.value,
                   })
                 }></textarea>
@@ -106,7 +106,7 @@ const Post = ({ item }) => {
             title='update'
             className='btn btn-icon btn-action edit'
             onClick={() => {
-              editPost(item._id, updatedPost);
+              editProject(item._id, updatedProject);
               setEditView(false);
             }}>
             <i className='fas fa-check'></i>
@@ -116,7 +116,7 @@ const Post = ({ item }) => {
           <button
             type='button'
             className='btn btn-icon btn-action'
-            onClick={() => deletePost(item._id)}>
+            onClick={() => deleteProject(item._id)}>
             <i className='far fa-trash-alt'></i>
           </button>
         ) : (
@@ -133,4 +133,4 @@ const Post = ({ item }) => {
   );
 };
 
-export default Post;
+export default Project;

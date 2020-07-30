@@ -54,7 +54,7 @@ const UserData = (props) => {
           </div>
           <Tab id={params.id} type={"todos"} />
           <div className='underline'></div>
-          <Tab id={params.id} type={"posts"} />
+          <Tab id={params.id} type={"projects"} />
         </div>
       )}
     </>
