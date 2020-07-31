@@ -112,7 +112,7 @@ const User = ({ userData }) => {
         payload: {
           id: user.id,
           name: user.name,
-          projects: projects.length,
+          projects: projects,
         },
       });
     }

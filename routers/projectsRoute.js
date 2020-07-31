@@ -41,6 +41,26 @@ router.route("/").post(async (req, res) => {
   }
 });
 
+router.route("/addUser/:id").put(async (req, res) => {
+  const id = req.params.id;
+  try {
+    const updatedProject = await projectsBL.addProjectUser(id, req.body);
+    res.json(updatedProject);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+router.route("/removeUser/:id").put(async (req, res) => {
+  const id = req.params.id;
+  try {
+    const updatedProject = await projectsBL.removeProjectUser(id, req.body);
+    res.json(updatedProject);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 router.route("/:id").put(async (req, res) => {
   const id = req.params.id;
   try {

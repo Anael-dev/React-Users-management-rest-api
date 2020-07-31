@@ -6,7 +6,7 @@ import "../../styles/ListItems.css";
 import Project from "./Project";
 
 const Projects = () => {
-  const { userItems } = useContext(TabContext);
+  const { userItems, id } = useContext(TabContext);
 
   return (
     <div className='list-container'>
@@ -15,7 +15,7 @@ const Projects = () => {
           {userItems.map((item) => {
             return (
               <CSSTransition key={item._id} timeout={500} classNames='item'>
-                <Project key={item._id} item={item} />
+                <Project key={item._id} item={item} userId={id} />
               </CSSTransition>
             );
           })}

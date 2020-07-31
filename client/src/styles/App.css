@@ -51,6 +51,10 @@ a {
   text-decoration: none;
 }
 
+b,
+strong {
+  font-weight: 700;
+}
 label {
   font-weight: 400;
   letter-spacing: 0.5px;

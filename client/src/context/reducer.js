@@ -185,26 +185,63 @@ export const reducer = (state, action) => {
         todos: completedTodos,
       };
     case "DELETE_PROJECT":
-      const projectUserId = action.payload.userId;
-      let filteredProjectsArr;
-      const userProjects = state.projectsProgress.find(
-        (x) => x.id === projectUserId
-      );
-      userProjects.projects--;
-      if (userProjects.projects === 0) {
-        filteredProjectsArr = state.projectsProgress.filter(
-          (item) => item.id !== projectUserId
-        );
-      } else {
-        filteredProjectsArr = [...state.projectsProgress];
-      }
+      const projectUsers = action.payload.users;
+      console.log(projectUsers);
+
       return {
         ...state,
         projects: state.projects.filter(
           (project) => project._id !== action.payload._id
         ),
+        projectsProgress: state.projectsProgress.filter((x) =>
+          projectUsers.forEach((user) => x.id !== user.id)
+        ),
+      };
+
+    case "DELETE_USER_FROM_PROJECT":
+      const { item, userId } = action.payload;
+      let filteredProjectsArr;
+
+      const userProjectsProgress = state.projectsProgress.find(
+        (x) => x.id === userId
+      );
+      
+      const filteredUserProjectsProgress = userProjectsProgress.projects.filter(
+        (x) => x._id !== item._id
+      );
+      if (filteredUserProjectsProgress.length === 0) {
+        filteredProjectsArr = state.projectsProgress.filter(
+          (item) => item.id !== userId
+        );
+      } else {
+        filteredProjectsArr = state.projectsProgress.map((x) => {
+          if (x.id === userId) {
+            return {
+              ...x,
+              projects: filteredUserProjectsProgress,
+            };
+          }
+          return x;
+        });
+      }
+
+      const finalProjects = state.projects.map((project) => {
+        if (project._id === item._id) {
+          return {
+            ...project,
+            users: project.users.filter((user) => user.id !== userId),
+          };
+        } else {
+          return project;
+        }
+      });
+
+      return {
+        ...state,
+        projects: finalProjects,
         projectsProgress: filteredProjectsArr,
       };
+
     case "DELETE_TODO":
       const todoUserId = action.payload.userId;
       let filteredTodosArr;

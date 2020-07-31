@@ -3,7 +3,7 @@ import GlobalContext from "../../context/GlobalContext";
 import "../../styles/ListItems.css";
 import projectsDAL from "../../utils/projectsAPI";
 
-const Project = ({ item }) => {
+const Project = ({ item, userId }) => {
   const { dispatch } = useContext(GlobalContext);
 
   const [editView, setEditView] = useState(false);
@@ -17,11 +17,16 @@ const Project = ({ item }) => {
 
   const deleteProject = async (id) => {
     try {
-      await projectsDAL.deleteProject(id);
+      await projectsDAL.removeProjectUser(id, { id: userId });
+
+      // dispatch({
+      //   type: "DELETE_PROJECT",
+      //   payload: item,
+      // });
 
       dispatch({
-        type: "DELETE_PROJECT",
-        payload: item,
+        type: "DELETE_USER_FROM_PROJECT",
+        payload: { item, userId },
       });
     } catch (err) {
       console.log(err);
@@ -69,14 +74,17 @@ const Project = ({ item }) => {
             )}
           </label>
           {!editView ? (
-            <p className="project-body">
-              <i className='fas fa-quote-left quote'></i>
+            <p className='project-body'>
+              {/* <i className='fas fa-quote-left quote'></i> */}
+              <span className='item-label'>
+                <strong>Description:</strong>
+              </span>
               {item.body}
-              <i className='fas fa-quote-right quote'></i>
+              {/* <i className='fas fa-quote-right quote'></i> */}
             </p>
           ) : (
             <label className='item-label'>
-              <strong>Body: </strong>
+              <strong>Description: </strong>
               <textarea
                 cols='30'
                 rows='5'

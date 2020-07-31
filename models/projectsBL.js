@@ -57,12 +57,52 @@ exports.postProject = (reqBody) => {
 
 exports.editProject = (id, reqBody) => {
   return new Promise((resolve, reject) => {
-    Project.findByIdAndUpdate(id, reqBody, { new: true }, function (err, project) {
+    Project.findByIdAndUpdate(id, reqBody, { new: true }, function (
+      err,
+      project
+    ) {
       if (err) {
         reject(err);
       } else {
         resolve(project);
       }
     });
+  });
+};
+
+exports.addProjectUser = (id, reqBody) => {
+  return new Promise((resolve, reject) => {
+    Project.findByIdAndUpdate(
+      // find by document id and update and push item in array
+      id,
+      { $push: { users: reqBody } },
+      { safe: true, upsert: true },
+      function (err, project) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(project);
+          //do stuff
+        }
+      }
+    );
+  });
+};
+
+exports.removeProjectUser = (id, reqBody) => {
+  return new Promise((resolve, reject) => {
+    Project.findByIdAndUpdate(
+      id,
+      { $pull: { users: reqBody } },
+      { safe: true, upsert: true },
+      function (err, project) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(project);
+          //do stuff
+        }
+      }
+    );
   });
 };

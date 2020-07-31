@@ -23,11 +23,26 @@ const addProject = async (obj) => {
 };
 
 const editProject = async (id, obj) => {
-  const response = await axios.put(
-    `/api/projects/${id}`,
-    obj
-  );
+  const response = await axios.put(`/api/projects/${id}`, obj);
   return response.data;
 };
 
-export default { getAllProjects, getProject, deleteProject, addProject, editProject };
+const addProjectUser = async (id, obj) => {
+  const response = await axios.put(`/api/projects/addUser/${id}`, obj);
+  return response.data;
+};
+
+const removeProjectUser = async (id, obj) => {
+  const response = await axios.put(`/api/projects/removeUser/${id}`, obj);
+  return response.data;
+};
+
+export default {
+  getAllProjects,
+  getProject,
+  deleteProject,
+  addProject,
+  editProject,
+  addProjectUser,
+  removeProjectUser,
+};
