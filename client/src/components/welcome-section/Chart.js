@@ -51,7 +51,7 @@ const Chart = ({ usersData, type, viewWidth }) => {
 
   defaults.global.defaultFontFamily = "Lora,serif";
   defaults.global.defaultFontSize = viewWidth > 600 ? 13 : 10;
-  defaults.global.defaultFontColor = "#404040";
+  defaults.global.defaultFontColor = "#353535";
 
   const CustomTag = type === "todos" ? Bar : Doughnut;
 

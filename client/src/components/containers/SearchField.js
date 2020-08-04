@@ -42,9 +42,8 @@ const SearchField = () => {
         </span>
       </label>
       <input
-        className='search-input text-input'
-        id='search'
         type='text'
+        className='search-input text-input'
         placeholder='by name/email'
         onChange={(e) => handleSearch(e)}
       />

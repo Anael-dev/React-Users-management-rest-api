@@ -102,7 +102,7 @@ const UserForm = ({ user, deleteUserCallback, updateUserCallback }) => {
           />
           <div className='action-buttons'>
             <button
-              className='btn btn-white btn-icon  action-button'
+              className='btn btn-white btn-icon action-button'
               type='submit'
               disabled={disable}
               title='update user'

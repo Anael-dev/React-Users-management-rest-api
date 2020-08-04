@@ -1,22 +1,26 @@
 /*** Forms ***/
 .data-collector {
-  margin: 0 auto;
+  border: 0.5px solid rgb(168, 168, 168);
 }
 
-.container-new-item {
-  width: 100%;
-  height: 100%;
+/* .container-new-item {
+  min-width: 100%;
+  min-height: 100%;
   font-size: 0.9rem;
-
-  padding: 1em 0;
-  min-height: 30vh;
+  padding: 3em;
+  padding-bottom: 1em;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 .container-new-item h3 {
   margin: 0;
   font-size: 1.1rem;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
+} */
+
+.title-span {
+  display: block;
+  font-size: 0.9rem;
 }

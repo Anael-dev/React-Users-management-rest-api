@@ -2,10 +2,13 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import TabContext from "../../context/TabContext";
 import "../../styles/Tab.css";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 import AddItem from "../tab/AddItem";
 import Todos from "../tab/Todos";
 import Projects from "../tab/Projects";
+import { orange } from "@material-ui/core/colors";
 
 const Tab = (props) => {
   const { state } = useContext(GlobalContext);
@@ -13,6 +16,10 @@ const Tab = (props) => {
   const [id, setId] = useState("");
   const [type, setType] = useState("");
   const [addItem, setItem] = useState(false);
+
+  // useEffect(() => {
+  //   setItem(false);
+  // }, []);
 
   const openTab = useCallback(() => {
     setId(Number(props.id));
@@ -66,18 +73,31 @@ const Tab = (props) => {
           </span>
           {type === "todos" ? "to-do's" : type}
         </h3>
-
-        {!addItem && (
+        <div>
           <button
-            className='btn btn-grey btn-icon add'
+            className='btn btn-icon btn-add-item'
             type='button'
+            title={`add ${type === "projects" ? "project" : "task"}`}
             onClick={() => toggleAddItem()}>
-            <i className='fas fa-plus'></i>
+            <i className='fas fa-plus'> </i>
           </button>
-        )}
+        </div>
       </div>
-      {addItem && <AddItem />}
-      <div className={`items ${addItem ? "hidden-list" : ""}`}>
+
+      <Dialog
+        open={addItem}
+        onClose={toggleAddItem}
+        // onClose={handleClose}
+        aria-labelledby='form-dialog-title'>
+        <DialogTitle
+          disableTypography
+          id='form-dialog-title'
+          className='add-title'>
+          <h3>New {type === "projects" ? "Project" : "To-do"}</h3>
+        </DialogTitle>
+        <AddItem />
+      </Dialog>
+      <div className='items'>
         {type === "todos" && <Todos />}
         {type === "projects" && <Projects />}
       </div>

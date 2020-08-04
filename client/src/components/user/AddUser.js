@@ -1,13 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import usersDAL from "../../utils/usersAPI";
-
 import "../../styles/AddUser.css";
-import "../../styles/AddItem.css";
 
-const AddUser = (props) => {
+const AddUser = ({ toggleAddUser, history }) => {
   const { dispatch, state } = useContext(GlobalContext);
   const [user, setUser] = useState({
     name: "",
@@ -46,48 +43,46 @@ const AddUser = (props) => {
         type: "SHOW_SNACK_BAR",
         payload: "New user created!",
       });
-      props.history.push("/");
+      history.push("/");
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className='container-new-item add-user'>
-      <h2>Add New User</h2>
-      <form className='data-collector' onSubmit={(e) => addNewUser(e)}>
-        <label>
-          Full Name:
-          <input
-            type='text'
-            placeholder="type user's name"
-            required
-            onChange={(e) => setUser({ ...user, name: e.target.value })}
-          />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input
-            type='email'
-            placeholder="type user's valid email"
-            required
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
-          />
-        </label>
-        {error && <label className='label-error'>{error}</label>}
-        <div className='button-group-add'>
-          <input className='btn btn-white btn-add' type='submit' value='add' />
-          <Link to='/'>
-            <input
-              className='btn btn-white btn-add'
-              type='button'
-              value='cancel'
-            />
-          </Link>
-        </div>
-      </form>
-    </div>
+    <form
+      className='container-new-item data-collector'
+      onSubmit={(e) => addNewUser(e)}>
+      <label>
+        Full Name:
+        <input
+          type='text'
+          placeholder="type user's name"
+          required
+          onChange={(e) => setUser({ ...user, name: e.target.value })}
+        />
+      </label>
+      <br />
+      <label>
+        Email:
+        <input
+          type='email'
+          placeholder="type user's valid email"
+          required
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+        />
+      </label>
+      {error && <label className='label-error'>{error}</label>}
+      <div className='button-group-add'>
+        <input
+          className='btn btn-white btn-cancel'
+          type='button'
+          value='cancel'
+          onClick={() => toggleAddUser()}
+        />
+        <input className='btn btn-white btn-add' type='submit' value='add' />
+      </div>
+    </form>
   );
 };
 export default AddUser;

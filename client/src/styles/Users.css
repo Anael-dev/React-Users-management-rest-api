@@ -7,7 +7,7 @@
 }
 
 .users-title {
-  line-height: 2.5;
+  line-height: 3.5;
   font-size: 1rem;
 }
 
@@ -37,8 +37,8 @@
 /*** Add button ***/
 .btn-user {
   background-color: transparent;
-  color: #595959;
-  font-size: 1rem;
+  color: #353535;
+  font-size: 0.9rem !important;
   border: 0;
   opacity: 0.9;
   outline: none;

@@ -1,12 +1,60 @@
 /*** Containers ***/
 .list-container {
   margin: 0 auto;
+  max-height: 100vh;
+  overflow-x: auto;
+  height: 100%;
 }
 
 .list-items {
   margin-top: 0;
   padding: 0;
   list-style: none;
+}
+
+/*** Table ***/
+
+.content-table {
+  border-collapse: collapse;
+  font-size: 1em;
+  min-width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  height: 100%;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background-color: #4591af;
+  color: #ffffff;
+  text-align: left;
+  font-weight: 400;
+  z-index: 1;
+  letter-spacing: 1px;
+}
+
+th,
+td {
+  padding: 0.825rem 1rem;
+}
+tbody tr {
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #cccccc;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+th:last-child {
+  padding-left: 1.5em;
+}
+
+tbody tr:last-child {
+  border-bottom: 2px solid #4591af;
+}
+
+tbody .completed-tr {
+  background-color: rgb(235, 235, 235);
+  opacity: 0.7;
 }
 
 /*** Typography ***/
@@ -116,6 +164,10 @@
   color: #3ea33e;
 }
 
+.complete:hover {
+  color: #3ec93e;
+}
+
 /*** Errors ***/
 .error-item {
   margin-bottom: 1em;
@@ -135,5 +187,16 @@
   }
   100% {
     opacity: 0.5;
+  }
+}
+
+@media (max-width: 650px) {
+  .list-container {
+    max-height: 300px;
+    overflow-x: auto;
+    overflow-y: scroll;
+  }
+  .list-container::-webkit-scrollbar:vertical {
+    display: none;
   }
 }
