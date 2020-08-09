@@ -51,6 +51,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 b,
 strong {
   font-weight: 700;
@@ -249,6 +253,8 @@ textarea:focus {
   margin-left: 0.5em;
 }
 
+/*** Material UI ***/
+
 .MuiFormHelperText-root.Mui-error,
 .MuiInputBase-input,
 .MuiMenuItem-root {
@@ -261,6 +267,10 @@ textarea:focus {
 
 .MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
   background-color: #da9432 !important;
+}
+
+.MuiCheckbox-colorSecondary.Mui-checked {
+  color: rgb(79, 122, 14) !important;
 }
 
 /*** Scroll Bar ***/

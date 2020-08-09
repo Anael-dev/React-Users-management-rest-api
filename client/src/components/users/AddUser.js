@@ -34,6 +34,7 @@ const AddUser = ({ toggleAddUser, history }) => {
       const newUser = await usersDAL.addUser({
         ...user,
         id: num,
+        avatar: `https://i.pravatar.cc/150?img=${num}`,
       });
       dispatch({
         type: "ADD_USER",
@@ -43,7 +44,7 @@ const AddUser = ({ toggleAddUser, history }) => {
         type: "SHOW_SNACK_BAR",
         payload: "New user created!",
       });
-      history.push("/");
+      toggleAddUser();
     } catch (err) {
       console.log(err);
     }

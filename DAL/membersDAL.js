@@ -13,6 +13,7 @@ exports.getAll = async () => {
         city: x.address.city,
         street: x.address.street,
       },
+      avatar: `https://i.pravatar.cc/150?img=${x.id}`,
     };
   });
 };

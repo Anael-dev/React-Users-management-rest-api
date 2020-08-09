@@ -52,7 +52,9 @@ const User = ({ userData }) => {
     if (todosPercentage > 0 && todosPercentage < 85) {
       setStatusQuote("In Progress");
     } else if (todosPercentage >= 85 && todosPercentage < 100) {
-      setStatusQuote("Almroject Done");
+      setStatusQuote("Almost Done");
+    } else {
+      setStatusQuote("");
     }
     if (todosPercentage === 100) {
       setStatusQuote("Completed!");
@@ -158,7 +160,7 @@ const User = ({ userData }) => {
   };
 
   const redirectToData = () => {
-    history.push(`/users/user/${user.id}`);
+    history.push(`/users/${user.id}`);
     closeAccordion();
     animateScroll.scrollToTop();
   };
@@ -172,7 +174,7 @@ const User = ({ userData }) => {
           <div className='img-bar-section'>
             <img
               className='avatar-img'
-              src={`https://i.pravatar.cc/150?img=${user.id}`}
+              src={user.avatar}
               alt='user avatar'
               style={{ width: "4em", height: "4em" }}
               onClick={() => redirectToData()}

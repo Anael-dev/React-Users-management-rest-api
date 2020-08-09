@@ -21,7 +21,7 @@ const LandingLayout = () => {
   const { state } = useContext(GlobalContext);
 
   const [completedUsers, setCompletedUsers] = useState([]);
-  const [mostProjects, setMostProjects] = useState([]);
+  // const [mostProjects, setMostProjects] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
   const [expanded, setExpanded] = useState(false);
 
@@ -44,12 +44,12 @@ const LandingLayout = () => {
     setCompletedUsers(mappedUsers);
   }, [state.todosProgress]);
 
-  useEffect(() => {
-    const mappedMostProjects = state.projectsProgress
-      .sort((a, b) => b.projects - a.projects)
-      .slice(0, 5);
-    setMostProjects(mappedMostProjects);
-  }, [state.projectsProgress]);
+  // useEffect(() => {
+  //   const mappedMostProjects = state.projectsProgress
+  //     .sort((a, b) => b.projects - a.projects)
+  //     .slice(0, 5);
+  //   setMostProjects(mappedMostProjects);
+  // }, [state.projectsProgress]);
 
   return (
     <>
@@ -104,7 +104,7 @@ const LandingLayout = () => {
                 <Statistics
                   width={width}
                   completedUsers={completedUsers}
-                  mostProjects={mostProjects}
+                  // mostProjects={mostProjects}
                 />
               </AccordionDetails>
             </Accordion>
@@ -112,7 +112,7 @@ const LandingLayout = () => {
             <Statistics
               width={width}
               completedUsers={completedUsers}
-              mostProjects={mostProjects}
+              // mostProjects={mostProjects}
             />
           )}
         </div>

@@ -7,7 +7,7 @@ exports.getAll = async () => {
   return response.data.map((x) => {
     return {
       title: x.title,
-      body: x.body,
+      dueDate: "",
       users: [{ id: x.userId }],
     };
   });

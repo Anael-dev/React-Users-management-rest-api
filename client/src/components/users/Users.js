@@ -5,10 +5,11 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../../styles/Users.css";
 
-import User from "../user/User";
-import AddUser from "../user/AddUser";
+import User from "./User";
+import AddUser from "./AddUser";
+import LeftHeader from "../layout/LeftHeader";
 
-const Users = ({ isAccordion }) => {
+const Users = ({ isAccordion = false }) => {
   const { state } = useContext(GlobalContext);
   const [addUser, setAddUser] = useState(false);
 
@@ -22,21 +23,10 @@ const Users = ({ isAccordion }) => {
 
   return (
     <div
-      className={`container-users ${isAccordion ? "accordion-container" : ""}`}
+      className={`left-wrapper ${isAccordion ? "accordion-container" : ""}`}
       id='container-left'>
-      <div className='users-header'>
-        {!isAccordion && <h3 className='users-title'>All Profiles</h3>}
-        <button
-          className='btn btn-user'
-          type='button'
-          title='add user'
-          onClick={() => {
-            toggleAddUser();
-          }}>
-          <i className='fas fa-user-plus'></i>
-        </button>
-      </div>
-      <div className='users-section'>
+      <LeftHeader type='user' callBack={() => toggleAddUser()} />
+      <div className='main-section'>
         {state.filteredUsers.length === 0 && <p>No users found :(</p>}
         <TransitionGroup>
           {state.filteredUsers.length > 0 &&
@@ -53,7 +43,10 @@ const Users = ({ isAccordion }) => {
         open={addUser}
         aria-labelledby='form-dialog-title'
         onClose={toggleAddUser}>
-        <DialogTitle disableTypography id='form-dialog-title' className='add-title'>
+        <DialogTitle
+          disableTypography
+          id='form-dialog-title'
+          className='add-title'>
           <h3>Add New User</h3>
         </DialogTitle>
         <AddUser toggleAddUser={() => toggleAddUser()} />

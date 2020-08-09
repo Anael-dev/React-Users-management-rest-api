@@ -1,14 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import UserData from "../user/UserData";
-import AddUser from "../user/AddUser";
+import UserData from "../tab/UserData";
 
 const RouteComponents = () => {
   return (
     <div className='container-right'>
       <Switch>
-        <Route exact path='/users/user/:id' component={UserData} />
-        <Route exact path='/users/add_user' component={AddUser} />
+        <Route exact path='/users/:id' component={UserData} />
       </Switch>
     </div>
   );

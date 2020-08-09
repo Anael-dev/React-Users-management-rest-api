@@ -34,7 +34,7 @@ router.route("/:id").delete(async (req, res) => {
 
 router.route("/").post(async (req, res) => {
   try {
-    const newProject = await projectsBL.projectProject(req.body);
+    const newProject = await projectsBL.postProject(req.body);
     res.json(newProject);
   } catch (err) {
     res.send(err);

@@ -6,14 +6,8 @@ import projectsDAL from "../../utils/projectsAPI";
 const Project = ({ item, userId }) => {
   const { dispatch } = useContext(GlobalContext);
 
-  const [editView, setEditView] = useState(false);
-  const [updatedProject, setUpdatedProject] = useState({ title: "", body: "" });
-
-  useEffect(() => {
-    if (item._id) {
-      setUpdatedProject({ title: item.title, body: item.body });
-    }
-  }, [item]);
+  // const [editView, setEditView] = useState(false);
+  // const [updatedProject, setUpdatedProject] = useState({ title: "", body: "" });
 
   const deleteProject = async (id) => {
     try {
@@ -33,32 +27,32 @@ const Project = ({ item, userId }) => {
     }
   };
 
-  const editProject = async (id, project) => {
-    if (project.title && project.body) {
-      try {
-        const updatedProject = await projectsDAL.editProject(id, project);
+  // const editProject = async (id, project) => {
+  //   if (project.title && project.body) {
+  //     try {
+  //       const updatedProject = await projectsDAL.editProject(id, project);
 
-        dispatch({
-          type: "EDIT_PROJECT",
-          payload: updatedProject,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      setUpdatedProject({ title: item.title, body: item.body });
-    }
-  };
+  //       dispatch({
+  //         type: "EDIT_PROJECT",
+  //         payload: updatedProject,
+  //       });
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   } else {
+  //     setUpdatedProject({ title: item.title, body: item.body });
+  //   }
+  // };
 
   return (
     <li key={item._id}>
       <div className='item item-project'>
         <div className='item-body'>
           <label className='item-label project-title'>
-            <strong>Title: </strong>
-            {!editView ? (
-              <span> {item.title}</span>
-            ) : (
+            <strong>Name: </strong>
+            {/* {!editView ? ( */}
+            <span> {item.title}</span>
+            {/* ) : (
               <input
                 type='text'
                 className={!updatedProject.title ? "error-border" : ""}
@@ -71,18 +65,17 @@ const Project = ({ item, userId }) => {
                   })
                 }
               />
-            )}
+            )} */}
           </label>
-          {!editView ? (
-            <p className='project-body'>
-              {/* <i className='fas fa-quote-left quote'></i> */}
-              <span className='item-label'>
-                <strong>Description:</strong>
-              </span>
-              {item.body}
-              {/* <i className='fas fa-quote-right quote'></i> */}
-            </p>
-          ) : (
+          {/* {!editView ? ( */}
+          <p className='project-body'>
+            <span className='item-label'>
+              <strong>Description:</strong>
+            </span>
+            {item.body}
+            {/* <i className='fas fa-quote-right quote'></i> */}
+          </p>
+          {/* ) : (
             <label className='item-label'>
               <strong>Description: </strong>
               <textarea
@@ -99,9 +92,9 @@ const Project = ({ item, userId }) => {
                   })
                 }></textarea>
             </label>
-          )}
+          )} */}
         </div>
-        {!editView ? (
+        {/* {!editView ? (
           <button
             type='button'
             className='btn btn-icon btn-action edit'
@@ -119,15 +112,17 @@ const Project = ({ item, userId }) => {
             }}>
             <i className='fas fa-check'></i>
           </button>
-        )}
-        {!editView ? (
-          <button
-            type='button'
-            className='btn btn-icon btn-action'
-            onClick={() => deleteProject(item._id)}>
-            <i className='far fa-trash-alt'></i>
-          </button>
-        ) : (
+        )} */}
+        {/* {!editView ? ( */}
+        <button
+          type='button'
+          className='btn btn-icon btn-action'
+          title='remove user from project'
+          onClick={() => deleteProject(item._id)}>
+          <i className='fas fa-times'></i>
+          {/* <i className='fas fa-trash'></i> */}
+        </button>
+        {/* ) : (
           <button
             type='button'
             title='cancel'
@@ -135,7 +130,7 @@ const Project = ({ item, userId }) => {
             onClick={() => setEditView(false)}>
             <i className='fas fa-times'></i>
           </button>
-        )}
+        )} */}
       </div>
     </li>
   );

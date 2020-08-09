@@ -18,7 +18,7 @@ const deleteProject = async (id) => {
 };
 
 const addProject = async (obj) => {
-  const response = await axios.project("/api/projects", obj);
+  const response = await axios.post("/api/projects", obj);
   return response.data;
 };
 

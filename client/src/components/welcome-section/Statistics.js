@@ -18,11 +18,11 @@ const Statistics = ({ width, completedUsers, mostProjects }) => {
           <Chart usersData={completedUsers} type='todos' viewWidth={width} />
         </div>
       )}
-      {mostProjects.length > 0 && (
+      {/* {mostProjects.length > 0 && (
         <div className='chart doughnut'>
           <Chart usersData={mostProjects} type='projects' viewWidth={width} />
         </div>
-      )}
+      )} */}
     </section>
   );
 };

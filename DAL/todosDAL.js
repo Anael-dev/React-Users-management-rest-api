@@ -11,6 +11,7 @@ exports.getAll = async () => {
       completed: x.completed,
       priority: "",
       dueDate: "",
+      projectId: "",
     };
   });
 };

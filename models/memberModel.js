@@ -7,6 +7,7 @@ let MemberSchema = new Schema({
   name: String,
   email: String,
   address: { city: String, street: String },
+  avatar: String,
 });
 
 module.exports = mongoose.model("members", MemberSchema);

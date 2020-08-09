@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, NavLink, Link } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import MainPageContext from "../context/MainPageContext";
 import { animateScroll } from "react-scroll";
@@ -23,7 +23,8 @@ import todosAPI from "../utils/todosAPI";
 
 /*components*/
 import RouteComponents from "../components/containers/RouteComponents";
-import Users from "../components/containers/Users";
+import Users from "../components/users/Users";
+import Projects from "../components/projects/Projects";
 import SearchField from "../components/containers/SearchField";
 import LandingLayout from "../components/containers/LandingLayout";
 import headerImg from "../images/header.png";
@@ -102,7 +103,7 @@ const MainPage = () => {
         closeAccordion: () => setExpanded(false),
       }}>
       <header>
-        <Link to={"/"}>
+        <Link to={"/users"}>
           <img
             className='header-logo'
             src={headerImg}
@@ -177,11 +178,32 @@ const MainPage = () => {
                   </AccordionDetails>
                 </Accordion>
               ) : (
-                <Users isAccordion={false} />
+                <>
+                  <div className='links-section'>
+                    <NavLink
+                      className='nav-link'
+                      to='/users'
+                      activeClassName='active-route'>
+                      <h3 className='link-title'>Users</h3>
+                    </NavLink>
+                    <NavLink
+                      className='nav-link'
+                      to='/projects'
+                      activeClassName='active-route'>
+                      <h3 className='link-title'>Projects</h3>
+                    </NavLink>
+                  </div>
+                  <Switch>
+                    <Route path='/users' component={Users} />
+                    <Route path='/projects' component={Projects} />
+                  </Switch>
+                  {/* <Users isAccordion={false} /> */}
+                </>
               )}
             </div>
             <Switch>
-              <Route exact path='/' component={LandingLayout} />
+              <Route exact path='/users' component={LandingLayout} />
+              <Route exact path='/projects' component={LandingLayout} />
               <Route component={RouteComponents} />
             </Switch>
           </div>

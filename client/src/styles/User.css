@@ -21,7 +21,7 @@
 }
 
 .completed {
-  border: 2px solid rgba(0, 128, 0, 0.89);
+  border: 2px solid rgb(79, 122, 14);
 }
 
 /*** Header ***/
@@ -107,11 +107,11 @@
 }
 
 .progress-almost-done {
-  background-color: rgba(212, 194, 26, 0.979) !important;
+  background-color: #4591af !important;
 }
 
 .almost-done-status {
-  color: rgba(212, 194, 26, 0.979) !important;
+  color: #4591af !important;
 }
 
 .progress-done {

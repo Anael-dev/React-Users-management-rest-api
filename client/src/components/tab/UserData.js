@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import { useRouteMatch, Link } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
 import "../../styles/UserData.css";
-import Tab from "../containers/Tab";
+import Tab from "./Tab";
 
 const UserData = (props) => {
   let { params } = useRouteMatch();
@@ -43,7 +43,7 @@ const UserData = (props) => {
       {userExists && (
         <div className='user-data'>
           <div className='user-title'>
-            <Link to='/' className='label-link back '>
+            <Link to='/users' className='label-link back '>
               <i className='fas fa-chevron-left'></i>
               <span>Back</span>
             </Link>
@@ -53,8 +53,7 @@ const UserData = (props) => {
             </h2>
           </div>
           <Tab id={params.id} type={"todos"} />
-          <div className='underline'></div>
-          <Tab id={params.id} type={"projects"} />
+          {/* <Tab id={params.id} type={"projects"} /> */}
         </div>
       )}
     </>

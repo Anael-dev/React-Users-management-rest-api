@@ -3,7 +3,7 @@ import TabContext from "../../context/TabContext";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../../styles/ListItems.css";
 
-import Project from "./Project";
+import Project from "./UserProject";
 
 const Projects = () => {
   const { userItems, id } = useContext(TabContext);

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 let ProjectSchema = new Schema({
   title: String,
-  body: String,
+  dueDate: Date,
   users: [{ id: Number }],
 });
 

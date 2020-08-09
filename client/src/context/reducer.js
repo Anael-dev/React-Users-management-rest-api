@@ -171,6 +171,18 @@ export const reducer = (state, action) => {
         ...state,
         projects: updatedProjects,
       };
+    case "EDIT_TODO":
+      const updatedTodo = action.payload;
+      const updatedTodos = state.todos.map((todo) => {
+        if (todo._id === updatedTodo._id) {
+          return updatedTodo;
+        }
+        return todo;
+      });
+      return {
+        ...state,
+        todos: updatedTodos,
+      };
     case "COMPLETE_TODO":
       const completedTodo = action.payload;
       const completedTodos = state.todos.map((todo) => {
@@ -205,7 +217,7 @@ export const reducer = (state, action) => {
       const userProjectsProgress = state.projectsProgress.find(
         (x) => x.id === userId
       );
-      
+
       const filteredUserProjectsProgress = userProjectsProgress.projects.filter(
         (x) => x._id !== item._id
       );

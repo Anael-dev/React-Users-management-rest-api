@@ -1,8 +1,8 @@
 /*** Header ***/
-.users-header {
+.container-header {
   border-radius: 0.5em;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-bottom: 0.5em;
 }
 
@@ -13,18 +13,17 @@
 
 /*** containers ***/
 
-.container-users {
-  max-width: 300px;
+.left-wrapper {
   min-width: 300px;
   margin: 0 auto;
 }
 
-.users-section {
+.main-section {
   display: flex;
   flex-direction: column;
 }
 
-.users-section p {
+.main-section p {
   width: 100%;
   font-weight: 400;
   font-size: 1rem;
@@ -43,19 +42,14 @@
   opacity: 0.9;
   outline: none;
   cursor: pointer;
-  padding: 0;
+  padding-left: 0.3em !important;
 }
 
 .btn-user:hover {
   background-color: transparent;
 }
 
-@media (min-width: 650px) {
-  .users-header {
-    justify-content: space-between;
-  }
-
-  .container-users {
-    min-width: 250px;
-  }
+.btn-user span {
+  font-size: 0.7rem;
+  margin-left: 0.5em;
 }
