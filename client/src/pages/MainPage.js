@@ -119,7 +119,7 @@ const MainPage = () => {
         <LinearProgress />
       ) : (
         <div className='container'>
-          <SearchField />
+          <SearchField callBack={() => setExpanded("usersPanel")} />
           <Snackbar
             className='snack-bar'
             open={state.snackBar.open}

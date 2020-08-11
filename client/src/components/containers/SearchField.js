@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import "../../styles/SearchField.css";
 
-const SearchField = () => {
+const SearchField = ({ callBack }) => {
   const { dispatch } = useContext(GlobalContext);
   const [input, setInput] = useState("");
 
@@ -21,6 +21,7 @@ const SearchField = () => {
         type: "HIDE_WELCOME_SECTION",
         payload: true,
       });
+      callBack();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input]);
