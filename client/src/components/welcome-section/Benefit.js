@@ -6,17 +6,17 @@ const Benefit = ({ src, type }) => {
     users: {
       title: "Manage Users",
       description:
-        "Search users by name or email, add and delete users, update profile details",
+        "Search users by name or email, create and delete users, update profile details",
     },
     todos: {
       title: "Complete To-do’s",
       description:
-        "Create and delete tasks, complete done to-do’s, track users’ task achievements",
+        "Create and sort tasks, complete to-do’s, assign tasks to projects and track progress",
     },
     projects: {
-      title: "Write Projects",
+      title: "Add Projects",
       description:
-        "Add new projects, create and delete chosen projects, receive inspiration by others’ fresh content",
+        "Create, edit and delete projects, assign users to projects and follow completion",
     },
   });
 

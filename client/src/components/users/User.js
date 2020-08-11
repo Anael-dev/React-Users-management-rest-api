@@ -114,7 +114,7 @@ const User = ({ userData }) => {
         payload: {
           id: user.id,
           name: user.name,
-          projects: projects,
+          projects,
         },
       });
     }
@@ -124,11 +124,15 @@ const User = ({ userData }) => {
     try {
       await usersDAL.deleteUser(id);
       await Promise.all(todos.map((todo) => todosDAL.deleteTodo(todo._id)));
-      // todos.forEach(async (todo) => await todosDAL.deleteTodo(todo._id));
       await Promise.all(
-        projects.map((project) => projectsDAL.deleteProject(project._id))
+        projects.map(async (project) => {
+          await projectsDAL.removeProjectUser(project._id, { id: user.id });
+          dispatch({
+            type: "DELETE_USER_FROM_PROJECT",
+            payload: { userId: user.id, item: project },
+          });
+        })
       );
-      // projects.forEach(async (project) => await projectsDAL.deleteProject(project._id));
 
       dispatch({
         type: "DELETE_USER",

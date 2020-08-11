@@ -1,19 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { useHistory } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
 import MainPageContext from "../../context/MainPageContext";
 import { animateScroll } from "react-scroll";
 import moment from "moment";
 
-import "../../styles/User.css";
+import "../../styles/Project.css";
 import todosDAL from "../../utils/todosAPI";
 import projectsDAL from "../../utils/projectsAPI";
+import ProjectsTabContext from "../../context/ProjectsTabContext";
 
 const Project = ({ projectData }) => {
   const history = useHistory();
-  const { state, dispatch } = useContext(GlobalContext);
   const { closeAccordion } = useContext(MainPageContext);
+  const { state, dispatch } = useContext(GlobalContext);
+  const { InsertEditItem } = useContext(ProjectsTabContext);
 
   const [project, setProject] = useState({});
   const [todos, setTodos] = useState([]);
@@ -36,9 +38,13 @@ const Project = ({ projectData }) => {
     try {
       await projectsDAL.deleteProject(project._id);
       await Promise.all(
-        todos.map((todo) => {
+        todos.map(async (todo) => {
           if (todo.projectId === project._id) {
-            todosDAL.deleteTodo(todo._id);
+            await todosDAL.deleteTodo(todo._id);
+            dispatch({
+              type: "DELETE_TODO",
+              payload: todo,
+            });
           }
           return todo;
         })
@@ -56,70 +62,82 @@ const Project = ({ projectData }) => {
     }
   };
 
-  //after update
-  const editProject = async (id, project) => {
-    try {
-      const updatedProject = await projectsDAL.editProject(id, project);
-
-      dispatch({
-        type: "EDIT_PROJECT",
-        payload: updatedProject,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const redirectToData = () => {
-    history.push(`/projects/${project._id}`);
+  const redirectToData = (id) => {
+    history.push(`/projects/user/${id}`);
     closeAccordion();
     animateScroll.scrollToTop();
   };
 
   return (
-    <div className={`container-user`} id={`project-${project._id}`}>
-      <div className='user-header'>
-        <div className='user-details'>
-          <label> Name:</label>
-          <label className='label-link' onClick={() => redirectToData()}>
-            {project.title}
-          </label>
+    <div className={`container-project`} id={`project-${project._id}`}>
+      <div className='project-details'>
+        <div className='project-header'>
+          <div className='header-details'>
+            <label className='label-project-title'>{project.title}</label>
+            <div>
+              {project.users &&
+                project.users.map((x) => (
+                  <img
+                    key={x.id}
+                    className='avatar-img'
+                    src={state.users.find((user) => user.id === x.id).avatar}
+                    alt='user avatar'
+                    style={{
+                      width: "2em",
+                      height: "2em",
+                      marginRight: ".8em",
+                    }}
+                    title={state.users.find((user) => user.id === x.id).name}
+                    onClick={() => redirectToData(x.id)}
+                  />
+                ))}
+            </div>
+          </div>
           <label>
-            Due date:{" "}
+            <i className='far fa-calendar project-icon'></i>
+            {/* Due date: */}
             {project.dueDate
               ? moment(project.dueDate).format("DD/MM/YYYY")
               : ""}
           </label>
-          <label>Assigned Users: {project.users && project.users.length}</label>
-          <label>Total Tasks: {todos.length}</label>
-          <label>Completed: {todos.filter((x) => x.completed).length}</label>
+        </div>
+        <div className='project-content'>
+          <div className='project-labels'>
+            <label className='label-project'>
+              Assigned Users:{" "}
+              <span className='span-num'>
+                {project.users && project.users.length}
+              </span>
+            </label>
+            <label className='label-project'>
+              Total Tasks: <span className='span-num'>{todos.length}</span>
+            </label>
+            <label className='label-project'>
+              Completed:{" "}
+              <span className='span-num'>
+                {" "}
+                {todos.filter((x) => x.completed).length}
+              </span>
+            </label>
+          </div>
+          <div className='project-buttons'>
+            <button
+              className='btn btn-white btn-icon action-button'
+              type='button'
+              title='edit project'
+              onClick={() => InsertEditItem(projectData)}>
+              <i className='fas fa-pencil-alt'></i>
+            </button>
+            <button
+              className='btn btn-white btn-icon action-button'
+              type='button'
+              title='delete project'
+              onClick={() => deleteProject()}>
+              <i className='fas fa-trash'></i>
+            </button>
+          </div>
         </div>
       </div>
-      <div className='action-buttons'>
-        <button
-          className='btn btn-white btn-icon action-button'
-          type='button'
-          title='update project'
-          onClick={() => deleteProject()}>
-          <i className='fas fa-pencil-alt'></i>
-        </button>
-        <button
-          className='btn btn-white btn-icon action-button'
-          type='button'
-          title='delete project'
-          onClick={() => deleteProject()}>
-          <i className='fas fa-trash'></i>
-        </button>
-      </div>
-      {/* <UserForm
-        user={user}
-        deleteUserCallback={() => {
-          deleteUser(user._id);
-        }}
-        updateUserCallback={(userObj) => {
-          updateUser(user._id, userObj);
-        }}
-      /> */}
     </div>
   );
 };

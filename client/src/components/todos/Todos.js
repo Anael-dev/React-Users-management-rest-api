@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useContext, useState, useEffect, useMemo } from "react";
-import TabContext from "../../context/TabContext";
+import TodosTabContext from "../../context/TodosTabContext";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import "../../styles/ListItems.css";
@@ -53,18 +53,19 @@ const useSortableData = (items, id, data = null) => {
 };
 
 const Todos = () => {
-  const { userItems, id, toggleDialog } = useContext(TabContext);
+  const { userItems, id, toggleDialog } = useContext(TodosTabContext);
   const [checked, setChecked] = useState(false);
   const [notCompleted, setNotCompleted] = useState([]);
   const { items, requestSort, sortData } = useSortableData(
     checked ? notCompleted : userItems,
-    id,
-
+    id
   );
 
   const getDirection = (name) => {
     if (!sortData) {
-      return <i className='fas fa-sort chevron'></i>;
+      return userItems.length > 0 ? (
+        <i className='fas fa-sort chevron'></i>
+      ) : null;
     }
     if (sortData.key === name) {
       return sortData.direction === "ascending" ? (
@@ -96,7 +97,7 @@ const Todos = () => {
 
   return (
     <>
-      {notCompleted.length !== userItems.length && (
+      {userItems.length > 0 && notCompleted.length !== userItems.length && (
         <>
           <FormControlLabel
             control={
@@ -110,53 +111,74 @@ const Todos = () => {
           />
         </>
       )}
-      <div className='list-container'>
-        <table className='content-table'>
-          <thead>
-            <tr>
-              <th>
-                <button type='button' onClick={() => requestSort("title")}>
-                  <span>Name</span> {getDirection("title")}
-                </button>
-              </th>
-              <th>
-                <button type='button' onClick={() => requestSort("projectId")}>
-                  <span>Project</span> {getDirection("projectId")}
-                </button>
-              </th>
-              <th>
-                <button type='button' onClick={() => requestSort("priority")}>
-                  <span>Priority</span> {getDirection("priority")}
-                </button>
-              </th>
-              <th>
-                <button type='button' onClick={() => requestSort("dueDate")}>
-                  <span>Due Date</span> {getDirection("dueDate")}
-                </button>
-              </th>
-              <th>
-                <button type='button' onClick={() => requestSort("completed")}>
-                  <span>Completed</span> {getDirection("completed")}
-                </button>
-              </th>
-              <th>
-                <button
-                  className='btn btn-icon btn-add-item'
-                  type='button'
-                  title={`add task`}
-                  onClick={() => toggleDialog()}>
-                  <i className='fas fa-plus'> </i>
-                </button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => {
-              return <Todo key={item._id} item={item} />;
-            })}
-          </tbody>
-        </table>
-      </div>
+      {userItems.length > 0 ? (
+        <div className='list-container'>
+          <table className='content-table'>
+            <thead>
+              <tr>
+                <th>
+                  <button type='button' onClick={() => requestSort("title")}>
+                    <span>Name</span> {getDirection("title")}
+                  </button>
+                </th>
+                <th>
+                  <button
+                    type='button'
+                    onClick={() => requestSort("projectId")}>
+                    <span>Project</span> {getDirection("projectId")}
+                  </button>
+                </th>
+                <th>
+                  <button type='button' onClick={() => requestSort("priority")}>
+                    <span>Priority</span> {getDirection("priority")}
+                  </button>
+                </th>
+                <th>
+                  <button type='button' onClick={() => requestSort("dueDate")}>
+                    <span>Due Date</span> {getDirection("dueDate")}
+                  </button>
+                </th>
+                <th>
+                  <button
+                    type='button'
+                    onClick={() => requestSort("completed")}>
+                    <span>Completed</span> {getDirection("completed")}
+                  </button>
+                </th>
+                <th>
+                  <button
+                    className='btn btn-icon btn-add-item'
+                    type='button'
+                    title={`add task`}
+                    onClick={() => toggleDialog()}>
+                    <i className='fas fa-plus'> </i>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => {
+                return <Todo key={item._id} item={item} />;
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className='no-todos'>
+          <h3>
+            No tasks to show <i className='fas fa-heart-broken icon'></i>
+          </h3>
+
+          <button
+            className='btn btn-no-todos'
+            type='button'
+            title={`add task`}
+            onClick={() => toggleDialog()}>
+            <i className='fas fa-plus'> </i>
+            <span>New task</span>
+          </button>
+        </div>
+      )}
     </>
   );
 };

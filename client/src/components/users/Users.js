@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -13,10 +13,6 @@ const Users = ({ isAccordion = false }) => {
   const { state } = useContext(GlobalContext);
   const [addUser, setAddUser] = useState(false);
 
-  // useEffect(() => {
-  //   setAddUser(false);
-  // }, []);
-
   const toggleAddUser = () => {
     setAddUser(!addUser);
   };
@@ -24,7 +20,7 @@ const Users = ({ isAccordion = false }) => {
   return (
     <div
       className={`left-wrapper ${isAccordion ? "accordion-container" : ""}`}
-      id='container-left'>
+      id='container-users'>
       <LeftHeader type='user' callBack={() => toggleAddUser()} />
       <div className='main-section'>
         {state.filteredUsers.length === 0 && <p>No users found :(</p>}

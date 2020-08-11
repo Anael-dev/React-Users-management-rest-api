@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import GlobalContext from "../../context/GlobalContext";
-import TabContext from "../../context/TabContext";
-import projectsDAL from "../../utils/projectsAPI";
+import TodosTabContext from "../../context/TodosTabContext";
 import todosDAL from "../../utils/todosAPI";
-import { DatePicker, KeyboardDatePicker } from "@material-ui/pickers";
+import { KeyboardDatePicker } from "@material-ui/pickers";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -15,14 +15,22 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 200,
+  },
+  helperText: {
+    color: "#da9432",
+    fontSize: ".8em",
+    fontFamily: '"Lora", "serif"',
   },
 }));
 
 const AddTodo = () => {
   const classes = useStyles();
   const { state, dispatch } = useContext(GlobalContext);
-  const { id, toggleDialog, editItem, cancelAction } = useContext(TabContext);
+  const { id, toggleDialog, editItem, cancelAction } = useContext(
+    TodosTabContext
+  );
+  const [projects, setProjects] = useState([]);
 
   const [title, setTitle] = useState("");
   const [error, setError] = useState("");
@@ -31,11 +39,19 @@ const AddTodo = () => {
   const [projectId, setProjectId] = useState("");
 
   useEffect(() => {
+    setProjects(
+      state.projects.filter((x) => x.users.some((user) => user.id === id))
+    );
+    // eslint-disable-next-line
+  }, [state.projects]);
+
+  useEffect(() => {
     if (editItem) {
       setTitle(editItem.title);
       setSelectedDate(editItem.dueDate);
       setPriority(editItem.priority);
     }
+    // eslint-disable-next-line
   }, []);
 
   const handlePriorityChange = (event) => {
@@ -62,7 +78,6 @@ const AddTodo = () => {
       priority,
       projectId,
     };
-    console.log(newTodo);
     if (editItem) {
       try {
         const newTodoResponse = await todosDAL.editTodo(editItem._id, {
@@ -137,10 +152,10 @@ const AddTodo = () => {
             labelId='project-select-label'
             id='project-select'
             value={projectId}
+            disabled={!projects.length}
             onChange={(e) => handleProjectChange(e)}>
-            {state.projects
-              .filter((x) => x.users.some((user) => user.id === id))
-              .map((project) => {
+            {projects.length > 0 &&
+              projects.map((project) => {
                 return (
                   <MenuItem key={project._id} value={project._id}>
                     {project.title}
@@ -148,6 +163,11 @@ const AddTodo = () => {
                 );
               })}
           </Select>
+          {!projects.length && (
+            <FormHelperText className={classes.helperText}>
+              No assigned projects yet
+            </FormHelperText>
+          )}
         </FormControl>
       </label>
       <label>

@@ -113,9 +113,9 @@ textarea:focus {
   border: 3px solid #da9432;
 }
 
-.project-content {
+/* .project-content {
   padding: 2em 2em;
-}
+} */
 
 /*** Buttons ***/
 .btn {
@@ -156,14 +156,14 @@ textarea:focus {
 .btn-add {
   background-color: #da9432;
   color: white;
-  width: 30%;
+  width: 35%;
   border-radius: 20px;
 }
 
 .btn-cancel {
   background-color: white;
   border: 2px solid #da9432;
-  width: 30%;
+  width: 35%;
   margin-right: 0.5em;
   color: #da9432;
   border-radius: 20px;
@@ -176,6 +176,7 @@ textarea:focus {
 /*** Icons ***/
 .icon {
   padding: 0 0.3em;
+  color: #353535da
 }
 
 .btn-icon {

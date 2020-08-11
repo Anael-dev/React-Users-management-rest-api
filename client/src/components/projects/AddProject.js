@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import GlobalContext from "../../context/GlobalContext";
-import TabContext from "../../context/TabContext";
 import projectsDAL from "../../utils/projectsAPI";
-import { DatePicker, KeyboardDatePicker } from "@material-ui/pickers";
+import { KeyboardDatePicker } from "@material-ui/pickers";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
@@ -10,25 +9,29 @@ import Input from "@material-ui/core/Input";
 import { makeStyles } from "@material-ui/core/styles";
 
 import "../../styles/AddTodo.css";
+import ProjectsTabContext from "../../context/ProjectsTabContext";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
-    minWidth: 250,
+    minWidth: 150,
     maxWidth: 250,
+    width: "100%",
   },
 }));
 
-const AddProject = ({ editItem = null, toggleAddProject }) => {
+const AddProject = () => {
   const classes = useStyles();
+
   const { state, dispatch } = useContext(GlobalContext);
-  //   const { toggleDialog, editItem, cancelAction } = useContext(TabContext);
+  const { toggleDialog, editItem, cancelAction } = useContext(
+    ProjectsTabContext
+  );
 
   const [title, setTitle] = useState("");
   const [error, setError] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [users, setUsers] = useState([]);
   const [selectedNames, setSelectedNames] = useState([]);
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -36,7 +39,6 @@ const AddProject = ({ editItem = null, toggleAddProject }) => {
     PaperProps: {
       style: {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
       },
     },
     getContentAnchorEl: null,
@@ -45,8 +47,13 @@ const AddProject = ({ editItem = null, toggleAddProject }) => {
     if (editItem) {
       setTitle(editItem.title);
       setSelectedDate(editItem.dueDate);
-      setUsers([...editItem.users]);
+      setSelectedNames([
+        ...editItem.users.map(
+          (x) => state.users.find((user) => user.id === x.id).name
+        ),
+      ]);
     }
+    // eslint-disable-next-line
   }, []);
 
   const handleUsersChange = (event) => {
@@ -70,20 +77,39 @@ const AddProject = ({ editItem = null, toggleAddProject }) => {
         return { id: state.users.find((user) => user.name === x).id };
       }),
     };
-    console.log(newProject);
-    try {
-      const newProjectResponse = await projectsDAL.addProject(newProject);
-      dispatch({
-        type: "ADD_PROJECT",
-        payload: newProjectResponse,
-      });
-      dispatch({
-        type: "SHOW_SNACK_BAR",
-        payload: "New project added!",
-      });
-      toggleAddProject();
-    } catch (err) {
-      console.log(err);
+    if (editItem) {
+      try {
+        const updatedProject = await projectsDAL.editProject(
+          editItem._id,
+          newProject
+        );
+        dispatch({
+          type: "EDIT_PROJECT",
+          payload: updatedProject,
+        });
+        dispatch({
+          type: "SHOW_SNACK_BAR",
+          payload: "Project updated!",
+        });
+        toggleDialog();
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      try {
+        const newProjectResponse = await projectsDAL.addProject(newProject);
+        dispatch({
+          type: "ADD_PROJECT",
+          payload: newProjectResponse,
+        });
+        dispatch({
+          type: "SHOW_SNACK_BAR",
+          payload: "New project added!",
+        });
+        toggleDialog();
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -104,7 +130,9 @@ const AddProject = ({ editItem = null, toggleAddProject }) => {
       <>
         <br />
         <label>
-          <span className='title-span'>Assign Users:</span>
+          <span className='title-span'>
+            Assigned Users: {selectedNames.length}
+          </span>
           <FormControl className={classes.formControl}>
             <Select
               labelId='priority-select-label'
@@ -145,7 +173,7 @@ const AddProject = ({ editItem = null, toggleAddProject }) => {
           type='button'
           className='btn btn-white btn-cancel'
           value='cancel'
-          onClick={() => toggleAddProject()}
+          onClick={() => cancelAction()}
         />
         <input
           type='submit'

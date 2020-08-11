@@ -24,10 +24,10 @@ import todosAPI from "../utils/todosAPI";
 /*components*/
 import RouteComponents from "../components/containers/RouteComponents";
 import Users from "../components/users/Users";
-import Projects from "../components/projects/Projects";
 import SearchField from "../components/containers/SearchField";
 import LandingLayout from "../components/containers/LandingLayout";
 import headerImg from "../images/header.png";
+import ProjectsTab from "../components/projects/ProjectsTab";
 
 const MainPage = () => {
   const ScrollLink = Scroll.Link;
@@ -140,43 +140,82 @@ const MainPage = () => {
             </Alert>
           </Snackbar>
           <div className='main-page'>
-            <div className='container-left'>
+            <div className='container-users'>
               {width < 650 ? (
-                <Accordion
-                  style={{
-                    backgroundColor: "transparent",
-                    marginBottom: "1em",
-                  }}
-                  expanded={expanded === "usersPanel"}
-                  onChange={handleChange("usersPanel")}>
-                  <ScrollLink
-                    activeClass='active'
-                    to='container-left'
-                    spy={true}
-                    smooth={true}
-                    offset={-100}
-                    duration={500}>
-                    <AccordionSummary
-                      style={{
-                        backgroundColor: "#a7d5f2a2",
-                      }}
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls='usersPanel-content'
-                      id='usersPanel-header'>
-                      <Typography
+                <>
+                  <Accordion
+                    style={{
+                      backgroundColor: "transparent",
+                      marginBottom: "1em",
+                    }}
+                    expanded={expanded === "projectsPanel"}
+                    onChange={handleChange("projectsPanel")}>
+                    <ScrollLink
+                      activeClass='active'
+                      to='container-projects'
+                      spy={true}
+                      smooth={true}
+                      offset={-100}
+                      duration={500}>
+                      <AccordionSummary
                         style={{
-                          textDecoration: `${
-                            expanded === "usersPanel" ? "underline" : ""
-                          }`,
-                        }}>
-                        Users List
-                      </Typography>
-                    </AccordionSummary>
-                  </ScrollLink>
-                  <AccordionDetails>
-                    <Users isAccordion={true} />
-                  </AccordionDetails>
-                </Accordion>
+                          backgroundColor: "#4591af85",
+                        }}
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='projectsPanel-content'
+                        id='projectsPanel-header'>
+                        <Typography
+                          style={{
+                            textDecoration: `${
+                              expanded === "projectsPanel" ? "underline" : ""
+                            }`,
+                          }}>
+                          <i className='fas fa-briefcase icon'></i>
+                          Projects
+                        </Typography>
+                      </AccordionSummary>
+                    </ScrollLink>
+                    <AccordionDetails>
+                      <ProjectsTab isAccordion={true} />
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion
+                    style={{
+                      backgroundColor: "transparent",
+                      marginBottom: "1em",
+                    }}
+                    expanded={expanded === "usersPanel"}
+                    onChange={handleChange("usersPanel")}>
+                    <ScrollLink
+                      activeClass='active'
+                      to='container-users'
+                      spy={true}
+                      smooth={true}
+                      offset={-100}
+                      duration={500}>
+                      <AccordionSummary
+                        style={{
+                          backgroundColor: "#da943285",
+                        }}
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='usersPanel-content'
+                        id='usersPanel-header'>
+                        <Typography
+                          style={{
+                            textDecoration: `${
+                              expanded === "usersPanel" ? "underline" : ""
+                            }`,
+                          }}>
+                          <i className='fas fa-user-tie icon'></i>
+                          Users
+                        </Typography>
+                      </AccordionSummary>
+                    </ScrollLink>
+                    <AccordionDetails>
+                      <Users isAccordion={true} />
+                    </AccordionDetails>
+                  </Accordion>
+                </>
               ) : (
                 <>
                   <div className='links-section'>
@@ -195,7 +234,7 @@ const MainPage = () => {
                   </div>
                   <Switch>
                     <Route path='/users' component={Users} />
-                    <Route path='/projects' component={Projects} />
+                    <Route path='/projects' component={ProjectsTab} />
                   </Switch>
                   {/* <Users isAccordion={false} /> */}
                 </>

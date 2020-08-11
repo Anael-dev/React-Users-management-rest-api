@@ -6,6 +6,7 @@ const todosBL = require("../models/todosBL");
 
 mongoose.connect(
   process.env.MONGOLAB_TEAL_URI || "mongodb://localhost:27017/usersDB",
+
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -20,22 +21,20 @@ db.once("open", async () => {
 
   try {
     const membersData = await membersBL.getAll();
-    const projectsData = await projectsBL.getAll();
-    const todosData = await todosBL.getAll();
+    // const projectsData = await projectsBL.getAll();
+    // const todosData = await todosBL.getAll();
 
     if (
-      membersData.length === 0 &&
-      projectsData.length === 0 &&
-      todosData.length === 0
+      membersData.length === 0
     ) {
       const members = await membersBL.getMembers();
       await db.collection("members").insertMany(members);
 
-      const projects = await projectsBL.getProjects();
-      await db.collection("projects").insertMany(projects);
+      // const projects = await projectsBL.getProjects();
+      // await db.collection("projects").insertMany(projects);
 
-      const todos = await todosBL.getTodos();
-      await db.collection("todos").insertMany(todos);
+      // const todos = await todosBL.getTodos();
+      // await db.collection("todos").insertMany(todos);
     }
   } catch (e) {
     console.log(e);

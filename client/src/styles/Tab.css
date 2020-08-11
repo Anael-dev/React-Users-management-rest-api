@@ -17,3 +17,47 @@
 .hidden-list {
   display: none;
 }
+
+/*** Typography ***/
+.underline {
+  border-top: 0.5px solid lightslategray;
+  width: 100%;
+  margin: 2em 0;
+}
+
+.user-title {
+  letter-spacing: 1px;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-title h2 {
+  margin: 0 auto;
+  line-height: 1.1;
+  padding-bottom: 0.3em;
+  padding-top: 0.7em;
+}
+
+.back {
+  opacity: 0.9;
+  margin-bottom: 1em !important;
+  font-size: 0.8rem !important;
+  padding-left: 0 !important;
+}
+
+.fa-arrow-left {
+  align-self: start;
+  opacity: 0.9;
+}
+
+.back span {
+  margin-left: 0.3em;
+  font-size: 0.8rem;
+}
+
+@media (min-width: 650px) {
+  .user-title h2 {
+    margin-top: 0;
+  }
+}

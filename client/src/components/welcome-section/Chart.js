@@ -15,7 +15,7 @@ const Chart = ({ usersData, type, viewWidth }) => {
     labels: [],
     datasets: [
       {
-        label: type === "todos" ? "completed todos %" : "total projects",
+        label: type === "todos" ? "completed todos %" : "assigned to projects",
         data: [],
         backgroundColor: [
           "#037ba6a2",
@@ -83,7 +83,9 @@ const Chart = ({ usersData, type, viewWidth }) => {
         title: {
           display: true,
           text:
-            type === "todos" ? "Best Todos Achievers" : "Most Involved In Projects",
+            type === "todos"
+              ? "Best Todos Achievers"
+              : "Most Involved In Projects",
           fontSize: 20,
         },
         legend: {

@@ -16,12 +16,11 @@ import projectsIcon from "../../images/benefits/projectPage.png";
 import Benefit from "../welcome-section/Benefit";
 import Statistics from "../welcome-section/Statistics";
 
-const LandingLayout = () => {
+const LandingLayout = (props) => {
   const ScrollLink = Scroll.Link;
   const { state } = useContext(GlobalContext);
-
   const [completedUsers, setCompletedUsers] = useState([]);
-  // const [mostProjects, setMostProjects] = useState([]);
+  const [mostProjects, setMostProjects] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
   const [expanded, setExpanded] = useState(false);
 
@@ -38,18 +37,30 @@ const LandingLayout = () => {
   }, [width]);
 
   useEffect(() => {
-    const mappedUsers = state.todosProgress
-      .sort((a, b) => b.percentage - a.percentage)
-      .slice(0, 5);
-    setCompletedUsers(mappedUsers);
+    if (state.todosProgress) {
+      const mappedUsers = state.todosProgress
+        .sort((a, b) => b.percentage - a.percentage)
+        .slice(0, 5);
+      setCompletedUsers(mappedUsers);
+    } else {
+      setCompletedUsers([]);
+    }
   }, [state.todosProgress]);
 
-  // useEffect(() => {
-  //   const mappedMostProjects = state.projectsProgress
-  //     .sort((a, b) => b.projects - a.projects)
-  //     .slice(0, 5);
-  //   setMostProjects(mappedMostProjects);
-  // }, [state.projectsProgress]);
+  useEffect(() => {
+    if (state.projectsProgress) {
+      const mappedMostProjects = state.projectsProgress
+        .sort((a, b) => b.projects.length - a.projects.length)
+        .slice(0, 5);
+      setMostProjects(
+        mappedMostProjects.map((x) => {
+          return { ...x, projects: x.projects.length };
+        })
+      );
+    } else {
+      setMostProjects([]);
+    }
+  }, [state.projectsProgress]);
 
   return (
     <>
@@ -85,7 +96,7 @@ const LandingLayout = () => {
                 duration={500}>
                 <AccordionSummary
                   style={{
-                    backgroundColor: "rgba(255, 213, 219, 0.7)",
+                    backgroundColor: "#cccccc81",
                   }}
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls='usersPanel-content'
@@ -96,6 +107,7 @@ const LandingLayout = () => {
                         expanded === "statisticsPanel" ? "underline" : ""
                       }`,
                     }}>
+                    <i className='fas fa-chart-line icon'></i>
                     Dashboard
                   </Typography>
                 </AccordionSummary>
@@ -104,7 +116,7 @@ const LandingLayout = () => {
                 <Statistics
                   width={width}
                   completedUsers={completedUsers}
-                  // mostProjects={mostProjects}
+                  mostProjects={mostProjects}
                 />
               </AccordionDetails>
             </Accordion>
@@ -112,7 +124,7 @@ const LandingLayout = () => {
             <Statistics
               width={width}
               completedUsers={completedUsers}
-              // mostProjects={mostProjects}
+              mostProjects={mostProjects}
             />
           )}
         </div>

@@ -4,7 +4,7 @@ import GlobalContext from "../../context/GlobalContext";
 import usersDAL from "../../utils/usersAPI";
 import "../../styles/AddUser.css";
 
-const AddUser = ({ toggleAddUser, history }) => {
+const AddUser = ({ toggleAddUser }) => {
   const { dispatch, state } = useContext(GlobalContext);
   const [user, setUser] = useState({
     name: "",
@@ -25,7 +25,6 @@ const AddUser = ({ toggleAddUser, history }) => {
     }
     let num;
     if (state.users.length > 0) {
-      // num = Number(state.users[state.users.length[ - 1]].id) + 1;
       num = Number(state.users[0].id) + 1;
     } else {
       num = 1;

@@ -32,7 +32,7 @@ header {
   margin-bottom: 2em;
 }
 
-.container-left {
+.container-users {
   width: 100%;
   min-width: 250px;
 }
@@ -160,7 +160,7 @@ footer {
     justify-content: center;
     align-items: flex-start;
   }
-  .container-left {
+  .container-users {
     max-width: 300px;
     margin-right: 3em;
   }

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import React from "react";
 import "../../styles/Users.css";
 
 const LeftHeader = ({ type, callBack }) => {

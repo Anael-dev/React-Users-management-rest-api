@@ -12,6 +12,7 @@
   list-style: none;
 }
 
+
 /*** Table ***/
 
 .content-table {
@@ -62,7 +63,7 @@ tbody tr {
 }
 
 th:last-child {
-  padding-left: 1.5em;
+  /* padding-left: 1.5em; */
 }
 
 tbody tr:last-child {
@@ -75,8 +76,28 @@ tbody .completed-tr {
 }
 
 .chevron {
-  display: inline-block;
+  display: inline;
   opacity: 0.6;
+}
+
+.no-todos {
+  padding: 2em 0;
+  text-align: center;
+}
+
+.no-todos h3 {
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.btn-no-todos {
+  background-color: #da9432;
+  padding: 0.3em 1em;
+  margin-top: 1em !important;
+}
+
+.btn-no-todos span {
+  margin-left: 0.2em;
 }
 /*** Typography ***/
 .MuiTypography-body1 {

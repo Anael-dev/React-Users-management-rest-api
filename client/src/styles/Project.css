@@ -1,0 +1,62 @@
+/*** Containers ***/
+
+.container-projects {
+  margin: 0 auto;
+}
+.container-project {
+  background: linear-gradient(
+      to top right,
+      rgba(91, 189, 245, 0.541),
+      rgba(235, 229, 229, 0.397)
+    ),
+    url("../images/backgrounds/diamond_upholstery.png");
+  padding: 0.8em;
+  margin-bottom: 2em;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px rgba(97, 97, 97, 0.753);
+  width: 100%;
+}
+
+.project-header {
+  margin-top: 0.3em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-icon {
+  margin-right: 0.4em;
+  display: inline;
+}
+
+.label-project-title {
+  color: #353535;
+  text-decoration: none;
+  font-weight: 700;
+  width: fit-content;
+  font-size: 1rem;
+  margin-bottom: 0.5em;
+}
+
+.label-project {
+  margin-bottom: 0.5em;
+}
+
+.header-details {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.span-num {
+  font-weight: 700;
+}
+
+.project-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-buttons {
+  align-self: flex-end;
+  margin-bottom: 0.3em;
+}

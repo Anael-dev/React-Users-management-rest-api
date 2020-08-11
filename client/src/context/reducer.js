@@ -62,15 +62,22 @@ export const reducer = (state, action) => {
           (user) => user._id !== action.payload._id
         ),
         todos: state.todos.filter((todo) => todo.userId !== action.payload.id),
-        projects: state.projects.filter(
-          (project) => project.userId !== action.payload.id
-        ),
-        todosProgress: state.todosProgress.filter(
-          (item) => item.id !== action.payload.id
-        ),
-        projectsProgress: state.projectsProgress.filter(
-          (item) => item.id !== action.payload.id
-        ),
+
+        todosProgress:
+          state.todosProgress.filter((item) => item.id !== action.payload.id) ||
+          [],
+
+        projects: state.projects.map((project) => {
+          if (project.users.some((x) => x.id === action.payload.id)) {
+            return project.users.map((x) => x.id !== action.payload.id);
+          }
+          return project;
+        }),
+
+        projectsProgress:
+          state.projectsProgress.filter(
+            (item) => item.id !== action.payload.id
+          ) || [],
       };
     case "ADD_USER":
       return {
@@ -128,6 +135,9 @@ export const reducer = (state, action) => {
       if (state.projectsProgress.length === 0 || !foundUserProject) {
         mappedProjects = [...state.projectsProgress, userProject];
       }
+
+      console.log(mappedProjects.length);
+      console.log(foundUserProject);
       return {
         ...state,
         projectsProgress: mappedProjects,
@@ -211,7 +221,7 @@ export const reducer = (state, action) => {
       };
 
     case "DELETE_USER_FROM_PROJECT":
-      const { item, userId } = action.payload;
+      const { userId, item } = action.payload;
       let filteredProjectsArr;
 
       const userProjectsProgress = state.projectsProgress.find(
