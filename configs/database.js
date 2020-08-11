@@ -5,7 +5,7 @@ const projectsBL = require("../models/projectsBL");
 const todosBL = require("../models/todosBL");
 
 mongoose.connect(
-  process.env.MONGOLAB_TEAL_URI || "mongodb://localhost:27017/usersDB",
+  process.env.MONGOLAB_PINK_URI || "mongodb://localhost:27017/usersDB",
 
   {
     useUnifiedTopology: true,
