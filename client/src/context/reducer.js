@@ -135,9 +135,6 @@ export const reducer = (state, action) => {
       if (state.projectsProgress.length === 0 || !foundUserProject) {
         mappedProjects = [...state.projectsProgress, userProject];
       }
-
-      console.log(mappedProjects.length);
-      console.log(foundUserProject);
       return {
         ...state,
         projectsProgress: mappedProjects,
@@ -208,8 +205,6 @@ export const reducer = (state, action) => {
       };
     case "DELETE_PROJECT":
       const projectUsers = action.payload.users;
-      console.log(projectUsers);
-
       return {
         ...state,
         projects: state.projects.filter(
