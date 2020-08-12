@@ -22,6 +22,7 @@
   height: 100%;
   text-align: center;
   min-width: 300px;
+  margin-bottom: 2em;
 }
 thead button {
   border: 0;
@@ -242,7 +243,7 @@ tbody .completed-tr {
 
 @media (max-width: 650px) {
   .list-container {
-    max-height: 300px;
+    max-height: 500px;
     overflow-x: auto;
     overflow-y: scroll;
   }
