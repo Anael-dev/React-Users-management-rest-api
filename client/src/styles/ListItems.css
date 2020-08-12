@@ -12,7 +12,6 @@
   list-style: none;
 }
 
-
 /*** Table ***/
 
 .content-table {
@@ -22,6 +21,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   height: 100%;
   text-align: center;
+  min-width: 300px;
 }
 thead button {
   border: 0;
@@ -46,6 +46,7 @@ th {
   font-weight: 400;
   z-index: 1;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 th:first-child {
   width: 25%;
