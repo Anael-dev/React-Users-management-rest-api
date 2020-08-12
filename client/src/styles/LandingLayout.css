@@ -64,6 +64,11 @@
   margin-right: 0.2em;
 }
 
+.first-word {
+  padding: 0.2em 0;
+  margin-right: 0.3em;
+}
+
 .icon-img {
   max-width: 30px;
   margin: 0.3em;
@@ -117,14 +122,19 @@
   .benefit p {
     padding: 0 1em;
     margin-top: 1em;
-    border-left: 0.5px solid grey;
     text-align: left;
   }
   .icon-main {
-    width: 50%;
+    max-width: 80px;
+    padding: 0 1em;
+    border-right: 0.5px solid grey;
   }
   .users-num {
     padding-top: 0;
+  }
+
+  .first-word {
+    display: block;
   }
 }
 

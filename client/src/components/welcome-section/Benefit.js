@@ -24,7 +24,12 @@ const Benefit = ({ src, type }) => {
     <div className='benefit'>
       <div className='icon-main'>
         <img className='icon-img' src={src} alt='users' />
-        <h3>{benefits[type].title}</h3>
+        <h3>
+          <span className='first-word'>
+            {benefits[type].title.split(" ")[0]}
+          </span>
+          <nobr>{benefits[type].title.split(" ")[1]}</nobr>
+        </h3>
       </div>
       <p className='description'>{benefits[type].description}</p>
     </div>
