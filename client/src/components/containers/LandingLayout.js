@@ -127,7 +127,7 @@ const LandingLayout = (props) => {
                 duration={500}>
                 <AccordionSummary
                   style={{
-                    backgroundColor: "#cccccc81",
+                    backgroundColor: "#b1b0b081",
                   }}
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls='usersPanel-content'

@@ -44,8 +44,7 @@
 
 /*** Benefit ***/
 .benefit {
-  background-color: rgba(255, 255, 255, 0.897);
-  box-shadow: 0px 0px 3px rgba(243, 242, 242, 0.897);
+  background-color: #ebe8e8ef;
   border-radius: 10px;
   width: 100%;
   min-width: 100px;
