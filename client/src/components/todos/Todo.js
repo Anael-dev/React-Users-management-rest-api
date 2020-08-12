@@ -75,7 +75,13 @@ const Todo = ({ item }) => {
       </td>
       <td>{item.dueDate ? moment(item.dueDate).format("DD/MM/YYYY") : ""}</td>
       <td>
-        <Checkbox checked={checked} onChange={() => completeTask(item)} />
+        <Checkbox
+          style={{
+            color: "rgb(79, 122, 14)",
+          }}
+          checked={checked}
+          onChange={() => completeTask(item)}
+        />
       </td>
       <td style={{ minWidth: "100px" }}>
         <button

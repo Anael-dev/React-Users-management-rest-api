@@ -176,7 +176,7 @@ textarea:focus {
 /*** Icons ***/
 .icon {
   padding: 0 0.3em;
-  color: #353535da
+  color: #353535da;
 }
 
 .btn-icon {
@@ -252,26 +252,6 @@ textarea:focus {
   font-size: 1.5rem;
   color: #4591af;
   margin-left: 0.5em;
-}
-
-/*** Material UI ***/
-
-.MuiFormHelperText-root.Mui-error,
-.MuiInputBase-input,
-.MuiMenuItem-root {
-  font-family: "Lora", serif !important;
-}
-
-.MuiSwitch-colorPrimary.Mui-checked {
-  color: #da9432 !important;
-}
-
-.MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
-  background-color: #da9432 !important;
-}
-
-.MuiCheckbox-colorSecondary.Mui-checked {
-  color: rgb(79, 122, 14) !important;
 }
 
 /*** Scroll Bar ***/

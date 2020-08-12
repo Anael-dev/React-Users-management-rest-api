@@ -99,11 +99,6 @@ tbody .completed-tr {
 .btn-no-todos span {
   margin-left: 0.2em;
 }
-/*** Typography ***/
-.MuiTypography-body1 {
-  font-family: inherit !important; /* overwriting material ui Switch styles */
-}
-
 /*** Item ***/
 .item {
   border-bottom: 1px solid #496679d0;
