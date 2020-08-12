@@ -6,15 +6,28 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import * as Scroll from "react-scroll";
+import Skeleton from "@material-ui/lab/Skeleton";
+import headerImg from "../../images/backgrounds/headerImg.jpg";
 import "../../styles/LandingLayout.css";
 
 /*icons*/
 import usersIcon from "../../images/benefits/userImg.png";
 import todosIcon from "../../images/benefits/tasksList.png";
 import projectsIcon from "../../images/benefits/projectPage.png";
-
 import Benefit from "../welcome-section/Benefit";
 import Statistics from "../welcome-section/Statistics";
+
+const useProgressiveImage = (src) => {
+  const [sourceLoaded, setSourceLoaded] = useState(null);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => setSourceLoaded(src);
+  }, [src]);
+
+  return sourceLoaded;
+};
 
 const LandingLayout = (props) => {
   const ScrollLink = Scroll.Link;
@@ -23,6 +36,7 @@ const LandingLayout = (props) => {
   const [mostProjects, setMostProjects] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
   const [expanded, setExpanded] = useState(false);
+  const loaded = useProgressiveImage(headerImg);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -67,10 +81,27 @@ const LandingLayout = (props) => {
       {(width >= 650 || state.isWelcome) && (
         <div className='container-default'>
           <div className='top-section'>
-            <div className='welcome-header'>
-              <h1>
-                <span className='capital-letter'>W</span>elcome!
-              </h1>
+            <div
+              className='welcome-header'
+              style={
+                loaded
+                  ? {
+                      backgroundImage: `url(${loaded})`,
+                    }
+                  : null
+              }>
+              {!loaded && (
+                <Skeleton
+                  variant='rect'
+                  height={width < 650 ? "20vh" : "30vh"}
+                  animation='wave'
+                />
+              )}
+              {loaded && (
+                <h1>
+                  <span className='capital-letter'>W</span>elcome!
+                </h1>
+              )}
             </div>
             <p className='intro-title'>
               On our platform you can do the following:
@@ -125,6 +156,7 @@ const LandingLayout = (props) => {
               width={width}
               completedUsers={completedUsers}
               mostProjects={mostProjects}
+              loaded={loaded}
             />
           )}
         </div>

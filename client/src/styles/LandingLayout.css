@@ -21,8 +21,7 @@
 
 /*** Header ***/
 .welcome-header {
-  background-color: #fefefe;
-  background-image: url("../images/backgrounds/headerImg.jpg");
+  /* background-image: url("../images/backgrounds/headerImg.jpg"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -4,8 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 import { createMuiTheme } from "@material-ui/core/styles";
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
-
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import "./styles/App.css";
 
 const theme = createMuiTheme({
