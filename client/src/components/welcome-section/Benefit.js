@@ -11,7 +11,7 @@ const Benefit = ({ src, type }) => {
     todos: {
       title: "Complete To-do’s",
       description:
-        "Create and sort tasks, complete to-do’s, assign tasks to projects",
+        "Create and sort tasks, complete todo’s, assign tasks to projects",
     },
     projects: {
       title: "Add Projects",
