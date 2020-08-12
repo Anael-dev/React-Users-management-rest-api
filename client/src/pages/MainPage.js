@@ -27,7 +27,20 @@ import Users from "../components/users/Users";
 import SearchField from "../components/containers/SearchField";
 import LandingLayout from "../components/containers/LandingLayout";
 import headerImg from "../images/header.png";
+import Skeleton from "@material-ui/lab/Skeleton";
 import ProjectsTab from "../components/projects/ProjectsTab";
+
+const useProgressiveImage = (src) => {
+  const [sourceLoaded, setSourceLoaded] = useState(null);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => setSourceLoaded(src);
+  }, [src]);
+
+  return sourceLoaded;
+};
 
 const MainPage = () => {
   const ScrollLink = Scroll.Link;
@@ -35,6 +48,7 @@ const MainPage = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [expanded, setExpanded] = useState("usersPanel");
   const [width, setWidth] = useState(window.innerWidth);
+  const loaded = useProgressiveImage(headerImg);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -104,15 +118,24 @@ const MainPage = () => {
       }}>
       <header>
         <Link to={"/users"}>
-          <img
-            className='header-logo'
-            src={headerImg}
-            alt='header'
-            onClick={() => {
-              animateScroll.scrollToTop();
-              setExpanded("usersPanel");
-            }}
-          />
+          {loaded ? (
+            <img
+              className='header-logo'
+              src={headerImg}
+              alt='header'
+              onClick={() => {
+                animateScroll.scrollToTop();
+                setExpanded("usersPanel");
+              }}
+            />
+          ) : (
+            <Skeleton
+              variant='rect'
+              width={"100%"}
+              height={"1.5rem"}
+              animation='wave'
+            />
+          )}
         </Link>
       </header>
       {state.isLoading ? (
