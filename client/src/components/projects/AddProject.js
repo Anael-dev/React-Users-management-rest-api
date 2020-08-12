@@ -21,6 +21,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+    },
+  },
+  getContentAnchorEl: null,
+};
+
 const AddProject = () => {
   const classes = useStyles();
 
@@ -33,16 +44,7 @@ const AddProject = () => {
   const [error, setError] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedNames, setSelectedNames] = useState([]);
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      },
-    },
-    getContentAnchorEl: null,
-  };
+
   useEffect(() => {
     if (editItem) {
       setTitle(editItem.title);

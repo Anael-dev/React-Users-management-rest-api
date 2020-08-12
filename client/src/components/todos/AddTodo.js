@@ -50,6 +50,7 @@ const AddTodo = () => {
       setTitle(editItem.title);
       setSelectedDate(editItem.dueDate);
       setPriority(editItem.priority);
+      setProjectId(editItem.projectId)
     }
     // eslint-disable-next-line
   }, []);
