@@ -71,17 +71,18 @@ const TodosTab = (props) => {
     setItems();
   }, [setItems]);
 
+  useEffect(() => {
+    if (!dialog) {
+      setEditItem("");
+    }
+  }, [dialog]);
+
   const toggleDialog = () => {
     setDialog(!dialog);
   };
 
   const AddEditItem = (item) => {
     setEditItem(item);
-    toggleDialog();
-  };
-
-  const cancelAction = () => {
-    setEditItem("");
     toggleDialog();
   };
 
@@ -97,7 +98,6 @@ const TodosTab = (props) => {
         toggleDialog,
         editItem,
         InsertEditItem: (item) => AddEditItem(item),
-        cancelAction,
       }}>
       <>
         {userExists && (
@@ -112,8 +112,7 @@ const TodosTab = (props) => {
               </button>
               <h2 className='title-header'>
                 <i className='fas fa-clipboard-list icon blue-num'></i>
-                 {userName}{" "}
-                to-do's
+                {userName} to-do's
               </h2>
             </div>
 

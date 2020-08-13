@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const AddTodo = () => {
   const classes = useStyles();
   const { state, dispatch } = useContext(GlobalContext);
-  const { id, toggleDialog, editItem, cancelAction } = useContext(
+  const { id, toggleDialog, editItem} = useContext(
     TodosTabContext
   );
   const [projects, setProjects] = useState([]);
@@ -50,7 +50,7 @@ const AddTodo = () => {
       setTitle(editItem.title);
       setSelectedDate(editItem.dueDate);
       setPriority(editItem.priority);
-      setProjectId(editItem.projectId)
+      setProjectId(editItem.projectId);
     }
     // eslint-disable-next-line
   }, []);
@@ -91,7 +91,7 @@ const AddTodo = () => {
         });
         dispatch({
           type: "SHOW_SNACK_BAR",
-          payload: "Todo updated!",
+          payload:"Todo updated!",
         });
         toggleDialog();
       } catch (err) {
@@ -192,7 +192,7 @@ const AddTodo = () => {
           type='button'
           className='btn btn-white btn-cancel'
           value='cancel'
-          onClick={() => cancelAction()}
+          onClick={() => toggleDialog()}
         />
         <input
           type='submit'

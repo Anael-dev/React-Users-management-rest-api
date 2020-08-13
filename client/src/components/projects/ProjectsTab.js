@@ -19,6 +19,12 @@ const ProjectsTab = ({ isAccordion = false }) => {
     openTab();
   }, [openTab]);
 
+  useEffect(() => {
+    if (!dialog) {
+      setEditItem("");
+    }
+  }, [dialog]);
+
   const toggleDialog = () => {
     setDialog(!dialog);
   };
@@ -28,18 +34,12 @@ const ProjectsTab = ({ isAccordion = false }) => {
     toggleDialog();
   };
 
-  const cancelAction = () => {
-    setEditItem("");
-    toggleDialog();
-  };
-
   return (
     <ProjectsTabContext.Provider
       value={{
         toggleDialog,
         editItem,
         InsertEditItem: (item) => AddEditItem(item),
-        cancelAction,
       }}>
       <>
         <Dialog

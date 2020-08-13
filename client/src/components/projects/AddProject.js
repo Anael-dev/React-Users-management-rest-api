@@ -36,9 +36,7 @@ const AddProject = () => {
   const classes = useStyles();
 
   const { state, dispatch } = useContext(GlobalContext);
-  const { toggleDialog, editItem, cancelAction } = useContext(
-    ProjectsTabContext
-  );
+  const { toggleDialog, editItem } = useContext(ProjectsTabContext);
 
   const [title, setTitle] = useState("");
   const [error, setError] = useState("");
@@ -91,7 +89,7 @@ const AddProject = () => {
         });
         dispatch({
           type: "SHOW_SNACK_BAR",
-          payload: "Project updated!",
+          payload:"Project updated!",
         });
         toggleDialog();
       } catch (err) {
@@ -175,7 +173,7 @@ const AddProject = () => {
           type='button'
           className='btn btn-white btn-cancel'
           value='cancel'
-          onClick={() => cancelAction()}
+          onClick={() => toggleDialog()}
         />
         <input
           type='submit'
