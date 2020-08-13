@@ -89,7 +89,7 @@ const AddProject = () => {
         });
         dispatch({
           type: "SHOW_SNACK_BAR",
-          payload:"Project updated!",
+          payload: "Project updated!",
         });
         toggleDialog();
       } catch (err) {
@@ -117,43 +117,39 @@ const AddProject = () => {
     <form
       className='container-new-item data-collector'
       onSubmit={(e) => saveItem(e)}>
-      <label>
-        <span className='title-span'>Title:</span>
+      <label className='form-input'>
+        <span className='form-title'>Title:</span>
         <input
           type='text'
-          placeholder="What's your project title?"
+          placeholder='Type a project title'
           value={title}
+          className='form-input'
           onChange={(e) => setTitle(e.target.value)}
         />
       </label>
-
-      <>
-        <br />
-        <label>
-          <span className='title-span'>
-            Assigned Users: {selectedNames.length}
-          </span>
-          <FormControl className={classes.formControl}>
-            <Select
-              labelId='priority-select-label'
-              id='priority-select'
-              multiple
-              value={selectedNames}
-              onChange={(e) => handleUsersChange(e)}
-              input={<Input />}
-              MenuProps={MenuProps}>
-              {state.users.map((x) => (
-                <MenuItem key={x.id} value={x.name}>
-                  {x.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </label>
-      </>
-      <br />
-      <label>
-        <span className='title-span \'>Due Date:</span>
+      <label className='form-input'>
+        <span className='form-title'>
+          Assigned Users: {selectedNames.length}
+        </span>
+        <FormControl className={classes.formControl}>
+          <Select
+            labelId='priority-select-label'
+            id='priority-select'
+            multiple
+            value={selectedNames}
+            onChange={(e) => handleUsersChange(e)}
+            input={<Input />}
+            MenuProps={MenuProps}>
+            {state.users.map((x) => (
+              <MenuItem key={x.id} value={x.name}>
+                {x.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </label>
+      <label className='form-input'>
+        <span className='form-title'>Due Date:</span>
         <KeyboardDatePicker
           autoOk
           variant='inline'
@@ -166,7 +162,6 @@ const AddProject = () => {
           onChange={(date) => setSelectedDate(date)}
         />
       </label>
-      <br />
       {error && <label className='label-error error-item'>{error}</label>}
       <div className='button-group-add'>
         <input

@@ -4,6 +4,7 @@
   max-height: 100vh;
   overflow-x: auto;
   height: 100%;
+  margin-bottom: 2em;
 }
 
 .list-items {
@@ -17,12 +18,11 @@
 .content-table {
   border-collapse: collapse;
   font-size: 1em;
-  min-width: 100%;
+  width: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   height: 100%;
   text-align: center;
   min-width: 300px;
-  margin-bottom: 2em;
 }
 thead button {
   border: 0;

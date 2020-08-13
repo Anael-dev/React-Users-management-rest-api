@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
     minWidth: 200,
   },
+
   helperText: {
     color: "#da9432",
     fontSize: ".8em",
@@ -27,9 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const AddTodo = () => {
   const classes = useStyles();
   const { state, dispatch } = useContext(GlobalContext);
-  const { id, toggleDialog, editItem} = useContext(
-    TodosTabContext
-  );
+  const { id, toggleDialog, editItem } = useContext(TodosTabContext);
   const [projects, setProjects] = useState([]);
 
   const [title, setTitle] = useState("");
@@ -91,7 +90,7 @@ const AddTodo = () => {
         });
         dispatch({
           type: "SHOW_SNACK_BAR",
-          payload:"Todo updated!",
+          payload: "Todo updated!",
         });
         toggleDialog();
       } catch (err) {
@@ -119,19 +118,18 @@ const AddTodo = () => {
     <form
       className='container-new-item data-collector'
       onSubmit={(e) => saveItem(e)}>
-      <label>
-        <span className='title-span'>Task:</span>
+      <label className='form-input'>
+        <span className='form-title'>Task:</span>
         <input
           type='text'
-          placeholder="What's your new task?"
+          placeholder='Type a task title'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </label>
       <>
-        <br />
-        <label>
-          <span className='title-span'>Priority:</span>
+        <label className='form-input'>
+          <span className='form-title'>Priority:</span>
           <FormControl className={classes.formControl}>
             <Select
               labelId='priority-select-label'
@@ -145,9 +143,8 @@ const AddTodo = () => {
           </FormControl>
         </label>
       </>
-      <br />
-      <label>
-        <span className='title-span'>Assign to project:</span>
+      <label className='form-input'>
+        <span className='form-title'>Assign to project:</span>
         <FormControl className={classes.formControl}>
           <Select
             labelId='project-select-label'
@@ -171,8 +168,8 @@ const AddTodo = () => {
           )}
         </FormControl>
       </label>
-      <label>
-        <span className='title-span \'>Due Date:</span>
+      <label className='form-input'>
+        <span className='form-title'>Due Date:</span>
         <KeyboardDatePicker
           autoOk
           variant='inline'
@@ -185,7 +182,6 @@ const AddTodo = () => {
           onChange={(date) => setSelectedDate(date)}
         />
       </label>
-      <br />
       {error && <label className='label-error error-item'>{error}</label>}
       <div className='button-group-add'>
         <input
