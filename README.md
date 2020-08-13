@@ -1,11 +1,17 @@
-# User and task management app
+# User and task management tool
 
-Built with the MERN stack along with Context API and useReducer for state management, hooks and react-transition-group.
+Built with the MERN stack along with Context API and useReducer for state management, hooks and REST API.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This SPA project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), React Router and constructed with Material UI.
+
+This is a FullStack app, allowing to search and manage users, assign them to projects, and follow their tasks.
+You can track progress and completed to-do's at the dashboard section, created with [Chart.js](https://github.com/chartjs) plugin.
+By clicking on user's avatar in the projects tab, you will get an information about his to-do's, which can be sorted by your priority.
 
 <a href="https://management-app-anael-dev.herokuapp.com/" target="_blank">**Try the app here**</a>
 
+
+![App Demo](client/public/demo.gif)
 ## Quick Start
 
 - You will need a <a href="https://nodejs.org/en/download/" target="_blank">**Node.js**</a> installed in your environement.
