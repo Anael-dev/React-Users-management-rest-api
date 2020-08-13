@@ -1,6 +1,6 @@
 # User and task management tool
 
-> Built with the MERN stack along with Context API and useReducer for state management,React hooks and REST API.
+> Built with the MERN stack along with Context API and useReducer for state management, React hooks and REST API.
 
 This SPA project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), React Router and constructed with Material UI.
 
