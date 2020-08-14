@@ -6,7 +6,7 @@ This SPA project was bootstrapped with [Create React App](https://github.com/fac
 
 :heavy_check_mark: This is a FullStack app, intended for team-leaders, allowing to manage users, assigning projects and follow up tasks.
 
-:heavy_check_mark: You can track progress and completed to-do's at the dashboard section, created with [Chart.js](https://github.com/chartjs) plugin.
+:heavy_check_mark: You can track progress and obtain tasks completion statistic at the dashboard section, created with [Chart.js](https://github.com/chartjs) plugin.
 
 :heavy_check_mark: By clicking on user's avatar or name in the respective tab, you will get an information table about user's to-do's, which can be sorted by priority.
 
