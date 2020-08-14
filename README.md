@@ -4,11 +4,11 @@
 
 This SPA project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), React Router and constructed with Material UI.
 
-:heavy_check_mark: This is a FullStack app, allowing to search and manage users, assign them to projects, and follow their tasks.
+:heavy_check_mark: This is a FullStack app, intended for team-leaders, allowing to manage users, assigning projects and follow up tasks.
 
 :heavy_check_mark: You can track progress and completed to-do's at the dashboard section, created with [Chart.js](https://github.com/chartjs) plugin.
 
-:heavy_check_mark: By clicking on user's avatar in the projects tab, you will get an information about his to-do's, which can be sorted by your priority.
+:heavy_check_mark: By clicking on user's avatar or name in the respective tab, you will get an information table about user's to-do's, which can be sorted by priority.
 
 <a href="https://management-app-anael-dev.herokuapp.com/" target="_blank">**Try the app here** :smiley:</a>
 
