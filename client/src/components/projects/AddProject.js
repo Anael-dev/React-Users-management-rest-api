@@ -84,11 +84,10 @@ const AddProject = () => {
           newProject.users.some((user) => user.id === x.id)
         );
         if (!result || editItem.users.length !== newProject.users.length) {
-          console.log("not equal");
           const removedUsers = editItem.users.filter(
             (x) => !newProject.users.some((user) => user.id === x.id)
           );
-          console.log(removedUsers);
+          // console.log(removedUsers);
 
           if (removedUsers.length > 0) {
             let projectTodos;
@@ -99,7 +98,7 @@ const AddProject = () => {
               );
             });
             if (projectTodos.length > 0) {
-              console.log(projectTodos);
+              // console.log(projectTodos);
               await Promise.all(
                 projectTodos.map(async (todo) => {
                   await todosDAL.deleteTodo(todo._id);
