@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
 import MainPageContext from "../../context/MainPageContext";
@@ -63,7 +63,7 @@ const Project = ({ projectData }) => {
   };
 
   const redirectToData = (id) => {
-    history.push(`/projects/user/${id}`);
+    history.push(`/projects/${project._id}/${id}`);
     closeAccordion();
     animateScroll.scrollToTop();
   };

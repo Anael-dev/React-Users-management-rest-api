@@ -7,7 +7,7 @@ const RouteComponents = () => {
     <div className='container-right'>
       <Switch>
         <Route exact path='/users/:id' component={TodosTab} />
-        <Route exact path='/projects/user/:id' component={TodosTab} />
+        <Route exact path='/projects/:projectId/:id' component={TodosTab} />
       </Switch>
     </div>
   );

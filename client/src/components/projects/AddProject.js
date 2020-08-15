@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import "../../styles/AddTodo.css";
 import ProjectsTabContext from "../../context/ProjectsTabContext";
+import todosDAL from "../../utils/todosAPI";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -79,6 +80,38 @@ const AddProject = () => {
     };
     if (editItem) {
       try {
+        let result = editItem.users.every((x) =>
+          newProject.users.some((user) => user.id === x.id)
+        );
+        if (!result || editItem.users.length !== newProject.users.length) {
+          console.log("not equal");
+          const removedUsers = editItem.users.filter(
+            (x) => !newProject.users.some((user) => user.id === x.id)
+          );
+          console.log(removedUsers);
+
+          if (removedUsers.length > 0) {
+            let projectTodos;
+            removedUsers.map((user) => {
+              projectTodos = state.todos.filter(
+                (todo) =>
+                  todo.userId === user.id && todo.projectId === editItem._id
+              );
+            });
+            if (projectTodos.length > 0) {
+              console.log(projectTodos);
+              await Promise.all(
+                projectTodos.map(async (todo) => {
+                  await todosDAL.deleteTodo(todo._id);
+                  dispatch({
+                    type: "DELETE_TODO",
+                    payload: todo,
+                  });
+                })
+              );
+            }
+          }
+        }
         const updatedProject = await projectsDAL.editProject(
           editItem._id,
           newProject

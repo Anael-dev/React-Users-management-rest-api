@@ -98,20 +98,28 @@ export const reducer = (state, action) => {
 
     case "ADD_TODOS_PROGRESS":
       const userTodo = action.payload;
+      // console.log(userTodo);
+      // console.log(userTodo.completed);
       let mappedTodos;
       let foundUser = false;
-      if (state.todosProgress.length > 0) {
-        mappedTodos = state.todosProgress.map((x) => {
-          if (x.id === userTodo.id) {
-            foundUser = true;
-            return { ...x, ...userTodo };
-          } else {
-            return x;
-          }
-        });
-      }
-      if (state.todosProgress.length === 0 || !foundUser) {
-        mappedTodos = [...state.todosProgress, userTodo];
+      if (userTodo.completed.length === 0) {
+        mappedTodos = state.todosProgress.filter((x) => x.id !== userTodo.id);
+        // console.log(mappedTodos);
+        // console.log("Im here");
+      } else {
+        if (state.todosProgress.length > 0) {
+          mappedTodos = state.todosProgress.map((x) => {
+            if (x.id === userTodo.id) {
+              foundUser = true;
+              return { ...x, ...userTodo };
+            } else {
+              return x;
+            }
+          });
+        }
+        if (state.todosProgress.length === 0 || !foundUser) {
+          mappedTodos = [...state.todosProgress, userTodo];
+        }
       }
       return {
         ...state,
@@ -295,6 +303,7 @@ export const reducer = (state, action) => {
         todos: state.todos.filter((todo) => todo._id !== action.payload._id),
         todosProgress: filteredTodosArr,
       };
+
     case "SHOW_LOADER":
       return {
         ...state,
