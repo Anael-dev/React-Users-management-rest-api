@@ -301,7 +301,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         todos: state.todos.filter((todo) => todo._id !== action.payload._id),
-        todosProgress: filteredTodosArr,
+        todosProgress: filteredTodosArr || state.todosProgress,
       };
 
     case "SHOW_LOADER":
