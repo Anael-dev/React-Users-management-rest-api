@@ -91,14 +91,13 @@ const AddProject = () => {
 
           if (removedUsers.length > 0) {
             let projectTodos;
-            removedUsers.map((user) => {
+            removedUsers.forEach((user) => {
               projectTodos = state.todos.filter(
                 (todo) =>
                   todo.userId === user.id && todo.projectId === editItem._id
               );
             });
             if (projectTodos.length > 0) {
-              // console.log(projectTodos);
               await Promise.all(
                 projectTodos.map(async (todo) => {
                   await todosDAL.deleteTodo(todo._id);

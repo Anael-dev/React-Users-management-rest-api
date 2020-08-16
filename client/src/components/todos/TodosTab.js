@@ -26,7 +26,7 @@ const TodosTab = (props) => {
       setUserName(user.name);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userExists, params.id]);
+  }, [userExists,state.users]);
 
   const checkUser = useCallback(() => {
     const selectedId = Number(params.id);

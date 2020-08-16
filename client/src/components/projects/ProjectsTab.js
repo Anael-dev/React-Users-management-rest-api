@@ -13,7 +13,6 @@ const ProjectsTab = ({ isAccordion = false }) => {
   const { params } = useRouteMatch();
   const { state } = useContext(GlobalContext);
 
-  const [userExists, setUserExists] = useState("");
   const [dialog, setDialog] = useState(false);
   const [editItem, setEditItem] = useState("");
 
@@ -22,12 +21,8 @@ const ProjectsTab = ({ isAccordion = false }) => {
     const projectId = Number(params.projectId);
     const project = state.projects.find((project) => project._id === projectId);
     if (!project || !project.users.some((x) => x.id === selectedId)) {
-      setUserExists(false);
       history.push("/projects");
-    } else {
-      setUserExists(true);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id, params.projectId, state.projects]);
 
@@ -38,6 +33,7 @@ const ProjectsTab = ({ isAccordion = false }) => {
   const openTab = useCallback(() => {
     setDialog(false);
     setEditItem("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id, params.projectId]);
 
   useEffect(() => {
