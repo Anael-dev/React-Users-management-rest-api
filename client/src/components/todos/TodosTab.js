@@ -20,14 +20,6 @@ const TodosTab = (props) => {
   const [userExists, setUserExists] = useState("");
   const [userName, setUserName] = useState("");
 
-  useEffect(() => {
-    if (userExists) {
-      const user = state.users.find((user) => user.id === Number(params.id));
-      setUserName(user.name);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userExists, params.id, state.users]);
-
   const checkUser = useCallback(() => {
     const selectedId = Number(params.id);
     if (
@@ -38,6 +30,10 @@ const TodosTab = (props) => {
       props.history.push("/users");
     } else {
       setUserExists(true);
+      const user = state.users.find((user) => user.id === Number(params.id));
+      if (user.name !== userName) {
+        setUserName(user.name);
+      }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

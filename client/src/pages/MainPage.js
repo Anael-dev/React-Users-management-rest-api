@@ -292,7 +292,7 @@ const MainPage = () => {
           href='https://www.linkedin.com/in/anael-mashinsky/'
           target='_blank'
           rel='noopener noreferrer'>
-          <i className='fab fa-linkedin-in'></i>
+          <i className='fab fa-linkedin'></i>
         </a>
         <br />
         <a
