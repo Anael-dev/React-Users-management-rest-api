@@ -33,7 +33,8 @@ const AddUser = ({ toggleAddUser }) => {
       const newUser = await usersDAL.addUser({
         ...user,
         id: num,
-        avatar: `https://i.pravatar.cc/150?img=${num}`,
+        avatar: await usersDAL.getAvatarImg(num, user.name),
+        // `https://i.pravatar.cc/150?img=${num}`,
       });
       dispatch({
         type: "ADD_USER",

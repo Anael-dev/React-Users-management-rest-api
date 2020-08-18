@@ -28,4 +28,25 @@ const editUser = async (id, obj) => {
   return response.data;
 };
 
-export default { getAllUsers, getUser, deleteUser, addUser, editUser };
+const getAvatarImg = async (id, name) => {
+  try {
+    // const response = await axios.get("https://tinyfac.es/api/users");
+    // return response.data[id].avatars[0].url;
+    const response = await axios.get("https://randomuser.me/api/?inc=picture");
+    return response.data.results[0].picture.medium;
+  } catch (err) {
+    console.log(err);
+    const userImg = `https://ui-avatars.com/api/?background=4591af&color=fff&name=${
+      name.split(" ")[0]
+    }+${name.split(" ")[1]}`;
+    return userImg;
+  }
+};
+export default {
+  getAllUsers,
+  getUser,
+  deleteUser,
+  addUser,
+  editUser,
+  getAvatarImg,
+};
