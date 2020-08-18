@@ -152,6 +152,9 @@
     width: 30%;
     flex-direction: column;
     margin-bottom: 0;
+    overflow: hidden;
+    margin-right: 1em;
+    word-break: break-word;
   }
   .benefit h3 {
     margin-bottom: 1em;
