@@ -5,7 +5,8 @@ const projectsBL = require("../models/projectsBL");
 const todosBL = require("../models/todosBL");
 
 mongoose.connect(
-  process.env.MONGOLAB_PINK_URI || "mongodb://localhost:27017/usersDB",
+  process.env.MONGOLAB_PINK_URI ||
+    `mongodb://heroku_f8kwvt04:${process.env.PASSWORD}@cluster-shard-00-00.hduwz.mongodb.net:27017,cluster-shard-00-01.hduwz.mongodb.net:27017,cluster-shard-00-02.hduwz.mongodb.net:27017/heroku_f8kwvt04?ssl=true&replicaSet=atlas-84mli3-shard-0&authSource=admin&retryWrites=true&w=majority`,
 
   {
     useUnifiedTopology: true,
@@ -24,9 +25,7 @@ db.once("open", async () => {
     // const projectsData = await projectsBL.getAll();
     // const todosData = await todosBL.getAll();
 
-    if (
-      membersData.length === 0
-    ) {
+    if (membersData.length === 0) {
       const members = await membersBL.getMembers();
       await db.collection("members").insertMany(members);
 
