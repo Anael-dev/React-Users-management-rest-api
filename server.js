@@ -2,7 +2,7 @@ let express = require("express");
 var cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
-
+require('dotenv').config()
 var membersRouter = require("./routers/membersRoute");
 var projectsRouter = require("./routers/projectsRoute");
 var todosRouter = require("./routers/todosRoute");
